@@ -8,9 +8,9 @@ body {
 }
 
 header {
-	background-color: navy;
+	background-color: #B5A373;
 	width: 100%;
-	padding: 2em 2em 2em 2em;
+	padding: 1.2em;
 	position: fixed;
 	top: 0;
 	z-index: 1;
@@ -28,8 +28,11 @@ header input[type='text'] {
 
 header input[type='button'] {
 	margin-left: -4px;
-	margin-top: -4px;
+	margin-top: -3px;
 	border-radius: 0;
+	background-color: #F6CD00;
+	color: black;
+	border-color: #F6CD00;
 }
 
 .account {
@@ -42,31 +45,38 @@ header input[type='button'] {
 
 .account:hover {
 	cursor: pointer;
+	background-color: #F6CD00;
 }
 
 nav {
 	position: fixed !important;
 	height: 100%;
-	top: 14%;
+	top: 11%;
+	background-color: #F7F7F7;
+	
 }
 
 nav div {
-	padding: 1.5em 0;
+	padding: 1em 0;
+	border-bottom: 1px solid #B5A373;
 
 }
 
 nav div h4 {
-	font-size: 1.5em;
+	font-size: 1.3em; padding-left: 1em;
 }
 
+nav div h4 span { font-size: 0.5em; opacity: .5; padding: 0.3em; right: 1em;
+		border: 1px solid black; border-radius: 50%; }
+
 nav div:hover {
-	background-color: #E7E7E7;
+	background-color: #F6CD00;
 	cursor: pointer;
 }
 
 .main-section {
-	height: 1200px;
-	margin-top: 6%;
+	height: 100%;
+	margin-top: 5%;
 	background-color: #F1F1F1;
 }
 
