@@ -1,0 +1,114 @@
+html {
+	width: 100%;
+	height: 100%;
+}
+
+body {
+	top: 12%;
+}
+
+header {
+	background-color: #B5A373;
+	width: 100%;
+	padding: 1.2em;
+	position: fixed;
+	top: 0;
+	z-index: 1;
+}
+
+header img {
+	margin-left: 8em;
+}
+
+header input[type='text'] {
+	width: 500px;
+	padding: .25em 0 .25em 1em;
+	margin-left: 2em;
+}
+
+header input[type='button'] {
+	margin-left: -4px;
+	margin-top: -3px;
+	border-radius: 0;
+	background-color: #F6CD00;
+	color: black;
+	border-color: #F6CD00;
+}
+
+.account {
+	padding: 0.8em;
+	background-color: white;
+	width: 8em;
+	display: inline;
+	margin-left: 4em;
+}
+
+.account:hover {
+	cursor: pointer;
+	background-color: #F6CD00;
+}
+
+nav {
+	position: fixed !important;
+	height: 100%;
+	top: 11%;
+	background-color: #F7F7F7;
+	
+}
+
+nav a {
+	color: black;
+}
+
+nav a:hover {
+	text-decoration: none;
+	color: black;
+}
+
+nav div {
+	padding: 1em 0;
+	border-bottom: 1px solid #B5A373;
+
+}
+
+nav div h4 {
+	font-size: 1.3em; padding-left: 1em;
+}
+
+nav div h4 span { font-size: 0.5em; opacity: .5; padding: 0.3em; right: 1em;
+		border: 1px solid black; border-radius: 50%; }
+
+nav div:hover {
+	background-color: #F6CD00;
+	cursor: pointer;
+}
+
+.main-section {
+	height: 100%;
+	margin-top: 5%;
+	background-color: #F1F1F1;
+}
+
+.main-section-content {
+	padding: 3em;
+}
+
+#carousel-product {
+	width: 950px;
+	margin: auto;
+}
+
+.product-thumbnail {
+	background-color: white;
+	padding: 2em;
+}
+
+.product-thumbnail h2 {
+	padding-bottom: 0.7em;
+	margin-bottom: 1.5em;
+	border-bottom: 1px solid black;
+}
+
+.product-thumbnail img {
+	margin-left: 5em;
+}
