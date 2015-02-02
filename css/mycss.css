@@ -56,6 +56,15 @@ nav {
 	
 }
 
+nav a {
+	color: black;
+}
+
+nav a:hover {
+	text-decoration: none;
+	color: black;
+}
+
 nav div {
 	padding: 1em 0;
 	border-bottom: 1px solid #B5A373;
