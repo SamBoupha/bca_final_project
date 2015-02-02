@@ -5,6 +5,7 @@ html {
 
 body {
 	top: 12%;
+	background-color: #F1F1F1;
 }
 
 header {
@@ -86,7 +87,6 @@ nav div:hover {
 .main-section {
 	height: 100%;
 	margin-top: 5%;
-	background-color: #F1F1F1;
 }
 
 .main-section-content {
@@ -98,17 +98,47 @@ nav div:hover {
 	margin: auto;
 }
 
-.product-thumbnail {
+.product-thumbnail-section {
 	background-color: white;
 	padding: 2em;
+	padding-bottom: 5em;
 }
 
-.product-thumbnail h2 {
+.product-thumbnail-section h2 {
 	padding-bottom: 0.7em;
 	margin-bottom: 1.5em;
 	border-bottom: 1px solid black;
 }
 
-.product-thumbnail img {
+.product-thumbnail-section img {
 	margin-left: 5em;
 }
+
+footer {
+	margin-top: 2em;
+}
+
+footer div {
+	padding: 1em 2em 0.3em;
+	background-color: white;
+}
+
+div.footer-nav div h6 {
+	font-size: 1.2em;
+	color: #B5A373;
+}
+
+.footer ul {
+	margin-top: 4em;
+	text-align: center;
+	border-top: 1px solid gray;
+	border-bottom: 1px solid gray;
+	padding: 0.6em 0;
+}
+
+.footer li{
+	display: inline;
+	margin-left: 2em;
+}
+
+.footer li:last-child { color: gray; }

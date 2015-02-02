@@ -29,7 +29,7 @@
 		  </a>
 		</div> <!-- carousel -->
 		<br /><br />
-		<div class='product-thumbnail'>
+		<div class='product-thumbnail-section'>
 			<h2>Computers</h2>
 			<div>
 				<img src="img/computer/apple-macbook-pro-notebook-125x125.jpeg">
@@ -63,6 +63,6 @@
 			</div>
 		</div> <!--	product thumbnail -->
 	</div>
-</section> <!-- amin body section-->
+</section> <!-- main body section-->
 	
 <?php include(INC_PATH.DS."footer.php"); ?>
