@@ -2,6 +2,7 @@
 <?php include(INC_PATH.DS."header.php"); ?>
 <?php include(INC_PATH.DS."side-nav.php"); ?>
 
+<!-- body of the page -->
 <section  class='main-section col-md-offset-2 col-md-10'>
 	<div class="main-section-content">
 		<div id="carousel-product" class="carousel slide" data-ride="carousel">
@@ -29,6 +30,7 @@
 		  </a>
 		</div> <!-- carousel -->
 		<br /><br />
+		<!-- categories display section -->
 		<div class='product-thumbnail-section'>
 			<h2>Computers</h2>
 			<div>
