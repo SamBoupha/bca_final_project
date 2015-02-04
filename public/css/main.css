@@ -8,23 +8,23 @@ body {
 	background-color: #F1F1F1;
 }
 
+header img {
+	margin-left: 9em;
+}
+
 header {
-	background-color: #B5A373;
+	background-color: #CDC2A5;
 	width: 100%;
-	padding: 1.2em;
+	padding: 0.5em;
 	position: fixed;
 	top: 0;
 	z-index: 1;
 }
 
-header img {
-	margin-left: 8em;
-}
-
 header input[type='text'] {
-	width: 500px;
+	width: 600px;
 	padding: .25em 0 .25em 1em;
-	margin-left: 2em;
+	margin-left: 3em;
 }
 
 header input[type='button'] {
