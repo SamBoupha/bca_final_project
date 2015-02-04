@@ -5,6 +5,9 @@
 <section  class='main-section col-md-offset-2 col-md-10'>
 	<div>
 		<h1>Computers and Accessories</h1>
+		<div>
+
+		</div>
 	</div>
 	
 </section> <!-- main body section-->

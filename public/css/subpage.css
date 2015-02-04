@@ -6,3 +6,8 @@ section.main-section div {
 	background-color: white;
 }
 
+section.main-section div div {
+	width: 95%;
+	height: 80%;
+	border: 1px solid black;
+}
