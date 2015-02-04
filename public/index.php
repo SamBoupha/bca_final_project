@@ -1,4 +1,5 @@
 <?php include("../include/initialize.php"); ?>
+<?php include(INC_PATH.DS."helper.php"); ?>
 <?php include(INC_PATH.DS."header.php"); ?>
 <?php include(INC_PATH.DS."side-nav.php"); ?>
 
@@ -8,7 +9,7 @@
 		<div id="carousel-product" class="carousel slide" data-ride="carousel">
 		  <!-- Wrapper for slides -->
 		  <div class="carousel-inner" role="listbox">
-		    <?php include(INC_PATH.DS."carousel_auto_gen.php"); ?>
+		    <?php carouselAutoGen(); ?>
 		  </div>
 		  <!-- Controls -->
 		  <a class="left carousel-control" href="#carousel-product" role="button" data-slide="prev">
