@@ -1,4 +1,5 @@
 <?php include("../include/initialize.php"); ?>
+<?php include(INC_PATH.DS."helper.php"); ?>
 <?php include(INC_PATH.DS."header.php"); ?>
 <?php include(INC_PATH.DS."side-nav.php"); ?>
 
@@ -8,17 +9,8 @@
 		<div id="carousel-product" class="carousel slide" data-ride="carousel">
 		  <!-- Wrapper for slides -->
 		  <div class="carousel-inner" role="listbox">
-		    <div class="item active">
-		      <img src="img/product_slides/redmi.png" alt="...">
-		    </div>
-		    <div class="item">
-		      <img src="img/product_slides/ip6.jpg" alt="...">
-		    </div>
-		    <div class="item">
-		      <img src="img/product_slides/tv.jpg" alt="...">
-		    </div>
+		    <?php carouselAutoGen(); ?>
 		  </div>
-
 		  <!-- Controls -->
 		  <a class="left carousel-control" href="#carousel-product" role="button" data-slide="prev">
 		    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
@@ -34,34 +26,46 @@
 		<div class='product-thumbnail-section'>
 			<h2>Computers</h2>
 			<div>
-				<img src="img/computer/apple-macbook-pro-notebook-125x125.jpeg">
-				<img src="img/computer/hp-notebook-125x125.jpeg">
-				<img src="img/computer/apple-macbook-air-notebook-125x125.jpeg">
-				<img src="img/computer/lenovo-125x125.jpeg">
+				<?php 
+					$dirPath = "img".DS."computer";
+					$images = imgSrcAutoGen($dirPath);
+					foreach ($images as $image) {
+						echo $image;
+					}
+				?>
 			</div>
 			<br /><br /><br /><br /><br />
 			<h2>Mobiles &amp; Tablets</h2>
 			<div>
-				<img src="img/computer/apple-macbook-pro-notebook-125x125.jpeg">
-				<img src="img/computer/hp-notebook-125x125.jpeg">
-				<img src="img/computer/apple-macbook-air-notebook-125x125.jpeg">
-				<img src="img/computer/lenovo-125x125.jpeg">
+				<?php 
+					$dirPath = "img".DS."mobilestablets";
+					$images = imgSrcAutoGen($dirPath);
+					foreach ($images as $image) {
+						echo $image;
+					}
+				?>
 			</div>
 			<br /><br /><br /><br /><br />
 			<h2>books</h2>
 			<div>
-				<img src="img/computer/apple-macbook-pro-notebook-125x125.jpeg">
-				<img src="img/computer/hp-notebook-125x125.jpeg">
-				<img src="img/computer/apple-macbook-air-notebook-125x125.jpeg">
-				<img src="img/computer/lenovo-125x125.jpeg">
+				<?php 
+					$dirPath = "img".DS."computer";
+					$images = imgSrcAutoGen($dirPath);
+					foreach ($images as $image) {
+						echo $image;
+					}
+				?>
 			</div>
 			<br /><br /><br /><br /><br />
 			<h2>Clothing</h2>
 			<div>
-				<img src="img/computer/apple-macbook-pro-notebook-125x125.jpeg">
-				<img src="img/computer/hp-notebook-125x125.jpeg">
-				<img src="img/computer/apple-macbook-air-notebook-125x125.jpeg">
-				<img src="img/computer/lenovo-125x125.jpeg">
+				<?php 
+					$dirPath = "img".DS."computer";
+					$images = imgSrcAutoGen($dirPath);
+					foreach ($images as $image) {
+						echo $image;
+					}
+				?>
 			</div>
 		</div> <!--	product thumbnail -->
 	</div>
