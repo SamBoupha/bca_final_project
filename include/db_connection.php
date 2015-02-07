@@ -34,7 +34,6 @@
 			return $query;
 		}
 
-
 		function db_fetch_assoc($result) {
 			return $result->fetch_assoc();
 		}
