@@ -1,14 +1,13 @@
 
 form {
-	border: 1px solid gray;
 	border-radius: 2em;
 	padding: 1% 4%;
 	width: 45%;
 	position: absolute;
-	top: 50%; 
+	top: 12%; 
 	left: 50%;
 	margin-left: -22%;
-	margin-top: -18%;
+	background-color: #CDC2A5;
 }
 
 form h2 {
@@ -32,4 +31,10 @@ input[type='submit'] {
 	margin-top: 3em;
 	margin-bottom: 2em;
 	float: right;
+}
+
+.btn-primary {
+	background-color: #F6CD00;
+	color: black;
+	border-color: white;
 }
