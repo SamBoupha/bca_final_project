@@ -1,0 +1,35 @@
+
+form {
+	border: 1px solid gray;
+	border-radius: 2em;
+	padding: 1% 4%;
+	width: 45%;
+	position: absolute;
+	top: 50%; 
+	left: 50%;
+	margin-left: -22%;
+	margin-top: -18%;
+}
+
+form h2 {
+	text-align: center;
+}
+
+form img {
+	display: block;
+	margin: auto;
+	margin-bottom: 2em; 
+}
+
+input[type='text'], input[type='password'] {
+	width: 100%;
+	padding: .2em;
+	font-size: 1.3em;
+	margin-bottom: 1em;
+}
+
+input[type='submit'] {
+	margin-top: 3em;
+	margin-bottom: 2em;
+	float: right;
+}
