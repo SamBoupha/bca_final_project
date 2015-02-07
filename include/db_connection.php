@@ -7,6 +7,7 @@
 	class connect_database 
 	{
 		private $connection;
+		private $last_query;
 
 		function __construct() {
 			$this->connection = new mysqli(DB_HOST, DB_USERNAME, DB_PASSWORD, DB_NAME);
@@ -24,6 +25,7 @@
 		}
 
 		function execute_query($query) {
+			$this->last_query = $query;
 			$result = $this->connection->query($query);
 			$this->confirm_query($result);
 			return $result;
