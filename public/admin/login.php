@@ -5,13 +5,15 @@
 		$username = htmlspecialchars($_POST['username']);
 		$password = htmlspecialchars($_POST['password']);
 
-		$result = admin::find_admin($username, $password);
+		$admin = admin::find_admin($username, $password);
 
-		if(empty($result)) {
+		if(empty($admin)) {
 			$error = "<h4 class='error'>Username/password is not correct. Please, try again</h4>";
 		} else {
+			$session->log_in($admin);
 			header("location: index.php");
 		}
+
 	} 
 ?>
 
@@ -20,7 +22,7 @@
 	<head>
 		<meta charset="UTF-8">
 		<link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
-		<link rel="stylesheet" type="text/css" href="../css/admin.css">
+		<link rel="stylesheet" type="text/css" href="../css/admin-login.css">
 	</head>
 	<body>
 		<form method='post' >

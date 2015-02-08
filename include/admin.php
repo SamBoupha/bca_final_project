@@ -4,6 +4,11 @@
 	class admin extends databaseObject {
 
 		protected static $table_name = 'admin';
+		public $id,
+			   $name,
+			   $lastname,
+			   $username;
+		
 
 		static function find_admin($username, $password) {
 			global $db;
@@ -14,7 +19,11 @@
 
 			$result = $db->execute_query($sql);
 
-			return $db->db_fetch_assoc($result);
+			$result = $db->db_fetch_assoc($result);
+			$db->close_connection();
+			return $result;
 		} 
+
+		
 	}
 ?>
