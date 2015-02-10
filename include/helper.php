@@ -36,8 +36,6 @@
 		return $img_links;
 	}
 
-
-
 	function carouselAutoGen($dirPath) {
 	
 		$img_links = imgSrcAutoGen($dirPath);

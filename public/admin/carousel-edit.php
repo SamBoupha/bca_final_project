@@ -37,7 +37,7 @@ if(!$session->is_logged_in()) header("location: login.php");
 				echo "</td>";
 				// FifthColumn - Delete
 				echo "<td>";
-				echo '<a href="carousel-edit-delete.php"><p class="danger">Delete This Slide</p></a>';
+				echo '<a href="carousel-edit-delete.php?fn='.$image.'"><p class="danger">Delete This Slide</p></a>';
 				echo "</td>";
 
 				echo "</tr>";
