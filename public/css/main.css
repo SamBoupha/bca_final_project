@@ -84,12 +84,10 @@ nav div:hover {
 	cursor: pointer;
 }
 
-.main-section {
-	height: 100%;
-	margin-top: 5%;
-}
-
-.main-section-content {
+section {
+	min-height: 500px;
+	margin-top: 6%;
+	margin-left: 16.5%;
 	padding: 3em;
 }
 

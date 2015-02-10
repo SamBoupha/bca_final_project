@@ -12,6 +12,7 @@ header {
 	background-color: #CDC2A5;
 	position: fixed;
 	padding: 0.2em;
+	z-index: 1;
 }
 
 nav {
@@ -20,6 +21,17 @@ nav {
 	top: 15%;
 	position: fixed;
 	background-color: #F7F7F7;
+	margin-top: 2em;
+}
+
+nav ul {
+	list-style-type: none;
+}
+
+nav ul li {
+	margin-bottom: 1em;
+	font-size: 1.3em;
+	
 }
 
 section {
