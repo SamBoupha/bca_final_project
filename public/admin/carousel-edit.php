@@ -37,7 +37,8 @@ if(!$session->is_logged_in()) header("location: login.php");
 				echo "</td>";
 				// FifthColumn - Delete
 				echo "<td>";
-				echo '<a href="carousel-edit-delete.php?fn='.$image.'"><p class="danger">Delete This Slide</p></a>';
+				echo '<a href="carousel-edit-delete.php?fn='.$image.'"
+					onclick="return wait()"><p class="danger">Delete This Slide</p></a>';
 				echo "</td>";
 
 				echo "</tr>";
@@ -46,5 +47,9 @@ if(!$session->is_logged_in()) header("location: login.php");
 		?>
 
 	</section>
-
+	<script type="text/javascript">
+		function wait() {
+			return confirm("Are you sure you want to delete this slide?");
+		}
+	</script>
 <?php include(INC_PATH.DS.'footer-admin.php');?>
