@@ -21,11 +21,11 @@ nav {
 	top: 15%;
 	position: fixed;
 	background-color: #F7F7F7;
-	margin-top: 2em;
 }
 
 nav ul {
 	list-style-type: none;
+	margin-top: 2em;
 }
 
 nav ul li {
@@ -40,6 +40,12 @@ section {
 	position: absolute;
 }
 
+
+/* Carousel-edit */
+table {
+	margin: 2em auto;
+}
+
 table tr td, table tr th {
 	text-align: center;
 	border: 1px solid gray;
@@ -50,3 +56,35 @@ table tr td, table tr th {
 	color: red;
 }
 
+.report-success {
+	margin-top: 1em;
+	border: 1px solid green;
+	color: green;
+	padding: 0.5em;
+	font-size: 1.5em;
+}
+
+/* carousel-edit-add */
+
+section div.carousel-edit-add {
+	padding: 2em 3em;
+}
+
+div.carousel-edit-add h2 {
+	margin-bottom: 1em;
+}
+
+form {
+	padding: 2em;
+	border: 1px solid gray;
+	border-radius: 1em;
+}
+
+form input[type='text'] {
+	width: 400px;
+	padding: 0.3em;
+}
+
+form input[type='submit'] {
+	float: right;
+}

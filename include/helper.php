@@ -21,7 +21,7 @@
 		$stepback = $admin ? '..'.DS : null;
 
 		foreach ($images as $image) {
-			$file_names = explode("_", $image);
+			$file_names = explode("__", $image);
 			$link = $file_names[1].".php";
 			$img_links[] = 	'<a href="'.
 							$stepback.

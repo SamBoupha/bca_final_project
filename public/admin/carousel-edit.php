@@ -12,12 +12,19 @@ if(!$session->is_logged_in()) header("location: login.php");
 		<a href='carousel-edit-add.php'>Add new</a><br />
 
 		<?php
+			if (isset($_SESSION['report'])) {
+				echo "<div class='report-success'>";
+				echo $_SESSION['report'];
+				echo "</div>";
+				unset($_SESSION['report']);
+			}
+
 			$dirPath = "..".DS."img".DS."product_slides";
 			$images = imgSearch($dirPath);
 			echo "<table class='table table-striped'>";
 			echo "<tr><th>Index</th><th>Sample Imgae</th><th>Link</th><th></th><th></th></tr>";
 			foreach ($images as $image) {
-				$file_name = explode("_", $image);
+				$file_name = explode("__", $image);
 				echo "<tr>";
 				//first column - Index
 				echo "<td>";
@@ -33,7 +40,7 @@ if(!$session->is_logged_in()) header("location: login.php");
 				echo "</td>";
 				// Fourth Column - Edit
 				echo "<td>";
-				echo '<a href="carousel-edit-edit.php.php">Edit This Slide</a>';
+				echo '<a href="carousel-edit-edit.php?fn='.$image.'">Edit This Slide</a>';
 				echo "</td>";
 				// FifthColumn - Delete
 				echo "<td>";
