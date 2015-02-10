@@ -1,13 +1,11 @@
 <?php
 
-	function imgSrcAutoGen($dirPath, $width=null, $height=null) {
+	function imgSearch($dirPath) {
 		$images = array();
 		if($dHandler = opendir($dirPath)) {
-			$index = 0;
 			while ( ($file = readdir($dHandler)) != false) {
 				if(preg_match("/.png/", $file) || preg_match("/.jpg/", $file)) {
-					$images[] = '<img src="'.$dirPath.DS.$file.'" style= "width:'.$width
-					.'px; height:'.$height.'px;">';
+					$images[] = $file;
 				}
 			}
 			closedir($dHandler);
@@ -15,11 +13,26 @@
 		return $images;
 	}
 
+	function imgSrcAutoGen($dirPath, $width=null, $height=null) {
+		$index = 0;
+		$img_links = array();
+		$images = imgSearch($dirPath);
+
+		foreach ($images as $image) {
+			$img_links[] = '<img src="'.$dirPath.DS.$image.'" style= "width:'.$width
+					.'px; height:'.$height.'px;">';
+		}
+
+		return $img_links;
+	}
+
+
+
 	function carouselAutoGen($dirPath) {
 	
-		$images = imgSrcAutoGen($dirPath);
+		$img_links = imgSrcAutoGen($dirPath);
 		$index = 0;
-		foreach ($images as $image) {
+		foreach ($img_links as $img) {
 			echo '<div class="item';
 			if ($index == 0) { 
 				echo " active";
@@ -28,8 +41,9 @@
 			echo '"><a href="';
 			echo $link;
 			echo '">';
-			echo $image;
+			echo $img;
 			echo '</a></div>';
 		}
 	}
+
 ?>
