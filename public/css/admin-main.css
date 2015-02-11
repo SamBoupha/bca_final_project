@@ -40,6 +40,13 @@ section {
 	position: absolute;
 }
 
+section div {
+	padding: 2em 3em;
+}
+
+/* index */ 
+
+/* >>END index */
 
 /* Carousel-edit */
 table {
@@ -64,11 +71,9 @@ table tr td, table tr th {
 	font-size: 1.5em;
 }
 
-/* carousel-edit-add */
+/* >>END Carousel-edit*/
 
-section div.carousel-edit-add {
-	padding: 2em 3em;
-}
+/* carousel-edit-add */
 
 div.carousel-edit-add h2 {
 	margin-bottom: 1em;
@@ -88,3 +93,4 @@ form input[type='text'] {
 form input[type='submit'] {
 	float: right;
 }
+/* >>END carousel-edit-add */
