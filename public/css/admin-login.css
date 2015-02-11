@@ -1,0 +1,50 @@
+
+form {
+	border-radius: 2em;
+	padding: 1% 4%;
+	width: 45%;
+	position: absolute;
+	top: 12%; 
+	left: 50%;
+	margin-left: -22%;
+	background-color: #CDC2A5;
+}
+
+form h2 {
+	text-align: center;
+}
+
+form img {
+	display: block;
+	margin: auto;
+	margin-bottom: 2em; 
+}
+
+h4.error {
+	color: red;
+	text-align: center;
+}
+
+input[type='text'], input[type='password'] {
+	width: 100%;
+	padding: .2em;
+	font-size: 1.3em;
+	margin-bottom: 1em;
+}
+
+input[type='submit'] {
+	margin-top: 3em;
+	margin-bottom: 2em;
+	float: right;
+}
+
+.btn-primary {
+	background-color: white;
+	color: black;
+	border-color: white;
+}
+
+.btn-primary:hover {
+	background-color: #F6CD00;
+	color: black;
+}

@@ -1,12 +1,11 @@
 <?php
 
-	function imgSrcAutoGen($dirPath) {
+	function imgSearch($dirPath) {
 		$images = array();
 		if($dHandler = opendir($dirPath)) {
-			$index = 0;
 			while ( ($file = readdir($dHandler)) != false) {
 				if(preg_match("/.png/", $file) || preg_match("/.jpg/", $file)) {
-					$images[] = '<img src="'.$dirPath.DS.$file.'">';
+					$images[] = $file;
 				}
 			}
 			closedir($dHandler);
@@ -14,19 +13,36 @@
 		return $images;
 	}
 
-	function carouselAutoGen() {
-		$dirPath = "img".DS."product_slides";
-		$images = imgSrcAutoGen($dirPath);
+	function imgSrcAutoGen($dirPath, $width=null, $height=null) {
 		$index = 0;
+		$img_links = array();
+		$images = imgSearch($dirPath);
+
 		foreach ($images as $image) {
+			$img_links[] = '<img src="'.$dirPath.DS.$image.'" style= "width:'.$width
+					.'px; height:'.$height.'px;">';
+		}
+
+		return $img_links;
+	}
+
+
+
+	function carouselAutoGen($dirPath) {
+	
+		$img_links = imgSrcAutoGen($dirPath);
+		$index = 0;
+		foreach ($img_links as $img) {
 			echo '<div class="item';
 			if ($index == 0) { 
 				echo " active";
 				$index++;
 			}
+			echo '"><a href="';
+			echo $link;
 			echo '">';
-			echo $image;
-			echo '</div>';
+			echo $img;
+			echo '</a></div>';
 		}
 	}
 
