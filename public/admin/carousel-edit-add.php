@@ -25,7 +25,7 @@ if (isset($_POST['submit'])) {
 		<h2>Carousel Editing: Add new pictures</h2>
 		<form action='<?php echo htmlspecialchars($_SERVER['PHP_SELF'])?>' method='post' enctype='multipart/form-data'>
 			<label>Index:</label><br />
-			<input type='text' name='index'><br />
+			<input type='text' name='index' value="<?php echo $_POST['index']?>" placeholder='This is the position of the slide which to be shown'><br />
 			<label>Page name:</label><br />
 			<input type='text' name='page_name'><label>.php</label><br /><br />
 			<label>Select Image (730x300px):</label><br /><br />
