@@ -31,7 +31,6 @@ nav ul {
 nav ul li {
 	margin-bottom: 1em;
 	font-size: 1.3em;
-	
 }
 
 section {
@@ -40,7 +39,7 @@ section {
 	position: absolute;
 }
 
-section div {
+section {
 	padding: 2em 3em;
 }
 
@@ -73,24 +72,25 @@ table tr td, table tr th {
 
 /* >>END Carousel-edit*/
 
-/* carousel-edit-add */
+/* carousel-edit-add-edit */
 
-div.carousel-edit-add h2 {
+div.carousel-edit-add-edit h2 {
 	margin-bottom: 1em;
 }
 
-form {
+form.carousel-edit-add-edit {
 	padding: 2em;
 	border: 1px solid gray;
 	border-radius: 1em;
 }
 
-form input[type='text'] {
+form.carousel-edit-add-edit input[type='text'] {
 	width: 400px;
 	padding: 0.3em;
 }
 
-form input[type='submit'] {
+form.carousel-edit-add-edit input[type='submit'] {
 	float: right;
 }
+
 /* >>END carousel-edit-add */

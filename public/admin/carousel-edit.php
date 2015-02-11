@@ -8,8 +8,8 @@ if(!$session->is_logged_in()) header("location: login.php");
 <?php include(INC_PATH.DS.'side-nav-admin.php');?>
 
 	<section>
-		<h2>Carousel Editing</h2>
-		<a href='carousel-edit-add.php'>Add new</a><br />
+		<h2>Carousel Editing</h2><br />
+		<a href='carousel-edit-add.php' class='btn btn-success'>+ Add new</a><br />
 
 		<?php
 			if (isset($_SESSION['report'])) {

@@ -23,7 +23,7 @@ if (isset($_POST['submit'])) {
 	<section>
 		<div class='carousel-edit-add'>
 		<h2>Carousel Editing: Add new pictures</h2>
-		<form action='<?php echo htmlspecialchars($_SERVER['PHP_SELF'])?>' method='post' enctype='multipart/form-data'>
+		<form class='carousel-edit-add-edit' action='<?php echo htmlspecialchars($_SERVER['PHP_SELF'])?>' method='post' enctype='multipart/form-data'>
 			<label>Index:</label><br />
 			<input type='text' name='index' value="<?php echo $_POST['index']?>" placeholder='This is the position of the slide which to be shown'><br />
 			<label>Page name:</label><br />

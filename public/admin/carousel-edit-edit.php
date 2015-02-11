@@ -29,12 +29,12 @@ $file_name = $file_names[2];
 	<section>
 		<div class='carousel-edit-add'>
 		<h2>Carousel Editing: Edit this slide</h2>
-		<form action='<?php echo htmlspecialchars($_SERVER['PHP_SELF'])?>' method='post' enctype='multipart/form-data'>
+		<form class='carousel-edit-add-edit'action='<?php echo htmlspecialchars($_SERVER['PHP_SELF'])?>' method='post' enctype='multipart/form-data'>
 			<label>Index:</label><br />
 			<input type='text' name='index' value='<?php echo $index ?>'><br />
 			<label>Page name:</label><br />
 			<input type='text' name='page_name' value='<?php echo $page_name ?>'><label>.php</label><br /><br />
-			<label>Select <b>new</b> Image (730x300px):</label><br /><br />
+			<label>Upload <b>new</b> Image (730x300px):</label><br /><br />
 			<input type='file' name='new_img'><br /><br /><br />
 			<input type='hidden' name='file_name' value='<?php echo $file_name ?>'>
 			<input type='hidden' name='old_file_name' value="<?php echo $_GET['fn'] ?>">
