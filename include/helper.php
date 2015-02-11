@@ -13,36 +13,43 @@
 		return $images;
 	}
 
-	function imgSrcAutoGen($dirPath, $width=null, $height=null) {
+	function imgSrcAutoGen($dirPath, $admin=false, $width=null, $height=null) {
 		$index = 0;
 		$img_links = array();
 		$images = imgSearch($dirPath);
 
-		foreach ($images as $image) {
-			$img_links[] = '<img src="'.$dirPath.DS.$image.'" style= "width:'.$width
-					.'px; height:'.$height.'px;">';
-		}
+		$stepback = $admin ? '..'.DS : null;
 
+		foreach ($images as $image) {
+			$file_names = explode("__", $image);
+			$link = $file_names[1].".php";
+			$img_links[] = 	'<a href="'.
+							$stepback.
+							$link.
+							'"><img src="'.
+							$dirPath.DS.
+							$image.
+							'" style= "width:'.
+							$width.'px; height:'.
+							$height.'px;"></a>';
+		}
 		return $img_links;
 	}
-
-
 
 	function carouselAutoGen($dirPath) {
 	
 		$img_links = imgSrcAutoGen($dirPath);
 		$index = 0;
 		foreach ($img_links as $img) {
+
 			echo '<div class="item';
 			if ($index == 0) { 
 				echo " active";
 				$index++;
 			}
-			echo '"><a href="';
-			echo $link;
 			echo '">';
 			echo $img;
-			echo '</a></div>';
+			echo '</div>';
 		}
 	}
 

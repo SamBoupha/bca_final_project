@@ -9,11 +9,10 @@ if (isset($_POST['submit'])) {
 	$location = "..".DS."img".DS."product_slides".DS.$file_name;
 	
 	if (move_uploaded_file($tmp_file, $location)) {
-		echo "upload successfully";
-		echo $file_name;
-		print_r($names);
+		$_SESSION['report'] = "Upload successfully";
+		header('location: carousel-edit.php');
 	} else {
-		echo 'error';
+		
 	}
 }
 ?>
@@ -22,16 +21,18 @@ if (isset($_POST['submit'])) {
 <?php include(INC_PATH.DS.'side-nav-admin.php');?>
 
 	<section>
+		<div class='carousel-edit-add'>
 		<h2>Carousel Editing: Add new pictures</h2>
-		<form action='<?php echo htmlspecialchars($_SERVER['PHP_SELF'])?>' method='post' enctype='multipart/form-data'>
-			<label>Index:</label>
-			<input type='text' name='index'>
-			<label>Page name:</label>
-			<input type='text' name='page_name'><label>.php</label>
-			<input type='file' name='new_img'>
-			<input type='submit' name='submit' value='Upload'>
+		<form class='carousel-edit-add-edit' action='<?php echo htmlspecialchars($_SERVER['PHP_SELF'])?>' method='post' enctype='multipart/form-data'>
+			<label>Index:</label><br />
+			<input type='text' name='index' value="<?php echo $_POST['index']?>" placeholder='This is the position of the slide which to be shown'><br />
+			<label>Page name:</label><br />
+			<input type='text' name='page_name'><label>.php</label><br /><br />
+			<label>Select Image (730x300px):</label><br /><br />
+			<input type='file' name='new_img'><br /><br /><br />
+			<input type='submit' class='btn btn-default' name='submit' value='Upload'>
 		</form>
-
+	</div>
 	</section>
 
 <?php include(INC_PATH.DS.'footer-admin.php');?>

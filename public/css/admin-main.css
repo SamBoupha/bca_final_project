@@ -21,17 +21,16 @@ nav {
 	top: 15%;
 	position: fixed;
 	background-color: #F7F7F7;
-	margin-top: 2em;
 }
 
 nav ul {
 	list-style-type: none;
+	margin-top: 2em;
 }
 
 nav ul li {
 	margin-bottom: 1em;
 	font-size: 1.3em;
-	
 }
 
 section {
@@ -40,3 +39,58 @@ section {
 	position: absolute;
 }
 
+section {
+	padding: 2em 3em;
+}
+
+/* index */ 
+
+/* >>END index */
+
+/* Carousel-edit */
+table {
+	margin: 2em auto;
+}
+
+table tr td, table tr th {
+	text-align: center;
+	border: 1px solid gray;
+	vertical-align: middle !important;
+}
+
+.danger {
+	color: red;
+}
+
+.report-success {
+	margin-top: 1em;
+	border: 1px solid green;
+	color: green;
+	padding: 0.5em;
+	font-size: 1.5em;
+}
+
+/* >>END Carousel-edit*/
+
+/* carousel-edit-add-edit */
+
+div.carousel-edit-add-edit h2 {
+	margin-bottom: 1em;
+}
+
+form.carousel-edit-add-edit {
+	padding: 2em;
+	border: 1px solid gray;
+	border-radius: 1em;
+}
+
+form.carousel-edit-add-edit input[type='text'] {
+	width: 400px;
+	padding: 0.3em;
+}
+
+form.carousel-edit-add-edit input[type='submit'] {
+	float: right;
+}
+
+/* >>END carousel-edit-add */
