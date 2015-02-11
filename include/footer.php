@@ -1,7 +1,7 @@
-<footer class="col-md-offset-2 col-md-10">
+<footer>
 	<div>
 		<div class='row footer-nav'>
-			<div class='col-md-3'>
+			<div class='col-md-offset-1 col-md-3'>
 				<h6>Get To Know Us</h6>
 				<a href="">About Us</a><br />
 				<a href="">Press Releases</a><br />
@@ -20,7 +20,7 @@
 				<a href="">FAQs</a><br />
 				<a href="">Returns &amp; Cancellation</a><br />
 			</div>
-			<div class='col-md-3'>
+			<div class='col-md-2'>
 				<h6>Misc</h6>
 				<a href="">Online Shopping</a><br />
 				<a href="">Gift Vouchers</a><br />

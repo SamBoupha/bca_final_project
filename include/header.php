@@ -10,6 +10,10 @@
 				echo '<link rel="stylesheet" type="text/css" href="css/subpage.css">';
 				$subpage = false;
 			}
+			if ($detailPage) {
+				echo '<link rel="stylesheet" type="text/css" href="css/full-detail-page.css">';
+				$detailPage = false;
+			}
 		?>
 	</head>
 
