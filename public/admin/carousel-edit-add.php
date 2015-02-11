@@ -4,7 +4,7 @@ if(!$session->is_logged_in()) header("location: login.php");
 
 if (isset($_POST['submit'])) {
 	$tmp_file = $_FILES['new_img']['tmp_name'];
-	$file_name = $_POST['index']."_".$_POST['page_name']."_".$_FILES['new_img']['name'];
+	$file_name = $_POST['index']."__".$_POST['page_name']."__".$_FILES['new_img']['name'];
 
 	$location = "..".DS."img".DS."product_slides".DS.$file_name;
 	
