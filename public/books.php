@@ -15,9 +15,9 @@
 					echo "<div class='book-thumbnail'>";
 					echo "<a href='book_detail.php?id=".$book->id."'>";
 					echo "<img src='img/books/".$book->img_thumb."'>";
-					echo "<p>".$book->title."</p>";
-					echo "<p class='author'>".$book->author."</p>";
-					echo "</a><p class='price'>Rs.".$book->price."</p>";
+					echo "<p class='title'>".$book->title."</p>";
+					echo "<p class='author'>by ".$book->author."</p>";
+					echo "</a><p class='price'>Rs. ".$book->price."</p>";
 					echo "</div>";
 				}
 			?>

@@ -69,15 +69,6 @@ class BookObject {
 				WHERE 
 					books_title.author_id = books_author.id LIMIT 16";
 
-		$sql = "SELECT 
-					books_title.id,
-					books_title.title,
-					books_title.price,
-					books_title.img_thumb
-				FROM 
-					books_title
-				LIMIT 16";
-
 		return self::instanciate($sql);
 	}
 

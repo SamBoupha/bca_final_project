@@ -20,7 +20,7 @@ div.book-thumbnail {
 	width: 226px;
 	height: 350px;
 	text-align: center;
-	padding: 0 20px;
+	padding: 0 4px;
 	margin: 8px;
 }
 
@@ -28,12 +28,16 @@ div.book-thumbnail:hover {
 	border: 2px solid #F6CD00;
 }
 
-div.book-thumbnail p {
+div.book-thumbnail p.title {
 	margin-top: 1em;
-
+	font-size: 1.1em;
 }
 
-
+p.author {
+	font-size: 0.9em;
+	margin-top: -1em;
+	color: gray;
+} 
 
 p.price {
 	color: black;

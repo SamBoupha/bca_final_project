@@ -4,6 +4,19 @@ section {
 	background-color: white;
 }
 
+.product-detail {
+	padding-left: 4em;
+	border-left: 1px solid gray;
+}
+
+.product-detail h1 {
+	margin-top: 0;
+}
+
+.product-detail h4 {
+	opacity: .8;
+}
+
 section .btn {
 	width: 10em;
 	font-size: 1.5em;
