@@ -1,0 +1,70 @@
+section {
+	width: 90%;
+	margin: 8% auto 2%;
+	background-color: white;
+}
+
+.product-detail {
+	padding-left: 4em;
+	border-left: 1px solid gray;
+}
+
+.product-detail h1 {
+	margin-top: 0;
+}
+
+.product-detail h4 {
+	opacity: .8;
+}
+
+section .btn {
+	width: 10em;
+	font-size: 1.5em;
+	display: block;
+	margin-bottom: .6em;
+}
+
+.btn-warning {
+	padding: 0.5em 0;
+	background-color: orange;
+}
+
+.btn-warning:hover {
+	background-color: #EC971F;
+}
+
+.btn-success {
+	background-color: #449D44;
+}
+
+button img {
+	height: 2em;
+	color: white;
+	position: relative;
+	top: -5px;
+	left: -2px;
+}
+
+.btn-success:hover {
+	background-color: green;
+	border-color: green; 
+}
+
+.description {
+	padding: 2em;
+	border: .1em solid gray;
+	border-radius: .2em;
+}
+
+.description h3 {
+	padding-bottom: 1em;
+	border-bottom: 1px solid gray;
+}
+
+.description p {
+	padding: 1em;
+}
+
+footer {
+	margin: auto;
+}
