@@ -1,1 +1,53 @@
 
+div.books {
+	background-color: white;
+	float: left;
+	margin-bottom: 2em;
+}
+
+div.books h1 {
+	padding: 0.5em 0;
+	margin-left: 1em;
+	border-bottom: 1px solid gray;
+	width: 90%;
+}
+
+div.books-display div {
+	float: left;
+}
+
+div.book-thumbnail {
+	width: 226px;
+	height: 350px;
+	text-align: center;
+	padding: 0 20px;
+	margin: 8px;
+}
+
+div.book-thumbnail:hover {
+	border: 2px solid #F6CD00;
+}
+
+div.book-thumbnail p {
+	margin-top: 1em;
+
+}
+
+
+
+p.price {
+	color: black;
+	font-size: 1.3em;
+}
+
+p.price:hover {
+	text-decoration: none;
+}
+
+
+footer {
+	clear: both;
+}
+
+
+

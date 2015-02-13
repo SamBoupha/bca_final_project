@@ -6,18 +6,35 @@ section {
 
 section .btn {
 	width: 10em;
-	padding: 0.5em 0;
 	font-size: 1.5em;
 	display: block;
 	margin-bottom: .6em;
 }
 
 .btn-warning {
+	padding: 0.5em 0;
+	background-color: orange;
+}
+
+.btn-warning:hover {
 	background-color: #EC971F;
 }
 
 .btn-success {
 	background-color: #449D44;
+}
+
+button img {
+	height: 2em;
+	color: white;
+	position: relative;
+	top: -5px;
+	left: -2px;
+}
+
+.btn-success:hover {
+	background-color: green;
+	border-color: green; 
 }
 
 .description {
