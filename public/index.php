@@ -45,7 +45,7 @@
 			?>
 		</div>
 		<br /><br /><br /><br /><br />
-		<h2>books</h2>
+		<h2>Books</h2>
 		<div>
 			<?php 
 				$dirPath = "img".DS."computer";
