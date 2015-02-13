@@ -1,7 +1,6 @@
 <?php 
 require_once("../../include/initialize.php");
 if(!$session->is_logged_in()) header("location: login.php");
-
 ?>
 
 <?php include(INC_PATH.DS.'header-admin.php');?>
@@ -39,10 +38,10 @@ if(!$session->is_logged_in()) header("location: login.php");
 						echo "</option>";
 					}
 				?>
-			</select>
-			<div class='product-add-form'>
+			</select><br /><br />
 			<?php
 				if(isset($_POST['category'])) {
+					echo "<div class='product-add-form'>";
 					if ($_POST['category'] == 'Computers') {
 						echo "<h3>";
 						echo $_POST['category'];
@@ -67,15 +66,16 @@ if(!$session->is_logged_in()) header("location: login.php");
 						echo "<h3>";
 						echo $_POST['category'];
 						echo "</h3>";
+						include(INC_PATH.DS.'product-add'.DS.'books-add.php');
 					}
 					elseif ($_POST['category'] == 'Clothing') {
 						echo "<h3>";
 						echo $_POST['category'];
 						echo "</h3>";
 					}
+					echo "</div>";
 				}
 			?>
-			</div>
 		</form>
 	</div>
 	</section>

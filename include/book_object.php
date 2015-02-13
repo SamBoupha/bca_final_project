@@ -33,7 +33,7 @@ class BookObject {
 					books_title.intro, 
 					books_author.name as author,
 					books_author.about as author_about, 
-					books_category.category as category, 
+					books_category.name as category, 
 					books_publisher.name as publisher, 
 					books_title.img_front, 
 					books_title.img_back 
@@ -56,7 +56,9 @@ class BookObject {
 		return self::instanciate($sql);
 	}
 
-	public static function select() {
+	public static function select($limit=null) {
+
+		$limit = $limit == null ? "" : " LIMIT ".$limit;
 		$sql = "SELECT 
 					books_title.id,
 					books_title.title,
@@ -67,13 +69,23 @@ class BookObject {
 					books_title,
 					books_author
 				WHERE 
-					books_title.author_id = books_author.id LIMIT 16";
+					books_title.author_id = books_author.id".$limit;
+
+		return self::instanciate($sql);
+	}
+
+	public static function select_from_table($table) {
+		$sql = "SELECT id,name FROM ".$table." ORDER BY name ASC";
 
 		return self::instanciate($sql);
 	}
 
 	protected static function get_column_names($sql) {
 		global $db;
+		if (!$db->is_connected()) {
+			$db->open_connection();
+		}
+
 		$db_rows = array();
 		// The idea here is to reduce the number of times needed to go to the database
 		// So the work-around is to use one associative array that contains two arrays
@@ -124,6 +136,30 @@ class BookObject {
 		// Else the array of objects 
 		return sizeof($array_of_objects) > 1 ? $array_of_objects : $array_of_objects[0];
 	}
+
+	public static function insert($new_book) {
+		global $db;
+		$sql1 = "";
+		$sql2 = "";
+
+		foreach ($new_book as $key => $value) {
+			$sql1 .= "`".$db->prep_sql($key)."`,";
+			$sql2 .= "'".$db->prep_sql($value)."',";
+		}
+
+		$sql1 = substr($sql1, 0,strlen($sql1)-1);
+		$sql2 = substr($sql2, 0,strlen($sql2)-1);
+
+		$sql  = "INSERT INTO ".static::$table_name." (";
+		$sql .= $sql1;
+		$sql .= ") VALUES (";
+		$sql .= $sql2;
+		$sql .= ")";
+
+		return $db->execute_query($sql);
+	}
+
+
 }
 
 ?>

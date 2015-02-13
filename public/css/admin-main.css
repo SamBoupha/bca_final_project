@@ -94,3 +94,39 @@ form.carousel-edit-add-edit input[type='submit'] {
 }
 
 /* >>END carousel-edit-add */
+
+
+/* product-add */
+
+.product-add-form {
+	padding: 1em;
+	border: 1px solid gray;
+	border-radius: 5px;
+}
+
+.product-add-form table {
+	min-width: 800px;
+}
+/* >>END product-add */
+
+/* Product-add-book-form */
+.product-add-book-form div {
+	margin-bottom: 2em;
+}
+
+.product-add-book-form input, .product-add-book-form select {
+	width: 400px;
+	margin-bottom: 1.2em;
+	margin-left: 1em;
+}
+
+.input-price input {
+	margin-left: -4px;
+}
+
+.input-price span {
+	background-color: gray;
+	padding: .4em;
+	color: white;
+}
+/* >>END */

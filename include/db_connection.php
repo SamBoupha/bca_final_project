@@ -16,6 +16,13 @@
 			}
 		}
 
+		function open_connection() {
+			$this->connection = new mysqli(DB_HOST, DB_USERNAME, DB_PASSWORD, DB_NAME);
+			if(!$this->connection) {
+				die("Unable to connect to the database".$this->connection->connect_error);
+			}
+		}
+
 		private function confirm_query($result) {
 			if(!$result) {
 				$output  = $this->connection->error."<br>";
@@ -41,8 +48,14 @@
 		}
 
 		function close_connection() {
-			if($this->connection)
+			if($this->connection) {
 				$this->connection->close();
+				$this->connection = null;
+			}
+		}
+
+		function is_connected() {
+			return $this->connection;
 		}
 
 		function get_field($result) {
