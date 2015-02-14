@@ -35,7 +35,12 @@
 			echo "<a href=''>Edit</a>";
 			echo "</td>";
 			echo "<td>";
-			echo "<a href='' class='danger'>Delete</a>";
+			echo "<a 
+				onclick='return confirm(\"Are you sure you want to delete this item?\")' 
+				href='product-add-books-delete.php?
+				id=".$book->id."
+				&title=".$book->title.
+				"' class='danger'>Delete</a>";
 			echo "</td>";
 			echo "</tr>";
 		}

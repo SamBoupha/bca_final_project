@@ -40,15 +40,14 @@ if(!$session->is_logged_in()) header("location: login.php");
 				?>
 			</select>
 			<?php
-
 				if (isset($_SESSION['report'])) {
 					$reports = $_SESSION['report'];
-					$_SESSION['report'] = null;
 					echo "<div class='report'>";
 					foreach ($reports as $report) {
 						echo $report;
 					}
 					echo "</div>";
+					unset($_SESSION['report']);
 				}
 			?>
 

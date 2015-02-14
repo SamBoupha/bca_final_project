@@ -156,7 +156,19 @@ class BookObject {
 		$sql .= $sql2;
 		$sql .= ")";
 
-		return $db->execute_query($sql);
+		$result = $db->execute_query($sql);
+		$db->close_connection();
+		return $result;
+	}
+
+	public static function delete($id) {
+		global $db;
+
+		$sql = "DELETE FROM ".static::$table_name." WHERE id=".$id." LIMIT 1";
+
+		$result = $db->execute_query($sql);
+		$db->close_connection();
+		return $result;
 	}
 
 
