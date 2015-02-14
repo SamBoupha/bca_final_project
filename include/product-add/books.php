@@ -13,27 +13,38 @@
 		<th>Sample Imgae</th>
 		<th>Title</th>
 		<th>Price</th>
+		<th>Visibility</th>
 		<th></th>
 		<th></th>
 	</tr>
 	<?php
 		foreach ($books as $book) {
 			echo "<tr>";
+			// 
 			echo "<td>";
 			echo $book->id;
 			echo "</td>";
+			// 
 			echo "<td>";
 			echo "<img src='../img/books/".$book->img_thumb."'>";
 			echo "</td>";
+			// 
 			echo "<td>";
 			echo $book->title;
 			echo "</td>";
+			// 
 			echo "<td>Rs. ";
 			echo $book->price;
 			echo "</td>";
+			// 
+			echo "<td>";
+			echo $book->visibility == 0 ? "<div class='danger'>&#10007;</div>" : "<div class='success'>&#10003;</div>";
+			echo "</td>";
+			// 
 			echo "<td>";
 			echo "<a href='product-add-books-edit.php?id=".$book->id."'>Edit</a>";
 			echo "</td>";
+			// 
 			echo "<td>";
 			echo "<a 
 				onclick='return confirm(\"Are you sure you want to delete this item?\")' 
@@ -42,6 +53,7 @@
 				&title=".$book->title.
 				"' class='danger'>Delete</a>";
 			echo "</td>";
+
 			echo "</tr>";
 		}
 	?>

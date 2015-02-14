@@ -51,6 +51,12 @@ section {
 	color: green;
 }
 
+div.success, div.danger {
+	font-size: 3em;
+}
+
+
+
 .report {
 	margin: 1em 0em;
 	border: 1px solid gray;

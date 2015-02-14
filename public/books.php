@@ -3,7 +3,7 @@
 <?php include(INC_PATH.DS."header.php"); ?>
 <?php 
 	require_once(INC_PATH.DS.'book_object.php'); 
-	$books = BookObject::select();
+	$books = BookObject::select(16,true);
 ?>
 <?php include(INC_PATH.DS."side-nav.php"); ?>
 <section>

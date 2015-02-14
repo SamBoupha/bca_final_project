@@ -16,7 +16,8 @@ class BookObject {
 			$publisher_id,
 			$img_front,
 			$img_back,
-			$img_thumb;
+			$img_thumb,
+			$visibility;
 
 	protected static $table_name = "books_title";
 
@@ -37,7 +38,8 @@ class BookObject {
 					books_publisher.name as publisher, 
 					books_title.img_front, 
 					books_title.img_back,
-					books_title.img_thumb 
+					books_title.img_thumb,
+					books_title.visibility 
 				from 
 					books_title, 
 					books_author, 
@@ -57,20 +59,22 @@ class BookObject {
 		return self::instanciate($sql);
 	}
 
-	public static function select($limit=null) {
+	public static function select($limit=null, $public=false) {
 
 		$limit = $limit == null ? "" : " LIMIT ".$limit;
+		// The public page should not have shown all the books in the database
+		$public = $public ? " WHERE books_title.visibility = 1 " : "";
+
 		$sql = "SELECT 
 					books_title.id,
 					books_title.title,
 					books_author.name as author,
 					books_title.price,
-					books_title.img_thumb
-				FROM 
-					books_title,
-					books_author
-				WHERE 
-					books_title.author_id = books_author.id".$limit;
+					books_title.img_thumb,
+					books_title.visibility
+				FROM books_title LEFT JOIN books_author
+				ON
+					books_title.author_id = books_author.id".$public.$limit;
 
 		return self::instanciate($sql);
 	}
