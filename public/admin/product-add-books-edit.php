@@ -20,37 +20,60 @@ if (isset($_POST['submit'])) {
 	$location = "..".DS."img".DS."books".DS;
 	$reports = array();
 
-	if (isset($_FILES['img_thumb']['tmp_name'])) {
-		$location .= $_FILES['img_thumb']['name']; 
-		if (move_uploaded_file($_FILES['img_thumb']['tmp_name'], $location)) {
-			$updated_book['img_thumb'] = htmlspecialchars($_POST['img_thumb']);
-		} else {
+	if (!empty($_FILES['img_thumb']['tmp_name'])) {
+		$file_name = $_FILES['img_thumb']['name'];
+		$new_file = $location.$file_name; 
+		
+		if(file_exists($new_file)) {
+			
+			$file_name = substr($file_name,0,strlen($file_name)-4)."(1)".substr($file_name,strlen($file_name)-4);
+			$new_file = $location.$file_name;
+		}
+		
+		if (!move_uploaded_file($_FILES['img_thumb']['tmp_name'], $new_file)) {
 			$reports[] = "<p class='danger'>Thumbnail image was failed to upload</p>";
 		}
-	}
+		unlink($location.$_POST['current_img_thumb']);
+		$updated_book['img_thumb'] = htmlspecialchars($file_name);
+	}	
 
-	if (isset($_FILES['img_front']['tmp_name'])) {
-		$location .= $_FILES['img_front']['name']; 
-		if (move_uploaded_file($_FILES['img_front']['tmp_name'], $location)) {
-			$updated_book['img_front'] = htmlspecialchars($_POST['img_front']);
-		} else {
+	if (!empty($_FILES['img_front']['tmp_name'])) {
+		$file_name = $_FILES['img_front']['name'];
+		$new_file = $location.$_FILES['img_front']['name']; 
+		if(file_exists($new_file)) {
+
+			$file_name = substr($file_name,0,strlen($file_name)-4)."(1)".substr($file_name,strlen($file_name)-4);
+			$new_file = $location.$file_name;
+		}
+		
+		if (!move_uploaded_file($_FILES['img_front']['tmp_name'], $new_file)) {
 			$reports[] = "<p class='danger'>Front image was failed to upload</p>";
 		}
+		unlink($location.$_POST['current_img_front']);
+		$updated_book['img_front'] = htmlspecialchars($file_name);
 	}
 
-	if (isset($_FILES['img_back']['tmp_name'])) {
-		$location .= $_FILES['img_back']['name']; 
-		if (move_uploaded_file($_FILES['img_back']['tmp_name'], $location)) {
-			$updated_book['img_back'] = htmlspecialchars($_POST['img_back']);
-		} else {
-			$reports[] = "<p class='danger'>Back image was failed to upload</p>";
+	if (!empty($_FILES['img_back']['tmp_name'])) {
+		$file_name = $_FILES['img_back']['name'];
+		$new_file = $location.$_FILES['img_back']['name']; 
+		
+		if(file_exists($new_file)) {
+			
+			$file_name = substr($file_name,0,strlen($file_name)-4)."(1)".substr($file_name,strlen($file_name)-4);
+			$new_file = $location.$file_name;
 		}
+
+		if (!move_uploaded_file($_FILES['img_back']['tmp_name'], $new_file)) {
+				$reports[] = "<p class='danger'>Back image was failed to upload</p>";
+			}
+		unlink($location.$_POST['current_img_back']);
+		$updated_book['img_back'] = htmlspecialchars($file_name);
 	}
 
 	if(BookObject::update($updated_book)) {
-		$reports[] = "<p class='success'>A new book has been added successfully</p>";
+		$reports[] = "<p class='success'>The book <em>".$updated_book['title']."</em> has been editted successfully</p>";
 	} else {
-		$reports[] = "<p class='danger'>Technical problem. Failed to upload</p>";
+		$reports[] = "<p class='danger'>Technical problem. Failed to edit</p>";
 	}
 
 	$_SESSION['report'] = $reports;
@@ -193,25 +216,32 @@ $book = BookObject::select_all_by_id($_GET['id']);
 				<label>Intro:</label><br />
 				<textarea name='intro' cols='100' rows='20'><?php echo $book->intro ?></textarea>
 			</div>
-			
+			<!-- Thumbnail upload section -->
 			<div style='display:inline-block'>
 				<label>Select <em>new</em> Thumbnail Image of the book (200x200px):</label>
-				
 				<input type='file' name='img_thumb'>
+				<input type='hidden' name='current_img_thumb' value='<?php echo $book->img_thumb ?>'>
 			</div>
-			<img src='../img/books/<?php echo $book->img_thumb ?>'><br /><br />
+			<img src='../img/books/<?php 
+						echo $book->img_thumb == null ? "product_image_not_available_200x200.jpg" : $book->img_thumb
+						?>'><br /><br />
 			
+			<!-- Front cover upload section -->
 			<div style='display:inline-block'>
 				<label>Select <em>new</em> Front Image of the book (400x400px):</label>
-			<input type='file' name='img_front'>
+				<input type='file' name='img_front'>
+				<input type='hidden' name='current_img_front' value='<?php echo $book->img_front ?>'>
 			</div>
-			<img src='../img/books/<?php echo $book->img_front ?>'><br /><br />
+			<img src='../img/books/<?php echo $book->img_front == null ? "product_image_not_available_400x400.jpg" : $book->img_front ?>'><br /><br />
 			
+			<!-- Back cover upload section -->
 			<div style='display:inline-block'>
 				<label>Select <em>new</em> Back Image of the book (400x400px):</label>
 				<input type='file' name='img_back'>
+				<input type='hidden' name='current_img_back' value='<?php echo $book->img_back ?>'>
 			</div>
-			<img src='../img/books/<?php echo $book->img_back ?>'><br /><br />
+			<img src='../img/books/<?php echo $book->img_front == null ? "product_image_not_available_400x400.jpg" : $book->img_back ?>'><br /><br />
+
 			<input type='hidden' name='id' value='<?php echo $book->id ?>'>
 			<input type='submit' class='btn btn-default' name='submit' value='Upload'>
 		</form>

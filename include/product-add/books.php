@@ -26,7 +26,9 @@
 			echo "</td>";
 			// 
 			echo "<td>";
-			echo "<img src='../img/books/".$book->img_thumb."'>";
+			echo "<img src='../img/books/";
+			echo $book->img_thumb == null ? "product_image_not_available_200x200.jpg" : $book->img_thumb ;
+			echo "'>";
 			echo "</td>";
 			// 
 			echo "<td>";
