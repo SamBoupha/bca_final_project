@@ -13,7 +13,7 @@ if(!$session->is_logged_in()) header("location: login.php");
 
 		<?php
 			if (isset($_SESSION['report'])) {
-				echo "<div class='report-success'>";
+				echo "<div class='report'>";
 				echo $_SESSION['report'];
 				echo "</div>";
 				unset($_SESSION['report']);

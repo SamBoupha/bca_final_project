@@ -15,48 +15,44 @@ if (isset($_POST['submit'])) {
 	$new_book['quantity'] = htmlspecialchars($_POST['quantity']);
 	$new_book['intro'] = htmlspecialchars($_POST['intro']);
 
-	print_r($new_book);
-
-
 	$location = "..".DS."img".DS."books".DS;
-	$report = array();
-
+	$reports = array();
 
 	if (isset($_FILES['img_thumb']['tmp_name'])) {
 		$location .= $_FILES['img_thumb']['name']; 
 		if (move_uploaded_file($_FILES['img_thumb']['tmp_name'], $location)) {
-			$report[] = "Thumbnail image was uploaded successfully";
 			$new_book['img_thumb'] = htmlspecialchars($_POST['img_thumb']);
 		} else {
-			$report[] = "Thumbnail image was failed to upload";
+			$reports[] = "<p class='danger'>Thumbnail image was failed to upload</p>";
 		}
 	}
 
 	if (isset($_FILES['img_front']['tmp_name'])) {
 		$location .= $_FILES['img_front']['name']; 
 		if (move_uploaded_file($_FILES['img_front']['tmp_name'], $location)) {
-			$report[] = "Front image was uploaded successfully";
 			$new_book['img_front'] = htmlspecialchars($_POST['img_front']);
 		} else {
-			$report[] = "Back image was failed to upload";
+			$reports[] = "<p class='danger'>Back image was failed to upload</p>";
 		}
 	}
 
 	if (isset($_FILES['img_back']['tmp_name'])) {
 		$location .= $_FILES['img_back']['name']; 
 		if (move_uploaded_file($_FILES['img_back']['tmp_name'], $location)) {
-			$report[] = "Back image was uploaded successfully";
 			$new_book['img_back'] = htmlspecialchars($_POST['img_back']);
 		} else {
-			$report[] = "Back image was failed to upload";
+			$reports[] = "<p class='danger'>Back image was failed to upload</p>";
 		}
 	}
 
 	if(BookObject::insert($new_book)) {
-		echo "Insert successfully";
+		$reports[] = "<p class='success'>A new book has been added successfully</p>";
 	} else {
-		echo "Technical problems";
+		$reports[] = "<p class='danger'>Technical problem. Failed to upload</p>";
 	}
+
+	$_SESSION['report'] = $reports;
+	header("location: product-add.php?category=Books");
 }
 ?>
 

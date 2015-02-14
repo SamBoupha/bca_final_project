@@ -8,9 +8,9 @@ if (isset($_POST['submit'])) {
 	$img_path = "..".DS."img".DS."product_slides".DS;
 
 	if (rename($img_path.$_POST['old_file_name'], $img_path.$file_name)) {
-		$_SESSION['report'] = "Editted successfully";
+		$_SESSION['report'] = "<p class='success'>Editted successfully</p>";
 	} else {
-		$_SESSION['report'] = "Edit failed";
+		$_SESSION['report'] = "<p class='danger'>Edit failed</p>";
 	}
 	header('location: carousel-edit.php');
 }

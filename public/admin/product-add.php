@@ -15,10 +15,10 @@ if(!$session->is_logged_in()) header("location: login.php");
 			enctype='multipart/form-data'>
 
 			<label>Select Category:</label>&nbsp;&nbsp;&nbsp;
-			<select name='category' onchange='load_selection()'>
+			<select name='category' id='category' onchange='load_selection()'>
 				<?php
 
-					$selected = isset($_POST['category']) ? $_POST['category'] : 'None';
+					$selected = isset($_POST['category']) ? $_POST['category'] : $_GET['category'];
 
 					$options = array( 'None',
 								 'Computers',
@@ -38,39 +38,52 @@ if(!$session->is_logged_in()) header("location: login.php");
 						echo "</option>";
 					}
 				?>
-			</select><br /><br />
+			</select>
 			<?php
-				if(isset($_POST['category'])) {
+
+				if (isset($_SESSION['report'])) {
+					$reports = $_SESSION['report'];
+					$_SESSION['report'] = null;
+					echo "<div class='report'>";
+					foreach ($reports as $report) {
+						echo $report;
+					}
+					echo "</div>";
+				}
+			?>
+
+			<?php
+				if(isset($selected)) {
 					echo "<div class='product-add-form'>";
-					if ($_POST['category'] == 'Computers') {
+					if ($selected == 'Computers') {
 						echo "<h3>";
-						echo $_POST['category'];
+						echo $selected;
 						echo "</h3>";
 					}
-					elseif ($_POST['category'] == 'Computer\'s Accessories') {
+					elseif ($selected == 'Computer\'s Accessories') {
 						echo "<h3>";
-						echo $_POST['category'];
+						echo $selected;
 						echo "</h3>";
 					}
-					elseif ($_POST['category'] == 'Mobiles') {
+					elseif ($selected == 'Mobiles') {
 						echo "<h3>";
-						echo $_POST['category'];
+						echo $selected;
 						echo "</h3>";
 					}
-					elseif ($_POST['category'] == 'Tablets') {
+					elseif ($selected == 'Tablets') {
 						echo "<h3>";
-						echo $_POST['category'];
+						echo $selected;
 						echo "</h3>";
 					}
-					elseif ($_POST['category'] == 'Books') {
+					elseif ($selected == 'Books') {
 						echo "<h3>";
-						echo $_POST['category'];
+						echo $selected;
 						echo "</h3>";
 						include(INC_PATH.DS.'product-add'.DS.'books-add.php');
 					}
-					elseif ($_POST['category'] == 'Clothing') {
+					elseif ($selected == 'Clothing') {
 						echo "<h3>";
-						echo $_POST['category'];
+						echo $selected;
 						echo "</h3>";
 					}
 					echo "</div>";

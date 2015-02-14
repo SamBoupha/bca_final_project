@@ -1,11 +1,11 @@
-<a href='product-add-books.php'>
+<a href='product-add-books-add.php'>
 	<div class="btn btn-success">
 		+ Add new book
 	</div>
 </a>
 <?php 
 	require_once(INC_PATH.DS.'book_object.php');
-	$books = BookObject::select(10);
+	$books = BookObject::select();
 ?>
 <table class='table table-striped'>
 	<tr>
