@@ -36,7 +36,8 @@ class BookObject {
 					books_category.name as category, 
 					books_publisher.name as publisher, 
 					books_title.img_front, 
-					books_title.img_back 
+					books_title.img_back,
+					books_title.img_thumb 
 				from 
 					books_title, 
 					books_author, 
@@ -171,6 +172,23 @@ class BookObject {
 		return $result;
 	}
 
+	public static function update($updated_book) {
+		global $db;
+
+		$sql = "UPDATE ".static::$table_name." SET ";
+		$sql1 = "";
+		foreach ($updated_book as $key => $value) {
+			$sql1 .= "`".$db->prep_sql($key)."`"."='".$db->prep_sql($value)."',";
+		}
+		$sql1 = substr($sql1, 0, strlen($sql1)-1);
+
+		$sql .= $sql1." WHERE id=".$db->prep_sql($updated_book['id']);
+
+		$result = $db->execute_query($sql);
+		$db->close_connection();
+
+		return $result;
+	}
 
 }
 

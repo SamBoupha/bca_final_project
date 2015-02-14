@@ -32,7 +32,7 @@
 			echo $book->price;
 			echo "</td>";
 			echo "<td>";
-			echo "<a href=''>Edit</a>";
+			echo "<a href='product-add-books-edit.php?id=".$book->id."'>Edit</a>";
 			echo "</td>";
 			echo "<td>";
 			echo "<a 
