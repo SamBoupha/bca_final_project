@@ -17,7 +17,8 @@ class BookObject {
 			$img_front,
 			$img_back,
 			$img_thumb,
-			$visibility;
+			$visibility,
+			$show_at_index_page;
 
 	protected static $table_name = "books_title";
 
@@ -59,11 +60,13 @@ class BookObject {
 		return self::instanciate($sql);
 	}
 
-	public static function select($limit=null, $public=false) {
+	public static function select($limit=null, $public=false, $highlight=false) {
 
 		$limit = $limit == null ? "" : " LIMIT ".$limit;
 		// The public page should not have shown all the books in the database
 		$public = $public ? " WHERE books_title.visibility = 1 " : "";
+		// Highlight at index page ?
+		$highlight = $highlight ? " AND books_title.show_at_index_page = 1 " : "";
 
 		$sql = "SELECT 
 					books_title.id,
@@ -72,11 +75,13 @@ class BookObject {
 					books_title.price,
 					books_title.img_thumb,
 					books_title.visibility
+	
 				FROM books_title LEFT JOIN books_author
 				ON
-					books_title.author_id = books_author.id".$public.$limit;
+					books_title.author_id = books_author.id".$public.$highlight.$limit;
 
 		return self::instanciate($sql);
+		
 	}
 
 	public static function select_from_table($table) {

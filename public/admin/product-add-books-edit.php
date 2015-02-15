@@ -71,7 +71,7 @@ if (isset($_POST['submit'])) {
 	}
 
 	if(BookObject::update($updated_book)) {
-		$reports[] = "<p class='success'>The book <em>".$updated_book['title']."</em> has been editted successfully</p>";
+		$reports[] = "<p class='success'>The book <em><span>".$updated_book['title']."</spam></em> has been editted successfully</p>";
 	} else {
 		$reports[] = "<p class='danger'>Technical problem. Failed to edit</p>";
 	}
@@ -240,7 +240,7 @@ $book = BookObject::select_all_by_id($_GET['id']);
 				<input type='file' name='img_back'>
 				<input type='hidden' name='current_img_back' value='<?php echo $book->img_back ?>'>
 			</div>
-			<img src='../img/books/<?php echo $book->img_front == null ? "product_image_not_available_400x400.jpg" : $book->img_back ?>'><br /><br />
+			<img src='../img/books/<?php echo $book->img_back == null ? "product_image_not_available_400x400.jpg" : $book->img_back ?>'><br /><br />
 
 			<input type='hidden' name='id' value='<?php echo $book->id ?>'>
 			<input type='submit' class='btn btn-default' name='submit' value='Upload'>

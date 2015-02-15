@@ -51,11 +51,13 @@ section {
 	color: green;
 }
 
+.success span {
+	color: black;
+}
+
 div.success, div.danger {
 	font-size: 3em;
 }
-
-
 
 .report {
 	margin: 1em 0em;

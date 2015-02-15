@@ -104,12 +104,46 @@ section {
 
 .product-thumbnail-section h2 {
 	padding-bottom: 0.7em;
-	margin-bottom: 1.5em;
 	border-bottom: 1px solid black;
+	clear: both;
 }
 
-.product-thumbnail-section img {
-	margin-left: 5em;
+div.product-row {
+	float: left;
+	padding: 1em;
+	position: relative;
+	width: 100%;
+}
+
+div.product-row div.book-thumb {
+	width: 200px;
+	height: 250px;
+	padding: 1em 1em;
+	float: left;
+	text-align: center;
+}
+
+div.view-all {
+	padding: 2em 1em;
+	float: left;
+	position: absolute;
+	top: 60px;
+	right: 0;
+	border: 1px solid gray;
+}
+
+div.product-row div:hover {
+	border: 2px solid #F6CD00;
+}
+
+p.info {
+	padding: 1em 0em;
+	margin-bottom: 0;
+}
+
+p.price {
+	font-size: 1.1em;
+	color: #A10000;
 }
 
 footer {

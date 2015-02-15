@@ -46,13 +46,28 @@
 		</div>
 		<br /><br /><br /><br /><br />
 		<h2>Books</h2>
-		<div>
+		<div class='product-row'>
 			<?php 
-				$dirPath = "img".DS."computer";
-				$images = imgSrcAutoGen($dirPath);
-				foreach ($images as $image) {
-					echo $image;
+				include(INC_PATH.DS."book_object.php");
+				$books = BookObject::select(4,true,true);
+				foreach ($books as $book) {
+					echo "<div class='book-thumb'>";
+					echo "<a href='book_detail.php?id=".$book->id."''>";
+					echo "<img src='img/books/";
+					echo $book->img_thumb;
+					echo "' style='height:125px'>";
+					echo "<p class='info'>";
+					echo $book->title;
+					echo "</p>";
+					echo "</a>";
+					echo "<p class='price'>Rs. ";
+					echo $book->price;
+					echo "</p>";
+					echo "</div>";
 				}
+				echo "<a href='books.php'> <div class='view-all'>";
+				echo "View all";
+				echo "</div></a>";
 			?>
 		</div>
 		<br /><br /><br /><br /><br />
