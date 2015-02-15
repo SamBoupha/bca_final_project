@@ -83,17 +83,20 @@ $updated_book['show_at_index_page']   = htmlspecialchars($_POST['show_at_index_p
 }
 
 if(isset($_POST['add'])) {
-	$name = trim($_POST['name']);
-	if (!empty($name)) {
-		if (isset($_POST['intro'])) {
-			$intro = trim($_POST['intro']);
-			if (!empty($intro)) {
-				
+	$new['name'] = trim($_POST['name']);
+	$table_name = $_POST['table_name'];
+	if (!empty($new['name'])) {
+		if (isset($_POST['about'])) {
+			$about = trim($_POST['about']);
+			if (!empty($about)) {
+				$new['about'] = $about;
 			}
 		}
-			
+		print_r($new);
+		DatabaseObject::insert($new,$table_name);
+		echo "hi";
 	}
-
+	echo "hey";
 }
 
 $book = BookObject::select_all_by_id($_GET['id']);
@@ -278,7 +281,7 @@ $book = BookObject::select_all_by_id($_GET['id']);
 	</section>
 
 	<div class='lightOut'>
-		<form id='add_new' name='add_new' method='post' action="<?php echo $_SERVER['HTTP_REFERER'] ?>">
+		<form id='add_new' name='add_new' method='post' action="<?php echo $_SERVER['PHP_SELF'].'?id='.$_GET['id'] ?>">
 			<input type="text" name="name" class="name">
 			
 			<input type='button' id='cancel' value='Cancel' class='btn btn-default'>
@@ -303,7 +306,7 @@ $book = BookObject::select_all_by_id($_GET['id']);
 	$('a#new_author').click( function() {
 		$('div.lightOut').fadeIn();
 		$('<label>Author Name:</label><br />').insertBefore('input.name');
-		$('<label>About Author:</label><br /><textarea cols="60" rows="10" name="intro"></textarea><br /><br /><br />')
+		$('<label>About Author:</label><br /><textarea cols="60" rows="10" name="about"></textarea><br /><br /><br />')
 			.insertBefore('input#cancel');
 			position();
 		$('input#table_name').attr("value","books_author");
