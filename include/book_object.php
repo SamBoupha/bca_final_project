@@ -1,7 +1,7 @@
 <?php
 require_once(INC_PATH.DS.'db_connection.php');
 
-class BookObject extends {
+class BookObject extends DatabaseObject {
 
 	public 	$id,
 			$title,
@@ -148,32 +148,6 @@ class BookObject extends {
 		// If sql query returns only one row then just returns one object
 		// Else the array of objects 
 		return sizeof($array_of_objects) > 1 ? $array_of_objects : $array_of_objects[0];
-	}
-
-	public static function insert($new_book) {
-		global $db;
-		$sql1 = "";
-		$sql2 = "";
-
-		foreach ($new_book as $key => $value) {
-			$sql1 .= "`".$db->prep_sql($key)."`,";
-			$sql2 .= "'".$db->prep_sql($value)."',";
-		}
-
-		$sql1 = substr($sql1, 0,strlen($sql1)-1);
-		$sql2 = substr($sql2, 0,strlen($sql2)-1);
-
-		$sql  = "INSERT INTO ";
-		$sql .= static::$table_name;
-		$sql .= " (";
-		$sql .= $sql1;
-		$sql .= ") VALUES (";
-		$sql .= $sql2;
-		$sql .= ")";
-
-		$result = $db->execute_query($sql);
-		$db->close_connection();
-		return $result;
 	}
 
 	public static function delete($id) {

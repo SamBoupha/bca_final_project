@@ -9,7 +9,7 @@ define('PUB_PATH',SITE_ROOT.DS.'public');
 define('INC_PATH', SITE_ROOT.DS.'include');
 
 require_once(INC_PATH.DS.'db_connection.php');
-require_once(INC_PATH.DS.'db_function.php');
+require_once(INC_PATH.DS.'database_object.php');
 require_once(INC_PATH.DS.'admin.php');
 require_once(INC_PATH.DS.'session.php');
 ?>
