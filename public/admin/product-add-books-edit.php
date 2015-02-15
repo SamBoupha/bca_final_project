@@ -323,7 +323,7 @@ $book = BookObject::select_all_by_id($_GET['id']);
 		$('div.lightOut').fadeIn();
 		$('<label>Publisher Name:</label><br />').insertBefore('input.name');
 		position();
-		$('input#table_name').attr("value","books_pubslisher");
+		$('input#table_name').attr("value","books_publisher");
 	});
 
 	$('input#cancel').click( function() {
