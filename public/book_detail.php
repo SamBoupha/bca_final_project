@@ -8,7 +8,13 @@
 	?>
 		<div class="preview col-sm-1"></div>
 		<div class="product-img col-sm-4">
-			<img src="img/books/<?php echo $book->img_front ?>">
+			<img src="img/books/
+					<?php 
+					echo $book->img_front == null ? 
+							'product_image_not_available_400x400.jpg' : 
+							$book->img_front;
+					 ?>
+			">
 		</div>
 		<div class='product-detail col-sm-6'>
 			<h1><?php echo $book->title ?></h1><br />
