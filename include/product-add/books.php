@@ -10,6 +10,7 @@
 <table class='table table-striped'>
 	<tr>
 		<th>ID</th>
+		<th>First Page</th>
 		<th>Sample Imgae</th>
 		<th>Title</th>
 		<th>Price</th>
@@ -24,6 +25,10 @@
 			echo "<td>";
 			echo $book->id;
 			echo "</td>";
+			// 
+			echo "<td>";
+			echo $book->show_at_index_page == 1 ? "<p class='highlighted'>&#9733;</p>" : "<p>&#9733;</p>";
+			echo "</td>";			
 			// 
 			echo "<td>";
 			echo "<img src='../img/books/";

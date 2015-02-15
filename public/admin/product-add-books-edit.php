@@ -16,6 +16,7 @@ if (isset($_POST['submit'])) {
 	$updated_book['quantity'] 	  = htmlspecialchars($_POST['quantity']);
 	$updated_book['intro'] 		  = htmlspecialchars($_POST['intro']);
 	$updated_book['visibility']   = htmlspecialchars($_POST['visibility']);
+$updated_book['show_at_index_page']   = htmlspecialchars($_POST['show_at_index_page']);
 
 	$location = "..".DS."img".DS."books".DS;
 	$reports = array();
@@ -91,6 +92,20 @@ $book = BookObject::select_all_by_id($_GET['id']);
 		<div class='product-add-book-form'>
 		<h2>Book Editing: Edit a book</h2>
 		<form class='product-add-books' action='<?php echo htmlspecialchars($_SERVER['PHP_SELF'])?>' method='post' enctype='multipart/form-data'>
+			<div>
+				<label>Show on first page:</label>
+				<select name='show_at_index_page'>
+					<?php
+						if ($book->show_at_index_page == 1) {
+							$show = "selected";
+						} else {
+							$hide = "selected";
+						}
+					?>
+					<option value='0' <?php echo $hide ?> >NO</option>	
+					<option value='1' <?php echo $show ?> >YES</option>
+				</select>
+			</div>
 			<div>
 				<label>Visibility:</label>
 				<select name='visibility'>

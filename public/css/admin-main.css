@@ -55,6 +55,14 @@ section {
 	color: black;
 }
 
+table p {
+	font-size: 2em;
+}
+
+.highlighted {
+	color: orange;
+}
+
 div.success, div.danger {
 	font-size: 3em;
 }

@@ -40,7 +40,8 @@ class BookObject {
 					books_title.img_front, 
 					books_title.img_back,
 					books_title.img_thumb,
-					books_title.visibility 
+					books_title.visibility,
+					books_title.show_at_index_page 
 				from 
 					books_title, 
 					books_author, 
@@ -64,7 +65,8 @@ class BookObject {
 
 		$limit = $limit == null ? "" : " LIMIT ".$limit;
 		// The public page should not have shown all the books in the database
-		$public = $public ? " WHERE books_title.visibility = 1 " : "";
+		$public = $public ? " WHERE books_title.visibility = 1 " :
+					 " ORDER BY books_title.show_at_index_page DESC ";
 		// Highlight at index page ?
 		$highlight = $highlight ? " AND books_title.show_at_index_page = 1 " : "";
 
@@ -74,7 +76,8 @@ class BookObject {
 					books_author.name as author,
 					books_title.price,
 					books_title.img_thumb,
-					books_title.visibility
+					books_title.visibility,
+					books_title.show_at_index_page 
 	
 				FROM books_title LEFT JOIN books_author
 				ON
