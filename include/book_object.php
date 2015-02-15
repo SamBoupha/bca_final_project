@@ -1,7 +1,7 @@
 <?php
 require_once(INC_PATH.DS.'db_connection.php');
 
-class BookObject {
+class BookObject extends {
 
 	public 	$id,
 			$title,
@@ -163,7 +163,9 @@ class BookObject {
 		$sql1 = substr($sql1, 0,strlen($sql1)-1);
 		$sql2 = substr($sql2, 0,strlen($sql2)-1);
 
-		$sql  = "INSERT INTO ".static::$table_name." (";
+		$sql  = "INSERT INTO ";
+		$sql .= static::$table_name;
+		$sql .= " (";
 		$sql .= $sql1;
 		$sql .= ") VALUES (";
 		$sql .= $sql2;

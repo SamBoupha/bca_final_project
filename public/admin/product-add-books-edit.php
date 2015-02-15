@@ -82,6 +82,20 @@ $updated_book['show_at_index_page']   = htmlspecialchars($_POST['show_at_index_p
 
 }
 
+if(isset($_POST['add'])) {
+	$name = trim($_POST['name']);
+	if (!empty($name)) {
+		if (isset($_POST['intro'])) {
+			$intro = trim($_POST['intro']);
+			if (!empty($intro)) {
+				
+			}
+		}
+			
+	}
+
+}
+
 $book = BookObject::select_all_by_id($_GET['id']);
 ?>
 
@@ -151,7 +165,7 @@ $book = BookObject::select_all_by_id($_GET['id']);
 						}
 					?>
 				</select>
-				&nbsp;&nbsp;&nbsp;&nbsp;<a href="">+ Add new author</a>
+				&nbsp;&nbsp;&nbsp;&nbsp;<a href="#" id='new_author'>+ Quick add new author</a>
 			</div>
 			<div>
 				<label>Category:</label><br />
@@ -180,7 +194,7 @@ $book = BookObject::select_all_by_id($_GET['id']);
 						}
 					?>
 				</select>
-				&nbsp;&nbsp;&nbsp;&nbsp;<a href="">+ Add new category</a>
+				&nbsp;&nbsp;&nbsp;&nbsp;<a href="#" id='new_category'>+ Quick add new category</a>
 			</div>
 			<div>
 				<label>Publisher:</label><br />
@@ -209,7 +223,7 @@ $book = BookObject::select_all_by_id($_GET['id']);
 						}
 					?>
 				</select>
-				&nbsp;&nbsp;&nbsp;&nbsp;<a href="">+ Add new publisher</a>
+				&nbsp;&nbsp;&nbsp;&nbsp;<a href="#" id='new_publisher'>+ Quick add new publisher</a>
 			</div>
 			<div class='input-price'>
 				<label>Price:</label><br />
@@ -263,4 +277,56 @@ $book = BookObject::select_all_by_id($_GET['id']);
 	</div>
 	</section>
 
+	<div class='lightOut'>
+		<form id='add_new' name='add_new' method='post' action="<?php echo $_SERVER['HTTP_REFERER'] ?>">
+			<input type="text" name="name" class="name">
+			
+			<input type='button' id='cancel' value='Cancel' class='btn btn-default'>
+			<input type='submit' name='add' value='Add' class='btn btn-default'>
+			<input type="hidden" name="table_name" id="table_name">
+		</form>
+	</div>
+<script type="text/javascript" src="../js/jquery.js"></script>
+<script type="text/javascript">
+
+	function position() {
+		$('#add_new').css( "margin-top" ,function() {
+			return ($(this).height()+128)/(-2.0);
+			}
+		);
+		$('#add_new').css( "margin-left" ,function() {
+			return ($(this).width()+128)/(-2.0);
+			}
+		);
+	};
+
+	$('a#new_author').click( function() {
+		$('div.lightOut').fadeIn();
+		$('<label>Author Name:</label><br />').insertBefore('input.name');
+		$('<label>About Author:</label><br /><textarea cols="60" rows="10" name="intro"></textarea><br /><br /><br />')
+			.insertBefore('input#cancel');
+			position();
+		$('input#table_name').attr("value","books_author");
+	});
+
+	$('a#new_category').click( function() {
+		$('div.lightOut').fadeIn();
+		$('<label>Category Name:</label><br />').insertBefore('input.name');
+		position();
+		$('input#table_name').attr("value","books_category");
+	});
+
+	$('a#new_publisher').click( function() {
+		$('div.lightOut').fadeIn();
+		$('<label>Publisher Name:</label><br />').insertBefore('input.name');
+		position();
+		$('input#table_name').attr("value","books_pubslisher");
+	});
+
+	$('input#cancel').click( function() {
+		$('div.lightOut').fadeOut();
+		$('form#add_new label, form#add_new textarea, form#add_new br ').remove();
+	})
+
+</script>
 <?php include(INC_PATH.DS.'footer-admin.php');?>
