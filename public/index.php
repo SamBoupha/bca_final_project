@@ -24,24 +24,39 @@
 	<!-- categories display section -->
 	<div class='product-thumbnail-section'>
 		<h2>Computers</h2>
-		<div>
+		<div class='product-row'>
 			<?php 
-				$dirPath = "img".DS."computer";
-				$images = imgSrcAutoGen($dirPath);
-				foreach ($images as $image) {
-					echo $image;
+				include(INC_PATH.DS."computer_object.php");
+				$computers = ComputerObject::select(4,true,true);
+				foreach ($computers as $computer) {
+					echo "<div class='book-thumb'>";
+					echo "<a href='computer_detail.php?id=".$computer->id."''>";
+					echo "<img src='img/computer/";
+					echo $computer->img_thumb.".jpg";
+					echo "'>";
+					echo "<p class='info'>";
+					echo $computer->brand." ".$computer->model;
+					echo "</p>";
+					echo "</a>";
+					echo "<p class='price'>Rs. ";
+					echo $computer->price;
+					echo "</p>";
+					echo "</div>";
 				}
+				echo "<a href='computers.php'> <div class='view-all'>";
+				echo "View all";
+				echo "</div></a>";
 			?>
 		</div>
 		<br /><br /><br /><br /><br />
 		<h2>Mobiles &amp; Tablets</h2>
 		<div>
 			<?php 
-				$dirPath = "img".DS."mobilestablets";
-				$images = imgSrcAutoGen($dirPath);
-				foreach ($images as $image) {
-					echo $image;
-				}
+				// $dirPath = "img".DS."mobilestablets";
+				// $images = imgSrcAutoGen($dirPath);
+				// foreach ($images as $image) {
+				// 	echo $image;
+				// }
 			?>
 		</div>
 		<br /><br /><br /><br /><br />
@@ -74,11 +89,11 @@
 		<h2>Clothing</h2>
 		<div>
 			<?php 
-				$dirPath = "img".DS."computer";
-				$images = imgSrcAutoGen($dirPath);
-				foreach ($images as $image) {
-					echo $image;
-				}
+				// $dirPath = "img".DS."computer";
+				// $images = imgSrcAutoGen($dirPath);
+				// foreach ($images as $image) {
+				// 	echo $image;
+				// }
 			?>
 		</div>
 	</div> <!--	product thumbnail -->

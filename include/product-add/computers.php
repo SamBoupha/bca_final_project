@@ -1,4 +1,4 @@
-<a href='product-add-books-add.php'>
+<a href='product-add-computers-add.php'>
 	<div class="btn btn-success">
 		+ Add new computer
 	</div>
