@@ -1,18 +1,18 @@
 <a href='product-add-books-add.php'>
 	<div class="btn btn-success">
-		+ Add new book
+		+ Add new computer
 	</div>
 </a>
 <?php 
 	require_once(INC_PATH.DS.'book_object.php');
-	$books = BookObject::select();
+	//$books = BookObject::select();
 ?>
 <table class='table table-striped'>
 	<tr>
 		<th>ID</th>
 		<th>First Page</th>
 		<th>Sample Image</th>
-		<th>Title</th>
+		<th>Brand + Model</th>
 		<th>Price</th>
 		<th>Visibility</th>
 		<th></th>

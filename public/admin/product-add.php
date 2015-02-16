@@ -58,6 +58,7 @@ if(!$session->is_logged_in()) header("location: login.php");
 						echo "<h3>";
 						echo $selected;
 						echo "</h3>";
+						include(INC_PATH.DS.'product-add'.DS.'computers.php');
 					}
 					elseif ($selected == 'Computer\'s Accessories') {
 						echo "<h3>";
