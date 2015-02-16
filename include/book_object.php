@@ -119,7 +119,7 @@ class BookObject extends DatabaseObject {
 		// While this assoc 'field_names' contains the column names of the executed sql table
 		$result_n_fieldName['field_names'] = $field_names;
 
-		$db->close_connection();
+		//$db->close_connection();
 		// so that it can do 2 opearations and return 2 results from one function
 		return $result_n_fieldName;
 	}
@@ -156,7 +156,7 @@ class BookObject extends DatabaseObject {
 		$sql = "DELETE FROM ".static::$table_name." WHERE id=".$id." LIMIT 1";
 
 		$result = $db->execute_query($sql);
-		$db->close_connection();
+		//$db->close_connection();
 		return $result;
 	}
 
@@ -173,7 +173,7 @@ class BookObject extends DatabaseObject {
 		$sql .= $sql1." WHERE id=".$db->prep_sql($updated_book['id']);
 
 		$result = $db->execute_query($sql);
-		$db->close_connection();
+		//$db->close_connection();
 
 		return $result;
 	}

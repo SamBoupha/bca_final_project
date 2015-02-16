@@ -82,29 +82,13 @@ $updated_book['show_at_index_page']   = htmlspecialchars($_POST['show_at_index_p
 
 }
 
-if(isset($_POST['add'])) {
-	$new['name'] = trim($_POST['name']);
-	$table_name = $_POST['table_name'];
-	if (!empty($new['name'])) {
-		if (isset($_POST['about'])) {
-			$about = trim($_POST['about']);
-			if (!empty($about)) {
-				$new['about'] = $about;
-			}
-		}
-		print_r($new);
-		DatabaseObject::insert($new,$table_name);
-		echo "hi";
-	}
-	echo "hey";
-}
-
 $book = BookObject::select_all_by_id($_GET['id']);
 ?>
 
 <?php include(INC_PATH.DS.'header-admin.php');?>
 <?php include(INC_PATH.DS.'side-nav-admin.php');?>
-
+<!-- handle the quick add functionality -->
+<?php include_once(INC_PATH.DS."product-add".DS."component-lightOut+form.php") ?>
 	<section>
 		<div class='product-add-book-form'>
 		<h2>Book Editing: Edit a book</h2>
@@ -280,56 +264,4 @@ $book = BookObject::select_all_by_id($_GET['id']);
 	</div>
 	</section>
 
-	<div class='lightOut'>
-		<form id='add_new' name='add_new' method='post' action="<?php echo $_SERVER['PHP_SELF'].'?id='.$_GET['id'] ?>">
-			<input type="text" name="name" class="name">
-			
-			<input type='button' id='cancel' value='Cancel' class='btn btn-default'>
-			<input type='submit' name='add' value='Add' class='btn btn-default'>
-			<input type="hidden" name="table_name" id="table_name">
-		</form>
-	</div>
-<script type="text/javascript" src="../js/jquery.js"></script>
-<script type="text/javascript">
-
-	function position() {
-		$('#add_new').css( "margin-top" ,function() {
-			return ($(this).height()+128)/(-2.0);
-			}
-		);
-		$('#add_new').css( "margin-left" ,function() {
-			return ($(this).width()+128)/(-2.0);
-			}
-		);
-	};
-
-	$('a#new_author').click( function() {
-		$('div.lightOut').fadeIn();
-		$('<label>Author Name:</label><br />').insertBefore('input.name');
-		$('<label>About Author:</label><br /><textarea cols="60" rows="10" name="about"></textarea><br /><br /><br />')
-			.insertBefore('input#cancel');
-			position();
-		$('input#table_name').attr("value","books_author");
-	});
-
-	$('a#new_category').click( function() {
-		$('div.lightOut').fadeIn();
-		$('<label>Category Name:</label><br />').insertBefore('input.name');
-		position();
-		$('input#table_name').attr("value","books_category");
-	});
-
-	$('a#new_publisher').click( function() {
-		$('div.lightOut').fadeIn();
-		$('<label>Publisher Name:</label><br />').insertBefore('input.name');
-		position();
-		$('input#table_name').attr("value","books_publisher");
-	});
-
-	$('input#cancel').click( function() {
-		$('div.lightOut').fadeOut();
-		$('form#add_new label, form#add_new textarea, form#add_new br ').remove();
-	})
-
-</script>
 <?php include(INC_PATH.DS.'footer-admin.php');?>

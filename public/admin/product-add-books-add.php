@@ -58,11 +58,26 @@ if (isset($_POST['submit'])) {
 
 <?php include(INC_PATH.DS.'header-admin.php');?>
 <?php include(INC_PATH.DS.'side-nav-admin.php');?>
-
+<!-- Click quick add and form will appear  -->
+<?php include(INC_PATH.DS."product-add".DS."component-lightOut+form.php") ?>
 	<section>
 		<div class='product-add-book-form'>
 		<h2>Book Editing: Add new books</h2>
 		<form class='product-add-books' action='<?php echo htmlspecialchars($_SERVER['PHP_SELF'])?>' method='post' enctype='multipart/form-data'>
+			<div>
+				<label>Show on first page:</label>
+				<select name='show_at_index_page'>
+					<option value='0' > NO </option>	
+					<option value='1' > YES </option>
+				</select>
+			</div>
+			<div>
+				<label>Visibility:</label>
+				<select name='visibility'>
+					<option value='0' class='danger'>HIDE</option>	
+					<option value='1' class='success'>SHOW</option>
+				</select>
+			</div>
 			<div>
 				<label>Title:</label><br />
 				<input type='text' name='title' value="<?php echo $_POST['title']?>" placeholder='Title of a book'>
@@ -90,7 +105,7 @@ if (isset($_POST['submit'])) {
 						}
 					?>
 				</select>
-				&nbsp;&nbsp;&nbsp;&nbsp;<a href="">+ Add new author</a>
+				&nbsp;&nbsp;&nbsp;&nbsp;<a href="#" id='new_author'>+ Quick add new author</a>
 			</div>
 			<div>
 				<label>Category:</label><br />
@@ -115,7 +130,7 @@ if (isset($_POST['submit'])) {
 						}
 					?>
 				</select>
-				&nbsp;&nbsp;&nbsp;&nbsp;<a href="">+ Add new category</a>
+				&nbsp;&nbsp;&nbsp;&nbsp;<a href="#" id='new_category'>+ Quick add new category</a>
 			</div>
 			<div>
 				<label>Publisher:</label><br />
@@ -140,7 +155,7 @@ if (isset($_POST['submit'])) {
 						}
 					?>
 				</select>
-				&nbsp;&nbsp;&nbsp;&nbsp;<a href="">+ Add new publisher</a>
+				&nbsp;&nbsp;&nbsp;&nbsp;<a href="#" id='new_publisher'>+ Quick add new publisher</a>
 			</div>
 			<div class='input-price'>
 				<label>Price:</label><br />
@@ -178,5 +193,5 @@ if (isset($_POST['submit'])) {
 		</form>
 	</div>
 	</section>
-
+	
 <?php include(INC_PATH.DS.'footer-admin.php');?>
