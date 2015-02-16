@@ -83,7 +83,36 @@
 			$sql .= ")";
 
 			$result = $db->execute_query($sql);
-			$db->close_connection();
+			//$db->close_connection();
+			return $result;
+		}
+
+		public static function delete($id) {
+			global $db;
+
+			$sql = "DELETE FROM ".static::$table_name." WHERE id=".$id." LIMIT 1";
+
+			$result = $db->execute_query($sql);
+			//$db->close_connection();
+			return $result;
+		}
+
+		// updates should come in a form assoc array
+		public static function update($updates) {
+			global $db;
+
+			$sql = "UPDATE ".static::$table_name." SET ";
+			$sql1 = "";
+			foreach ($updates as $key => $value) {
+				$sql1 .= "`".$db->prep_sql($key)."`"."='".$db->prep_sql($value)."',";
+			}
+			$sql1 = substr($sql1, 0, strlen($sql1)-1);
+
+			$sql .= $sql1." WHERE id=".$db->prep_sql($updates['id']);
+
+			$result = $db->execute_query($sql);
+			//$db->close_connection();
+
 			return $result;
 		}
 	}

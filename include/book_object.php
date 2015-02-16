@@ -57,7 +57,6 @@ class BookObject extends DatabaseObject {
 					books_title.id = ";
 			$sql .= $id;
 
-
 		return self::instanciate($sql);
 	}
 
@@ -91,34 +90,6 @@ class BookObject extends DatabaseObject {
 		$sql = "SELECT id,name FROM ".$table." ORDER BY name ASC";
 
 		return self::instanciate($sql);
-	}
-
-	public static function delete($id) {
-		global $db;
-
-		$sql = "DELETE FROM ".static::$table_name." WHERE id=".$id." LIMIT 1";
-
-		$result = $db->execute_query($sql);
-		//$db->close_connection();
-		return $result;
-	}
-
-	public static function update($updated_book) {
-		global $db;
-
-		$sql = "UPDATE ".static::$table_name." SET ";
-		$sql1 = "";
-		foreach ($updated_book as $key => $value) {
-			$sql1 .= "`".$db->prep_sql($key)."`"."='".$db->prep_sql($value)."',";
-		}
-		$sql1 = substr($sql1, 0, strlen($sql1)-1);
-
-		$sql .= $sql1." WHERE id=".$db->prep_sql($updated_book['id']);
-
-		$result = $db->execute_query($sql);
-		//$db->close_connection();
-
-		return $result;
 	}
 
 }
