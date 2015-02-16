@@ -31,7 +31,7 @@
 				<li><a href="">Terms of Use</a></li>
 				<li><a href="">Privacy Note</a></a></li>
 				<li><a href="">Security</a></li>
-				<li>&copy; 2015,&nbsp;&nbsp;abc.com</li>
+				<li>&copy; 2015,&nbsp;&nbsp;bca.com&nbsp;&nbsp;<a href='http://www.samboupha.com'>Sam Boupha<a></li>
 			</ul>
 		</div>
 	</div>
