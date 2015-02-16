@@ -37,6 +37,8 @@
 
 		protected static function instanciate($sql) {
 
+			$classname = get_called_class();
+
 			$result_n_fieldName = self::get_column_names($sql);
 
 			// To make it clear I separate the two 
@@ -49,7 +51,7 @@
 			// upon the numbers of rows received from the database
 			for ($i=0, $size = sizeof($db_rows) ; $i < $size; $i++) { 
 
-				$object = new bookObject();
+				$object = new $classname();
 
 				foreach ($field_names as $field_name) {
 					$object->$field_name = $db_rows[$i][$field_name];

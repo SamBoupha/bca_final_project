@@ -36,15 +36,19 @@ class ComputerObject extends DatabaseObject {
 
 		$sql = "SELECT 
 					computer_model.id,
-					computer_brand.name,
+					computer_brand.name as brand,
 					computer_model.model,
 					computer_model.price,
 					computer_model.quantity,
-					from 
-					computer_model,
-					left join
+					computer_model.img_thumb,
+					computer_model.visibility,
+					computer_model.show_at_index_page
+					
+				FROM 
+					computer_model
+				LEFT JOIN
 					computer_brand 
-					on
+				ON
 					computer_model.brand_id    = computer_brand.id ";
 
 			$sql .= $public.$highlight.$limit;
