@@ -74,7 +74,7 @@ $updated_book['show_at_index_page']   = htmlspecialchars($_POST['show_at_index_p
 	if(BookObject::update($updated_book)) {
 		$reports[] = "<p class='success'>The book <em><span>".$updated_book['title']."</spam></em> has been editted successfully</p>";
 	} else {
-		$reports[] = "<p class='danger'>Technical problem. Failed to edit</p>";
+		$reports[] = "<p class='danger'>Failed to edit</p>";
 	}
 
 	$_SESSION['report'] = $reports;

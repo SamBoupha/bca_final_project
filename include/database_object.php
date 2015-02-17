@@ -86,7 +86,7 @@
 
 			$result = $db->execute_query($sql);
 			//$db->close_connection();
-			return $result;
+			return $db->get_affected_rows();
 		}
 
 		public static function delete($id) {
@@ -96,7 +96,7 @@
 
 			$result = $db->execute_query($sql);
 			//$db->close_connection();
-			return $result;
+			return $db->get_affected_rows();
 		}
 
 		// updates should come in a form assoc array
@@ -115,7 +115,7 @@
 			$result = $db->execute_query($sql);
 			//$db->close_connection();
 
-			return "hi ".$sql;
+			return $db->get_affected_rows();
 		}
 
 		public static function select_from_table($table, $column2=',name' , $column3=null , $column4=null) {

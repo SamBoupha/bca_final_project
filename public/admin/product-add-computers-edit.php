@@ -77,7 +77,7 @@ $updated_computer['show_at_index_page']  = htmlspecialchars($_POST['show_at_inde
 	if(ComputerObject::update($updated_computer)) {
 		$reports[] = "<p class='success'>The computer <em><span>".$updated_computer['model']."</spam></em> has been editted successfully</p>";
 	} else {
-		$reports[] = "<p class='danger'>Technical problem. Failed to edit</p>";
+		$reports[] = "<p class='danger'>Failed to edit</p>";
 	}
 
 	$_SESSION['report'] = $reports;

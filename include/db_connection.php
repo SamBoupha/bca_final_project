@@ -54,6 +54,10 @@
 			}
 		}
 
+		function get_affected_rows() {
+			return $this->connection->affected_rows;
+		}
+
 		function is_connected() {
 			return $this->connection;
 		}
