@@ -86,12 +86,6 @@ class BookObject extends DatabaseObject {
 		
 	}
 
-	public static function select_from_table($table) {
-		$sql = "SELECT id,name FROM ".$table." ORDER BY name ASC";
-
-		return self::instanciate($sql);
-	}
-
 }
 
 ?>

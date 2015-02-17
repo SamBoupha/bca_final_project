@@ -115,7 +115,24 @@
 			$result = $db->execute_query($sql);
 			//$db->close_connection();
 
-			return $result;
+			return "hi ".$sql;
 		}
+
+		public static function select_from_table($table, $column2=',name' , $column3=null , $column4=null) {
+			if ($column2 != ',name') {
+				$column2 = ",".$column2;
+			} 
+			if ($column3 != null) {
+				$column3 = ",".$column3;
+			}
+			if($column4 != null) {
+				$column4 = ",".$column4;
+			}
+
+			$sql = "SELECT id".$column2." as name ".$column3.$column4." FROM ".$table." WHERE id != 0 ORDER BY name ASC";
+
+			return self::instanciate($sql);
+		}
+
 	}
 ?>

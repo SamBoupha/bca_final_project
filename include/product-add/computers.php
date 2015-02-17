@@ -32,7 +32,7 @@
 			// 
 			echo "<td>";
 			echo "<img src='../img/computer/";
-			echo $computer->img_thumb == null ? "product_image_not_available_200x200.jpg" : $computer->img_thumb.".jpg" ;
+			echo $computer->img_thumb == null ? "product_image_not_available_200x200.jpg" : $computer->img_thumb;
 			echo "'>";
 			echo "</td>";
 			// 

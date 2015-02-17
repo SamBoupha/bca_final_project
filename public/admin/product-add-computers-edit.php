@@ -5,20 +5,23 @@ if(!$session->is_logged_in()) header("location: login.php");
 
 if (isset($_POST['submit'])) {
 
-	$updated_book['id']           = htmlspecialchars($_POST['id']);
-	$updated_book['title'] 		  = htmlspecialchars($_POST['title']);
-	$updated_book['author_id'] 	  = htmlspecialchars($_POST['author']);
-	$updated_book['category_id']  = htmlspecialchars($_POST['category']);
-	$updated_book['publisher_id'] = htmlspecialchars($_POST['publisher']);
-	$updated_book['price'] 		  = htmlspecialchars($_POST['price']);
-	$updated_book['length'] 	  = htmlspecialchars($_POST['length']);
-	$updated_book['year'] 		  = htmlspecialchars($_POST['year']);
-	$updated_book['quantity'] 	  = htmlspecialchars($_POST['quantity']);
-	$updated_book['intro'] 		  = htmlspecialchars($_POST['intro']);
-	$updated_book['visibility']   = htmlspecialchars($_POST['visibility']);
-$updated_book['show_at_index_page']   = htmlspecialchars($_POST['show_at_index_page']);
+	$updated_computer['id']          = htmlspecialchars($_POST['id']);
+	$updated_computer['brand_id'] 	 = htmlspecialchars($_POST['brand']);
+	$updated_computer['model'] 	     = htmlspecialchars($_POST['model']);
+	$updated_computer['cpu_id']      = htmlspecialchars($_POST['cpu']);
+	$updated_computer['hdd_id']      = htmlspecialchars($_POST['hdd']);
+	$updated_computer['ram_id'] 	 = htmlspecialchars($_POST['ram']);
+	$updated_computer['graphic_id']  = htmlspecialchars($_POST['graphic']);
+	$updated_computer['mornitor_id'] = htmlspecialchars($_POST['mornitor']);
+	$updated_computer['os'] 	     = htmlspecialchars($_POST['os']);
+	$updated_computer['price'] 		 = htmlspecialchars($_POST['price']);
+	$updated_computer['mfg'] 		 = htmlspecialchars($_POST['mfg']);
+	$updated_computer['quantity'] 	 = htmlspecialchars($_POST['quantity']);
+	$updated_computer['visibility']  = htmlspecialchars($_POST['visibility']);
+$updated_computer['show_at_index_page']  = htmlspecialchars($_POST['show_at_index_page']);
 
-	$location = "..".DS."img".DS."books".DS;
+	print_r($updated_computer);
+	$location = "..".DS."img".DS."computer".DS;
 	$reports = array();
 
 	if (!empty($_FILES['img_thumb']['tmp_name'])) {
@@ -35,7 +38,7 @@ $updated_book['show_at_index_page']   = htmlspecialchars($_POST['show_at_index_p
 			$reports[] = "<p class='danger'>Thumbnail image was failed to upload</p>";
 		}
 		unlink($location.$_POST['current_img_thumb']);
-		$updated_book['img_thumb'] = htmlspecialchars($file_name);
+		$updated_computer['img_thumb'] = htmlspecialchars($file_name);
 	}	
 
 	if (!empty($_FILES['img_front']['tmp_name'])) {
@@ -51,7 +54,7 @@ $updated_book['show_at_index_page']   = htmlspecialchars($_POST['show_at_index_p
 			$reports[] = "<p class='danger'>Front image was failed to upload</p>";
 		}
 		unlink($location.$_POST['current_img_front']);
-		$updated_book['img_front'] = htmlspecialchars($file_name);
+		$updated_computer['img_front'] = htmlspecialchars($file_name);
 	}
 
 	if (!empty($_FILES['img_back']['tmp_name'])) {
@@ -68,17 +71,17 @@ $updated_book['show_at_index_page']   = htmlspecialchars($_POST['show_at_index_p
 				$reports[] = "<p class='danger'>Back image was failed to upload</p>";
 			}
 		unlink($location.$_POST['current_img_back']);
-		$updated_book['img_back'] = htmlspecialchars($file_name);
+		$updated_computer['img_back'] = htmlspecialchars($file_name);
 	}
 
-	if(BookObject::update($updated_book)) {
-		$reports[] = "<p class='success'>The book <em><span>".$updated_book['title']."</spam></em> has been editted successfully</p>";
+	if(ComputerObject::update($updated_computer)) {
+		$reports[] = "<p class='success'>The computer <em><span>".$updated_computer['model']."</spam></em> has been editted successfully</p>";
 	} else {
 		$reports[] = "<p class='danger'>Technical problem. Failed to edit</p>";
 	}
 
 	$_SESSION['report'] = $reports;
-	header("location: product-add.php?category=Books");
+	header("location: product-add.php?category=Computers");
 
 }
 
@@ -125,7 +128,7 @@ $computer = ComputerObject::select_all_by_id($_GET['id']);
 			</div>
 			<div>
 				<label>Brand:</label><br />
-				<select name='author'>
+				<select name='brand'>
 					<?php 
 						$brands = ComputerObject::select_from_table("computer_brand");
 						echo "<option value='0'>Unknown</option>";
@@ -154,31 +157,31 @@ $computer = ComputerObject::select_all_by_id($_GET['id']);
 			</div>
 			<div>
 				<label>Model:</label><br />
-				<input type='text' name='title' value="<?php echo $book->title ?>">
+				<input type='text' name='model' value="<?php echo $computer->model ?>">
 			</div>
 			<div>
-				<label>Category:</label><br />
-				<select name='category'>
+				<label>CPU:</label><br />
+				<select name='cpu'>
 					<?php 
-						$categories = BookObject::select_from_table("books_category");
+						$cpus = ComputerObject::select_from_table("computer_spec_cpu","family");
 						echo "<option value='0'>Unknown</option>";
-						foreach ($categories as $category) {
-							echo "<option value='".$category->id;
+						foreach ($cpus as $cpu) {
+							echo "<option value='".$cpu->id;
 
-							if (strpos($category->name,'--')) {
-								$category->name = str_replace("--", " ─────", $category->name);
-								$category->name = "───── ".$category->name;
+							if (strpos($cpu->name,'--')) {
+								$cpu->name = str_replace("--", " ─────", $cpu->name);
+								$cpu->name = "───── ".$cpu->name;
 								echo "' disabled";
 							} else {
 								echo "'";
 							}
 
-							if ($book->category == $category->name) {
+							if ($computer->cpu == $cpu->name) {
 								echo " selected ";
 							}
 
 							echo ">";
-							echo $category->name;
+							echo $cpu->name;
 							echo "</option>";
 						}
 					?>
@@ -186,28 +189,145 @@ $computer = ComputerObject::select_all_by_id($_GET['id']);
 				&nbsp;&nbsp;&nbsp;&nbsp;<a href="#" id='new_category'>+ Quick add new category</a>
 			</div>
 			<div>
-				<label>Publisher:</label><br />
-				<select name='publisher'>
+				<label>HDD:</label><br />
+				<select name='hdd'>
 					<?php 
-						$publishers = BookObject::select_from_table("books_publisher");
+						$hdds = ComputerObject::select_from_table("computer_spec_hdd","capacity","hdd_type");
 						echo "<option value='0'>Unknown</option>";
-						foreach ($publishers as $publisher) {
-							echo "<option value='".$category->id;
+						foreach ($hdds as $hdd) {
+							echo "<option value='".$hdd->id;
 
-							if (strpos($publisher->name,'--')) {
-								$publisher->name = str_replace("--", " ─────", $publisher->name);
-								$publisher->name = "───── ".$publisher->name;
+							if (strpos($hdd->name,'--')) {
+								$hdd->name = str_replace("--", " ─────", $hdd->name);
+								$hdd->name = "───── ".$hdd->name;
 								echo "' disabled";
 							} else {
 								echo "'";
 							}
 
-							if ($book->publisher == $publisher->name) {
+							if ($computer->hdd == $hdd->name) {
 								echo " selected ";
 							}
 
 							echo ">";
-							echo $publisher->name;
+							echo $hdd->name." ".$hdd->hdd_type;
+							echo "</option>"; 
+							print_r($hdd);
+						}
+					?>
+				</select>
+				&nbsp;&nbsp;&nbsp;&nbsp;<a href="#" id='new_publisher'>+ Quick add new publisher</a>
+			</div>
+			<div>
+				<label>RAM:</label><br />
+				<select name='ram'>
+					<?php 
+						$rams = ComputerObject::select_from_table("computer_spec_ram","capacity","ram_type","ram_frequency");
+						echo "<option value='0'>Unknown</option>";
+						foreach ($rams as $ram) {
+							echo "<option value='".$ram->id;
+
+							if (strpos($ram->name,'--')) {
+								$ram->name = str_replace("--", " ─────", $ram->name);
+								$ram->name = "───── ".$ram->name;
+								echo "' disabled";
+							} else {
+								echo "'";
+							}
+
+							if ($computer->ram == $ram->name) {
+								echo " selected ";
+							}
+
+							echo ">";
+							echo $ram->name." ".$ram->ram_type." ".$ram->ram_frequency;
+							echo "</option>";
+						}
+					?>
+				</select>
+				&nbsp;&nbsp;&nbsp;&nbsp;<a href="#" id='new_publisher'>+ Quick add new publisher</a>
+			</div>
+			<div>
+				<label>Graphic Card:</label><br />
+				<select name='graphic'>
+					<?php 
+						$graphics = ComputerObject::select_from_table("computer_spec_graphic","processor");
+						echo "<option value='0'>Unknown</option>";
+						foreach ($graphics as $graphic) {
+							echo "<option value='".$graphic->id;
+
+							if (strpos($graphic->name,'--')) {
+								$graphic->name = str_replace("--", " ─────", $graphic->name);
+								$graphic->name = "───── ".$graphic->name;
+								echo "' disabled";
+							} else {
+								echo "'";
+							}
+
+							if ($computer->graphic == $graphic->name) {
+								echo " selected ";
+							}
+
+							echo ">";
+							echo $graphic->name;
+							echo "</option>";
+						}
+					?>
+				</select>
+				&nbsp;&nbsp;&nbsp;&nbsp;<a href="#" id='new_publisher'>+ Quick add new publisher</a>
+			</div>
+			<div>
+				<label>Mornitor:</label><br />
+				<select name='mornitor'>
+					<?php 
+						$mornitors = ComputerObject::select_from_table("computer_spec_mornitor","inch","resolution");
+						echo "<option value='0'>Unknown</option>";
+						foreach ($mornitors as $mornitor) {
+							echo "<option value='".$mornitor->id;
+
+							if (strpos($mornitor->name,'--')) {
+								$mornitor->name = str_replace("--", " ─────", $mornitor->name);
+								$mornitor->name = "───── ".$mornitor->name;
+								echo "' disabled";
+							} else {
+								echo "'";
+							}
+
+							if ($computer->mornitor == $mornitor->name) {
+								echo " selected ";
+							}
+
+							echo ">";
+							echo $mornitor->name." inch (".$mornitor->resolution.")";
+							echo "</option>";
+						}
+					?>
+				</select>
+				&nbsp;&nbsp;&nbsp;&nbsp;<a href="#" id='new_publisher'>+ Quick add new publisher</a>
+			</div>
+			<div>
+				<label>Operating System:</label><br />
+				<select name='os'>
+					<?php 
+						$oss = ComputerObject::select_from_table("computer_spec_os","name","architecture");
+						echo "<option value='0'>Unknown</option>";
+						foreach ($oss as $os) {
+							echo "<option value='".$os->id;
+
+							if (strpos($os->name,'--')) {
+								$os->name = str_replace("--", " ─────", $os->name);
+								$os->name = "───── ".$os->name;
+								echo "' disabled";
+							} else {
+								echo "'";
+							}
+
+							if ($computer->os == $os->name) {
+								echo " selected ";
+							}
+
+							echo ">";
+							echo $os->name." ".$os->architecture;
 							echo "</option>";
 						}
 					?>
@@ -216,52 +336,45 @@ $computer = ComputerObject::select_all_by_id($_GET['id']);
 			</div>
 			<div class='input-price'>
 				<label>Price:</label><br />
-				<span>Rs.</span><input type="text" name='price' value='<?php echo $book->price ?>'>
+				<span>Rs.</span><input type="text" name='price' value='<?php echo $computer->price ?>'>
 			</div>
 			<div>
-				<label>Number of Page:</label><br />
-				<input type='text' name='length' value='<?php echo $book->length ?>'><br />
-			</div>
-			<div>
-				<label>Publication Year:</label><br />
-				<input type='text' name='year' value='<?php echo $book->year ?>'><br />
+				<label>Manufactoring Year:</label><br />
+				<input type='text' name='mfg' value='<?php echo $computer->mfg ?>'><br />
 			</div>
 			<div>
 				<label>Quantity:</label><br />
-				<input type='text' name='quantity' value='<?php echo $book->quantity ?>'><br />
+				<input type='text' name='quantity' value='<?php echo $computer->quantity ?>'><br />
 			</div>
-			<div>
-				<label>Intro:</label><br />
-				<textarea name='intro' cols='100' rows='20'><?php echo $book->intro ?></textarea>
-			</div>
+			
 			<!-- Thumbnail upload section -->
 			<div style='display:inline-block'>
-				<label>Select <em>new</em> Thumbnail Image of the book (200x200px):</label>
+				<label>Select <em>new</em> Thumbnail Image of the computer (200x200px):</label>
 				<input type='file' name='img_thumb'>
-				<input type='hidden' name='current_img_thumb' value='<?php echo $book->img_thumb ?>'>
+				<input type='hidden' name='current_img_thumb' value='<?php echo $computer->img_thumb ?>'>
 			</div>
-			<img src='../img/books/<?php 
-						echo $book->img_thumb == null ? "product_image_not_available_200x200.jpg" : $book->img_thumb
+			<img src='../img/computer/<?php 
+						echo $computer->img_thumb == null ? "product_image_not_available_200x200.jpg" : $computer->img_thumb
 						?>'><br /><br />
 			
 			<!-- Front cover upload section -->
 			<div style='display:inline-block'>
-				<label>Select <em>new</em> Front Image of the book (400x400px):</label>
+				<label>Select <em>new</em> Front Image of the computer (400x400px):</label>
 				<input type='file' name='img_front'>
-				<input type='hidden' name='current_img_front' value='<?php echo $book->img_front ?>'>
+				<input type='hidden' name='current_img_left_side' value='<?php echo $computer->img_left_side ?>'>
 			</div>
-			<img src='../img/books/<?php echo $book->img_front == null ? "product_image_not_available_400x400.jpg" : $book->img_front ?>'><br /><br />
+			<img src='../img/computer/<?php echo $computer->img_left_side == null ? "product_image_not_available_400x400.jpg" : $computer->img_left_side ?>'><br /><br />
 			
 			<!-- Back cover upload section -->
 			<div style='display:inline-block'>
-				<label>Select <em>new</em> Back Image of the book (400x400px):</label>
+				<label>Select <em>new</em> Back Image of the computer (400x400px):</label>
 				<input type='file' name='img_back'>
-				<input type='hidden' name='current_img_back' value='<?php echo $book->img_back ?>'>
+				<input type='hidden' name='current_img_back' value='<?php echo $computer->img_back?>'>
 			</div>
-			<img src='../img/books/<?php echo $book->img_back == null ? "product_image_not_available_400x400.jpg" : $book->img_back ?>'><br /><br />
+			<img src='../img/computer/<?php echo $computer->img_back == null ? "product_image_not_available_400x400.jpg" : $computer->img_back ?>'><br /><br />
 
-			<input type='hidden' name='id' value='<?php echo $book->id ?>'>
-			<input type='submit' class='btn btn-default' name='submit' value='Upload'>
+			<input type='hidden' name='id' value='<?php echo $computer->id ?>'>
+			<input type='submit' class='btn btn-default' name='submit' value='Update'>
 		</form>
 	</div>
 	</section>

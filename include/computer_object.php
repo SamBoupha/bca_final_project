@@ -10,11 +10,16 @@ class ComputerObject extends DatabaseObject {
 			$mfg,
 			$cpu,
 			$hdd,
+			$hdd_type,
 			$ram,
+			$ram_frequency,
 			$ram_type,
-			$mornitor,
 			$graphic,
+			$graphic_capacity,
+			$mornitor,
+			$resolution,
 			$os,
+			$architecture,
 			$brand,
 			$img_thumb,
 			$img_left_side,
@@ -70,9 +75,17 @@ class ComputerObject extends DatabaseObject {
 					computer_spec_cpu.family as cpu,
 					computer_spec_hdd.capacity as hdd,
 					computer_spec_ram.capacity as ram,
-					computer_spec_ram.type as ram_type, 
+					computer_spec_ram.ram_type, 
 					computer_spec_os.name as os,
-					computer_spec_mornitor.inch as mornitor
+					computer_spec_graphic.processor as graphic,
+					computer_spec_graphic.capacity as graphic_capacity,
+					computer_spec_mornitor.inch as mornitor,
+					computer_spec_mornitor.resolution,
+					computer_model.img_thumb,
+					computer_model.img_left_side,
+					computer_model.img_back,
+					computer_model.visibility,
+					computer_model.show_at_index_page
 					from 
 					computer_model,
 					computer_spec_hdd,
@@ -96,11 +109,7 @@ class ComputerObject extends DatabaseObject {
 		return self::instanciate($sql);
 	}
 
-	public static function select_from_table($table) {
-		$sql = "SELECT id,name FROM ".$table." ORDER BY name ASC";
-
-		return self::instanciate($sql);
-	}
+	
 
 }
 

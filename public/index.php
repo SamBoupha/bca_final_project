@@ -32,7 +32,7 @@
 					echo "<div class='book-thumb'>";
 					echo "<a href='computer_detail.php?id=".$computer->id."''>";
 					echo "<img src='img/computer/";
-					echo $computer->img_thumb.".jpg";
+					echo $computer->img_thumb;
 					echo "'>";
 					echo "<p class='info'>";
 					echo $computer->brand." ".$computer->model;
