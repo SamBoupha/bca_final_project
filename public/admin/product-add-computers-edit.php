@@ -170,7 +170,7 @@ $computer = ComputerObject::select_all($_GET['id']);
 						}
 					?>
 				</select>
-				&nbsp;&nbsp;&nbsp;&nbsp;<a href="#" id='new_author'>+ Quick add new author</a>
+				&nbsp;&nbsp;&nbsp;&nbsp;<a href="#" id='new_brand'>+ Quick add new brand</a>
 			</div>
 			<div>
 				<label>Model:</label><br />
@@ -203,7 +203,7 @@ $computer = ComputerObject::select_all($_GET['id']);
 						}
 					?>
 				</select>
-				&nbsp;&nbsp;&nbsp;&nbsp;<a href="#" id='new_category'>+ Quick add new category</a>
+				&nbsp;&nbsp;&nbsp;&nbsp;<a href="#" id='new_cpu'>+ Quick add new CPU</a>
 			</div>
 			<div>
 				<label>HDD:</label><br />
@@ -233,7 +233,7 @@ $computer = ComputerObject::select_all($_GET['id']);
 						}
 					?>
 				</select>
-				&nbsp;&nbsp;&nbsp;&nbsp;<a href="#" id='new_publisher'>+ Quick add new publisher</a>
+				&nbsp;&nbsp;&nbsp;&nbsp;<a href="#" id='new_hdd'>+ Quick add new HDD</a>
 			</div>
 			<div>
 				<label>RAM:</label><br />
@@ -262,7 +262,7 @@ $computer = ComputerObject::select_all($_GET['id']);
 						}
 					?>
 				</select>
-				&nbsp;&nbsp;&nbsp;&nbsp;<a href="#" id='new_publisher'>+ Quick add new publisher</a>
+				&nbsp;&nbsp;&nbsp;&nbsp;<a href="#" id='new_ram'>+ Quick add new ram</a>
 			</div>
 			<div>
 				<label>Graphic Card:</label><br />
@@ -291,7 +291,7 @@ $computer = ComputerObject::select_all($_GET['id']);
 						}
 					?>
 				</select>
-				&nbsp;&nbsp;&nbsp;&nbsp;<a href="#" id='new_publisher'>+ Quick add new publisher</a>
+				&nbsp;&nbsp;&nbsp;&nbsp;<a href="#" id='new_graphic'>+ Quick add new graphic</a>
 			</div>
 			<div>
 				<label>Mornitor:</label><br />
@@ -320,7 +320,7 @@ $computer = ComputerObject::select_all($_GET['id']);
 						}
 					?>
 				</select>
-				&nbsp;&nbsp;&nbsp;&nbsp;<a href="#" id='new_publisher'>+ Quick add new publisher</a>
+				&nbsp;&nbsp;&nbsp;&nbsp;<a href="#" id='new_mornitor'>+ Quick add new mornitor</a>
 			</div>
 			<div>
 				<label>Operating System:</label><br />
@@ -349,7 +349,7 @@ $computer = ComputerObject::select_all($_GET['id']);
 						}
 					?>
 				</select>
-				&nbsp;&nbsp;&nbsp;&nbsp;<a href="#" id='new_publisher'>+ Quick add new publisher</a>
+				&nbsp;&nbsp;&nbsp;&nbsp;<a href="#" id='new_os'>+ Quick add new os</a>
 			</div>
 			<div class='input-price'>
 				<label>Price:</label><br />
@@ -403,5 +403,132 @@ $computer = ComputerObject::select_all($_GET['id']);
 		</form>
 	</div>
 	</section>
+<script type="text/javascript" src="../js/jquery.js"></script>
+<script type="text/javascript">
 
+$( function() {
+	function position() {
+		$('#add_new').css( "margin-top" ,function() {
+			return ($(this).height()+128)/(-2.0);
+			}
+		);
+		$('#add_new').css( "margin-left" ,function() {
+			return ($(this).width()+128)/(-2.0);
+			}
+		);
+	};
+
+	// When a link with ID new_author is click the above form should be populated
+	// with below elements
+	$('a#new_brand').click( function() {
+		$('div.lightOut').fadeIn();
+		$('<input type="text" name="name" class="name">')
+				.insertBefore('input#cancel');
+		$('<label>Name:</label><br />').insertBefore('input.name');
+		
+			position();
+		$('input#table_name').attr("value","computer_brand");
+	});
+
+	$('a#new_cpu').click( function() {
+		$('div.lightOut').fadeIn();
+		$('<input type="text" name="family" class="name" placeholder="Example: Intel Core i7(4th Gen) Haswell">')
+			.insertBefore('input#cancel');
+		$('<label>Family Name:</label><br />').insertBefore('input.name');
+		$('<label>Chip Model:</label><br />').insertBefore('input#cancel');
+		$('<input type="text" name="chip_model" class="name" placeholder="Example: 4510U, 3360M, etc.">')
+			.insertBefore('input#cancel');
+		$('<label>Min clock speed:</label><br />').insertBefore('input#cancel');
+		$('<input type="text" name="min_clock_speed" class="name" placeholder="Example: 2GHz with turbo boost upto">')
+			.insertBefore('input#cancel');
+		$('<label>(optional)Max Speed:</label><br />').insertBefore('input#cancel');
+		$('<input type="text" name="max_clock_speed" class="name" placeholder="3.5GHz">')
+			.insertBefore('input#cancel');
+		$('<label>Cache:</label><br />').insertBefore('input#cancel');
+		$('<input type="text" name="cache" class="name" placeholder="Example: 4MB, 8MB, etc.">')
+			.insertBefore('input#cancel');
+		position();
+		$('input#table_name').attr("value","computer_spec_cpu");
+	});
+
+	$('a#new_graphic').click( function() {
+		$('div.lightOut').fadeIn();
+		$('<input type="text" name="capacity" class="name" placeholder="Example: 2GB, 4GB, etc. ">')
+			.insertBefore('input#cancel');
+		$('<label>Capacity:</label><br />').insertBefore('input.name');
+		$('<label>Processor:</label><br />').insertBefore('input#cancel');
+		$('<input type="text" name="processor" class="name" placeholder="Example: NVIDIA GeForce GT 840M ">')
+			.insertBefore('input#cancel');
+		$('<label>Type:</label><br />').insertBefore('input#cancel');
+		$('<input type="text" name="type" class="name" placeholder="Example: DDR3 ">')
+			.insertBefore('input#cancel');
+		position();
+		$('input#table_name').attr("value","computer_spec_hdd");
+	});
+
+	$('a#new_hdd').click( function() {
+		$('div.lightOut').fadeIn();
+		$('<input type="text" name="capacity" class="name" placeholder="Example: 1TB, 500GB, etc. ">')
+			.insertBefore('input#cancel');
+		$('<label>Capacity:</label><br />').insertBefore('input.name');
+		$('<label>HDD Type:</label><br />').insertBefore('input#cancel');
+		$('<input type="text" name="hdd_type" class="name" placeholder="Example: SATA, SSD, Etc. ">')
+			.insertBefore('input#cancel');
+		
+		position();
+		$('input#table_name').attr("value","computer_spec_hdd");
+	});
+
+	$('a#new_mornitor').click( function() {
+		$('div.lightOut').fadeIn();
+		$('<input type="text" name="inch" class="name" placeholder="Example: 13.3, 15.6, etc. ">')
+			.insertBefore('input#cancel');
+		$('<label>Inch:</label><br />').insertBefore('input.name');
+		$('<label>Resolution:</label><br />').insertBefore('input#cancel');
+		$('<input type="text" name="resolution" class="name" placeholder="Example: 1280x800 Etc. ">')
+			.insertBefore('input#cancel');
+		
+		position();
+		$('input#table_name').attr("value","computer_spec_hdd");
+	});
+
+	$('a#new_os').click( function() {
+		$('div.lightOut').fadeIn();
+		$('<input type="text" name="name" class="name" placeholder="Example: Windows 7, Mac OSX Yosimite, etc. ">')
+			.insertBefore('input#cancel');
+		$('<label>Name:</label><br />').insertBefore('input.name');
+		$('<label>Architecture:</label><br />').insertBefore('input#cancel');
+		$('<input type="text" name="architecture" class="name" placeholder="Example: 64 Bit, 32 Bit, Etc. ">')
+			.insertBefore('input#cancel');
+		
+		position();
+		$('input#table_name').attr("value","computer_spec_hdd");
+	});
+
+	$('a#new_ram').click( function() {
+		$('div.lightOut').fadeIn();
+		$('<input type="text" name="capacity" class="name" placeholder="Example: 4GB, 8GB, etc. ">')
+			.insertBefore('input#cancel');
+		$('<label>Capacity:</label><br />').insertBefore('input.name');
+		$('<label>Ram frequency:</label><br />').insertBefore('input#cancel');
+		$('<input type="text" name="ram_frequency" class="name" placeholder="Example: 1600MHz ">')
+			.insertBefore('input#cancel');
+		$('<label>Ram type:</label><br />').insertBefore('input#cancel');
+		$('<input type="text" name="ram_type" class="name" placeholder="Example: DDR3, DDR5, etc. ">')
+			.insertBefore('input#cancel');
+		
+		position();
+		$('input#table_name').attr("value","computer_spec_hdd");
+	});
+
+	$('input#cancel').click( function() {
+		$('div.lightOut').fadeOut();
+		// once elements are inserted they will be there so to reuse the form I have 
+		// to remove the elements that are specific to a link so that new elements 
+		// can be shown
+		$('form#add_new label, form#add_new textarea, form#add_new br, form#add_new input[type="text"] ').remove();
+	});
+});
+	
+</script>
 <?php include(INC_PATH.DS.'footer-admin.php');?>

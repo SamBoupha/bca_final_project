@@ -92,9 +92,11 @@ if (isset($_POST['submit'])) {
 		$reports[] = "<p class='danger'>Failed to add</p>";
 	}
 	
-	$_SESSION['report'] = $reports;
-	header("location: product-add.php?category=Computers");
+$_SESSION['report'] = $reports;
+header("location: product-add.php?category=Computers");
+
 }
+
 
 ?>
 
@@ -343,5 +345,6 @@ if (isset($_POST['submit'])) {
 		</form>
 	</div>
 	</section>
+
 
 <?php include(INC_PATH.DS.'footer-admin.php');?>

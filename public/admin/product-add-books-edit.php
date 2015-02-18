@@ -77,8 +77,8 @@ $updated_book['show_at_index_page']   = htmlspecialchars($_POST['show_at_index_p
 		$reports[] = "<p class='danger'>Failed to edit</p>";
 	}
 
-	$_SESSION['report'] = $reports;
-	header("location: product-add.php?category=Books");
+$_SESSION['report'] = $reports;
+header("location: product-add.php?category=Books");
 
 }
 
@@ -263,5 +263,58 @@ $book = BookObject::select_all($_GET['id']);
 		</form>
 	</div>
 	</section>
+<script type="text/javascript" src="../js/jquery.js"></script>
+<script type="text/javascript">
 
+$( function() {
+	function position() {
+		$('#add_new').css( "margin-top" ,function() {
+			return ($(this).height()+128)/(-2.0);
+			}
+		);
+		$('#add_new').css( "margin-left" ,function() {
+			return ($(this).width()+128)/(-2.0);
+			}
+		);
+	};
+
+	// When a link with ID new_author is click the above form should be populated
+	// with below elements
+	$('a#new_author').click( function() {
+		$('div.lightOut').fadeIn();
+		$('<input type="text" id="name" name="name" class="name">').insertBefore('input#cancel');
+		$('<label>Author Name:</label><br />').insertBefore('input.name');
+		$('<label>About Author:</label><br /><textarea cols="60" rows="10" name="about"></textarea><br /><br /><br />')
+			.insertBefore('input#cancel');
+			position();
+		$('input#table_name').attr("value","books_author");
+	});
+
+	$('a#new_category').click( function() {
+		$('div.lightOut').fadeIn();
+		$('<input type="text" id="name" name="name" class="name">').insertBefore('input#cancel');
+		$('<label>Category Name:</label><br />').insertBefore('input.name');
+		position();
+		$('input#table_name').attr("value","books_category");
+	});
+
+	$('a#new_publisher').click( function() {
+		$('div.lightOut').fadeIn();
+		$('<input type="text" id="name" name="name" class="name">').insertBefore('input#cancel');
+		$('<label>Publisher Name:</label><br />').insertBefore('input.name');
+		position();
+		$('input#table_name').attr("value","books_publisher");
+	});
+
+
+	$('input#cancel').click( function() {
+		$('div.lightOut').fadeOut();
+		// once elements are inserted they will be there so to reuse the form I have 
+		// to remove the elements that are specific to a link so that new elements 
+		// can be shown
+		$('form#add_new label, form#add_new textarea, form#add_new br, form#add_new input#name ').remove();
+	});
+});
+	
+</script>
 <?php include(INC_PATH.DS.'footer-admin.php');?>
