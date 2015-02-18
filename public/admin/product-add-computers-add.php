@@ -88,11 +88,12 @@ if (isset($_POST['submit'])) {
 
 	if(ComputerObject::insert($computer)) {
 		$reports[] = "<p class='success'>The computer <em><span>".$computer['model']."</spam></em> has been editted successfully</p>";
-		$_SESSION['report'] = $reports;
-		header("location: product-add.php?category=Computers");
 	} else {
 		$reports[] = "<p class='danger'>Failed to add</p>";
 	}
+	
+	$_SESSION['report'] = $reports;
+	header("location: product-add.php?category=Computers");
 }
 
 ?>
