@@ -20,7 +20,6 @@ if (isset($_POST['submit'])) {
 	$updated_computer['visibility']  = htmlspecialchars($_POST['visibility']);
 $updated_computer['show_at_index_page']  = htmlspecialchars($_POST['show_at_index_page']);
 
-	print_r($updated_computer);
 	$location = "..".DS."img".DS."computer".DS;
 	$reports = array();
 
@@ -55,6 +54,23 @@ $updated_computer['show_at_index_page']  = htmlspecialchars($_POST['show_at_inde
 		}
 		unlink($location.$_POST['current_img_front']);
 		$updated_computer['img_front'] = htmlspecialchars($file_name);
+	}
+
+	if (!empty($_FILES['img_left_side']['tmp_name'])) {
+		$file_name = $_FILES['img_left_side']['name'];
+		$new_file = $location.$_FILES['img_left_side']['name']; 
+		
+		if(file_exists($new_file)) {
+			
+			$file_name = substr($file_name,0,strlen($file_name)-4)."(1)".substr($file_name,strlen($file_name)-4);
+			$new_file = $location.$file_name;
+		}
+
+		if (!move_uploaded_file($_FILES['img_left_side']['tmp_name'], $new_file)) {
+				$reports[] = "<p class='danger'>Back image was failed to upload</p>";
+			}
+		unlink($location.$_POST['current_img_left_side']);
+		$updated_computer['img_left_side'] = htmlspecialchars($file_name);
 	}
 
 	if (!empty($_FILES['img_back']['tmp_name'])) {
@@ -361,6 +377,14 @@ $computer = ComputerObject::select_all_by_id($_GET['id']);
 			<div style='display:inline-block'>
 				<label>Select <em>new</em> Front Image of the computer (400x400px):</label>
 				<input type='file' name='img_front'>
+				<input type='hidden' name='current_img_front' value='<?php echo $computer->img_front ?>'>
+			</div>
+			<img src='../img/computer/<?php echo $computer->img_front == null ? "product_image_not_available_400x400.jpg" : $computer->img_front ?>'><br /><br />
+			
+			<!-- Side imgae -->
+			<div style='display:inline-block'>
+				<label>Select <em>new</em> Side Image of the computer (400x400px):</label>
+				<input type='file' name='img_left_side'>
 				<input type='hidden' name='current_img_left_side' value='<?php echo $computer->img_left_side ?>'>
 			</div>
 			<img src='../img/computer/<?php echo $computer->img_left_side == null ? "product_image_not_available_400x400.jpg" : $computer->img_left_side ?>'><br /><br />

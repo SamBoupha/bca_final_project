@@ -82,6 +82,7 @@ class ComputerObject extends DatabaseObject {
 					computer_spec_mornitor.inch as mornitor,
 					computer_spec_mornitor.resolution,
 					computer_model.img_thumb,
+					computer_model.img_front,
 					computer_model.img_left_side,
 					computer_model.img_back,
 					computer_model.visibility,
