@@ -3,7 +3,7 @@
 <?php include(INC_PATH.DS."header.php"); ?>
 <?php 
 	require_once(INC_PATH.DS.'computer_object.php'); 
-	$computers = ComputerObject::select_all(null,16);
+	$computers = ComputerObject::select_all($id=null, $limit=16, $public=true, $highlight=false);
 ?>
 <?php include(INC_PATH.DS."side-nav.php"); ?>
 <section>
@@ -15,7 +15,7 @@
 					echo "<div class='product-thumbnail'>";
 
 					echo "<a href='computer_detail.php?id=".$computer->id."'>";
-					echo "<img src='img/computer/".$computer->img_thumb."'>";
+					echo "<img src='img/computer/".$computer->img_thumb."' style='height:85px'>";
 					echo "<p class='name'>".$computer->brand." ".$computer->model;
 					echo "<span class='creator'> by ".$computer->brand."</span></p>";
 

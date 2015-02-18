@@ -102,6 +102,7 @@ $updated_computer['show_at_index_page']  = htmlspecialchars($_POST['show_at_inde
 }
 
 $computer = ComputerObject::select_all($_GET['id']);
+
 ?>
 
 <?php include(INC_PATH.DS.'header-admin.php');?>

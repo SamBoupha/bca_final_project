@@ -27,7 +27,7 @@
 		<div class='product-row'>
 			<?php 
 				include(INC_PATH.DS."computer_object.php");
-				$computers = ComputerObject::select(4,true,true);
+				$computers = ComputerObject::select($limit=4,$public=true,$highlighted=true);
 				foreach ($computers as $computer) {
 					echo "<div class='book-thumb'>";
 					echo "<a href='computer_detail.php?id=".$computer->id."''>";
@@ -64,7 +64,7 @@
 		<div class='product-row'>
 			<?php 
 				include(INC_PATH.DS."book_object.php");
-				$books = BookObject::select(4,true,true);
+				$books = BookObject::select($limit=4,$public=true,$highlighted=true);
 				foreach ($books as $book) {
 					echo "<div class='book-thumb'>";
 					echo "<a href='book_detail.php?id=".$book->id."''>";

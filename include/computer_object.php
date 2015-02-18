@@ -62,12 +62,17 @@ class ComputerObject extends DatabaseObject {
 		return self::instanciate($sql);
 	}
 
-	public static function select_all($id=null, $limit=null) {
+	public static function select_all($id=null, $limit=null, $public=false, $highlight=false) {
 		global $db;
 
 		$id = $id != null ? " and ".static::$table_name.".id = ".$id : "";
 
 		$limit = $limit == null ? "" : " LIMIT ".$limit;
+		// The public page should not have shown all the books in the database
+		$public = $public ? " AND computer_model.visibility = 1 " :
+					 " ORDER BY computer_model.show_at_index_page DESC ";
+		// Highlight at index page ?
+		$highlight = $highlight ? " AND computer_model.show_at_index_page = 1 " : "";
 
 		$sql = "SELECT 
 					computer_model.id,
@@ -110,9 +115,10 @@ class ComputerObject extends DatabaseObject {
 					computer_model.ram_id      = computer_spec_ram.id ";
 	
 			$sql .= $id;
-			$sql .= $limit;
+			$sql .= $public.$highlight.$limit;
 
 		return self::instanciate($sql);
+
 	}
 
 	
