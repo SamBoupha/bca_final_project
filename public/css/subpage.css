@@ -1,22 +1,22 @@
 
-div.books {
+div.products {
 	background-color: white;
 	float: left;
 	margin-bottom: 2em;
 }
 
-div.books h1 {
+div.products h1 {
 	padding: 0.5em 0;
 	margin-left: 1em;
 	border-bottom: 1px solid gray;
 	width: 90%;
 }
 
-div.books-display div {
+div.products-display div {
 	float: left;
 }
 
-div.book-thumbnail {
+div.product-thumbnail {
 	width: 226px;
 	height: 350px;
 	text-align: center;
@@ -24,16 +24,16 @@ div.book-thumbnail {
 	margin: 8px;
 }
 
-div.book-thumbnail:hover {
+div.product-thumbnail:hover {
 	border: 2px solid #F6CD00;
 }
 
-div.book-thumbnail p.title {
+div.product-thumbnail p.name {
 	margin-top: 1em;
 	font-size: 1.1em;
 }
 
-p.author {
+p.creator {
 	font-size: 0.9em;
 	margin-top: -1em;
 	color: gray;

@@ -82,7 +82,7 @@ $updated_book['show_at_index_page']   = htmlspecialchars($_POST['show_at_index_p
 
 }
 
-$book = BookObject::select_all_by_id($_GET['id']);
+$book = BookObject::select_all($_GET['id']);
 ?>
 
 <?php include(INC_PATH.DS.'header-admin.php');?>

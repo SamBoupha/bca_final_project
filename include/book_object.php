@@ -22,7 +22,7 @@ class BookObject extends DatabaseObject {
 
 	protected static $table_name = "books_title";
 
-	public static function select_all_by_id($id) {
+	public static function select_all($id) {
 		global $db;
 
 		$sql = "select 

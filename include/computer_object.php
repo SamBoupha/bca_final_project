@@ -62,8 +62,12 @@ class ComputerObject extends DatabaseObject {
 		return self::instanciate($sql);
 	}
 
-	public static function select_all_by_id($id) {
+	public static function select_all($id=null, $limit=null) {
 		global $db;
+
+		$id = $id != null ? " and ".static::$table_name.".id = ".$id : "";
+
+		$limit = $limit == null ? "" : " LIMIT ".$limit;
 
 		$sql = "SELECT 
 					computer_model.id,
@@ -103,9 +107,10 @@ class ComputerObject extends DatabaseObject {
 					computer_model.hdd_id      = computer_spec_hdd.id and 
 					computer_model.mornitor_id = computer_spec_mornitor.id and 
 					computer_model.os          = computer_spec_os.id and 
-					computer_model.ram_id      = computer_spec_ram.id and 
-					computer_model.id = ";
+					computer_model.ram_id      = computer_spec_ram.id ";
+	
 			$sql .= $id;
+			$sql .= $limit;
 
 		return self::instanciate($sql);
 	}
