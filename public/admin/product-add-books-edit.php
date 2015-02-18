@@ -77,6 +77,7 @@ $updated_book['show_at_index_page']   = htmlspecialchars($_POST['show_at_index_p
 		$reports[] = "<p class='danger'>Failed to edit</p>";
 	}
 
+
 $_SESSION['report'] = $reports;
 header("location: product-add.php?category=Books");
 
@@ -190,7 +191,7 @@ $book = BookObject::select_all($_GET['id']);
 						$publishers = BookObject::select_from_table("books_publisher");
 						echo "<option value='0'>Unknown</option>";
 						foreach ($publishers as $publisher) {
-							echo "<option value='".$category->id;
+							echo "<option value='".$publisher->id;
 
 							if (strpos($publisher->name,'--')) {
 								$publisher->name = str_replace("--", " ─────", $publisher->name);

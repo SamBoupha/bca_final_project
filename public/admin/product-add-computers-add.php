@@ -87,7 +87,7 @@ if (isset($_POST['submit'])) {
 	}
 
 	if(ComputerObject::insert($computer)) {
-		$reports[] = "<p class='success'>The computer <em><span>".$computer['model']."</spam></em> has been editted successfully</p>";
+		$reports[] = "<p class='success'>The computer <em><span>".$computer['model']."</spam></em> has been added successfully</p>";
 	} else {
 		$reports[] = "<p class='danger'>Failed to add</p>";
 	}
@@ -157,7 +157,7 @@ header("location: product-add.php?category=Computers");
 				<label>CPU:</label><br />
 				<select name='cpu'>
 					<?php 
-						$cpus = ComputerObject::select_from_table("computer_spec_cpu","family");
+						$cpus = ComputerObject::select_from_table("computer_spec_cpu","family","chip_model","min_clock_speed","max_clock_speed","cache");
 						echo "<option value='0'>Unknown</option>";
 						foreach ($cpus as $cpu) {
 							echo "<option value='".$cpu->id;
@@ -171,7 +171,7 @@ header("location: product-add.php?category=Computers");
 							}
 
 							echo ">";
-							echo $cpu->name;
+							echo $cpu->name." ".$cpu->chip_model." ".$cpu->min_clock_speed." ".$cpu->max_clock_speed." ".$cpu->cache;
 							echo "</option>";
 						}
 					?>

@@ -180,7 +180,7 @@ $computer = ComputerObject::select_all($_GET['id']);
 				<label>CPU:</label><br />
 				<select name='cpu'>
 					<?php 
-						$cpus = ComputerObject::select_from_table("computer_spec_cpu","family");
+						$cpus = ComputerObject::select_from_table("computer_spec_cpu","family","chip_model","min_clock_speed","max_clock_speed","cache");
 						echo "<option value='0'>Unknown</option>";
 						foreach ($cpus as $cpu) {
 							echo "<option value='".$cpu->id;
@@ -198,7 +198,7 @@ $computer = ComputerObject::select_all($_GET['id']);
 							}
 
 							echo ">";
-							echo $cpu->name;
+							echo $cpu->name." ".$cpu->chip_model." ".$cpu->min_clock_speed." ".$cpu->max_clock_speed." ".$cpu->cache;
 							echo "</option>";
 						}
 					?>
@@ -463,7 +463,7 @@ $( function() {
 		$('<input type="text" name="type" class="name" placeholder="Example: DDR3 ">')
 			.insertBefore('input#cancel');
 		position();
-		$('input#table_name').attr("value","computer_spec_hdd");
+		$('input#table_name').attr("value","computer_spec_graphic");
 	});
 
 	$('a#new_hdd').click( function() {
@@ -489,7 +489,7 @@ $( function() {
 			.insertBefore('input#cancel');
 		
 		position();
-		$('input#table_name').attr("value","computer_spec_hdd");
+		$('input#table_name').attr("value","computer_spec_mornitor");
 	});
 
 	$('a#new_os').click( function() {
@@ -502,7 +502,7 @@ $( function() {
 			.insertBefore('input#cancel');
 		
 		position();
-		$('input#table_name').attr("value","computer_spec_hdd");
+		$('input#table_name').attr("value","computer_spec_os");
 	});
 
 	$('a#new_ram').click( function() {
@@ -518,7 +518,7 @@ $( function() {
 			.insertBefore('input#cancel');
 		
 		position();
-		$('input#table_name').attr("value","computer_spec_hdd");
+		$('input#table_name').attr("value","computer_spec_ram");
 	});
 
 	$('input#cancel').click( function() {

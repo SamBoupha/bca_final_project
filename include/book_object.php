@@ -58,6 +58,7 @@ class BookObject extends DatabaseObject {
 			$sql .= $id;
 
 		return self::instanciate($sql);
+
 	}
 
 	public static function select($limit=null, $public=false, $highlight=false) {

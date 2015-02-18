@@ -118,18 +118,24 @@
 			return $db->get_affected_rows();
 		}
 
-		public static function select_from_table($table, $column2=',name' , $column3=null , $column4=null) {
-			if ($column2 != ',name') {
-				$column2 = ",".$column2;
+		public static function select_from_table($table, $column1=',name' , $column2=null , $column3=null, $column4=null, $column5=null) {
+			if ($column1 != ',name') {
+				$column1 = ",".$column1;
 			} 
+			if ($column2 != null) {
+				$column2 = ",".$column2;
+			}
 			if ($column3 != null) {
 				$column3 = ",".$column3;
 			}
 			if($column4 != null) {
 				$column4 = ",".$column4;
 			}
+			if($column5 != null) {
+				$column5 = ",".$column5;
+			}
 
-			$sql = "SELECT id".$column2." as name ".$column3.$column4." FROM ".$table." WHERE id != 0 ORDER BY name ASC";
+			$sql = "SELECT id".$column1." as name ".$column2.$column3.$column4.$column5." FROM ".$table." WHERE id != 0 ORDER BY name ASC";
 
 			return self::instanciate($sql);
 		}
