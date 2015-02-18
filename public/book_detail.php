@@ -4,10 +4,10 @@
 <?php require_once(INC_PATH.DS.'book_object.php') ?>
 <section>
 	<div class='row'><?php
-		$book = BookObject::select_all_by_id(htmlspecialchars($_GET['id']));
+		$book = BookObject::select_all(htmlspecialchars($_GET['id']));
 	?>
 		<div class="preview col-sm-1"></div>
-		<div class="product-img col-sm-4">
+		<div class="product-img col-sm-5">
 			<img src="img/books/
 					<?php 
 					echo $book->img_front == null ? 
@@ -16,7 +16,7 @@
 					 ?>
 			">
 		</div>
-		<div class='product-detail col-sm-6'>
+		<div class='product-detail col-sm-5'>
 			<h1><?php echo $book->title ?></h1><br />
 			<h4>Author: <?php echo $book->author ?><br />
 				Language: English<br />
