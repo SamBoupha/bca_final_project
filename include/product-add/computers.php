@@ -56,8 +56,8 @@
 			echo "<a 
 				onclick='return confirm(\"Are you sure you want to delete this item?\")' 
 				href='product-add-computers-delete.php?
-				id=".$computer->id."
-				&title=".$computer->title.
+				id=".$computer->id.
+				"&name=".$computer->brand." ".$computer->model.
 				"' class='danger'>Delete</a>";
 			echo "</td>";
 
