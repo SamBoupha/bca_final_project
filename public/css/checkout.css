@@ -63,9 +63,17 @@ div.order-summary h4 {
 	padding: .5em 2em;
 }
 
-
 div.order-summary span {
 	float: right;
+}
+
+div.buy-now {
+	background-color: #F6CD00;
+	margin: 1em auto;
+}
+
+div.buy-now:hover {
+	background-color: #E8C202;
 }
 
 .success {

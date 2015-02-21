@@ -57,6 +57,7 @@
 				<p>Discount: <span><?php echo "Rs. 0" ?></span></p>
 				<p>Delivery: <span class='success'><?php echo "Free" ?></span></p>
 				<h4>Order total: <span><?php echo "Rs. ".$sum ?></h4>
+				<div class="btn buy-now">PLACE ORDER</div>
 			</div>	
 		</div>
 	</div>
