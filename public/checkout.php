@@ -2,7 +2,10 @@
 <?php $detailPage = true; $checkoutPage = true; ?> 
 <?php include(INC_PATH.DS."header.php"); ?>
 <?php
-
+	if (isset($_GET['id'])) {
+		remove_from_cart($_GET['id']);
+		header("location: checkout.php");
+	}
 ?>
 
 <!-- body of the page -->
@@ -15,17 +18,17 @@
 	<div class="row">
 		<div class='col-md-8 product-summary'>
 		<?php
-		if (isset($_SESSION['cart'])) {
-			$sum = 0;
-			//unset($_SESSION['cart']);
-			foreach ($_SESSION['cart'] as $product) {
+		$sum = 0;
+		if (isset($_SESSION['cart']) && !empty($_SESSION['cart'])) {
+			$products = $_SESSION['cart'];
+			for ($i=0, $j=sizeof($products); $i < $j ; $i++) { 
 				echo "<div class='row product-detail'>";
 					echo "<div class='col-md-3 product-img'>";
-						echo "<img src='img".DS.$product['type'].DS.$product['thumbnail']."'>";
+						echo "<img src='img".DS.$products[$i]['type'].DS.$products[$i]['thumbnail']."'>";
 					echo "</div>";
 					echo "<div class='col-md-9'>";
 						echo "<div class='row product-name'>";
-							echo $product['name'];
+							echo $products[$i]['name'];
 						echo "</div>";
 						echo "<div class='row product-delivery'>";
 							echo "Free Delivery.<br />Delivered in 3 business days.";
@@ -34,12 +37,13 @@
 							echo "Quantity: 1";
 						echo "</div>";
 						echo "<div class='row product-price'>Rs. ";
-							echo $product['price'];
-						echo "<span><a href='".$_SERVER['PHP_SELF']."'>REMOVE</a></span>";
+							echo $products[$i]['price'];
+						echo "<span><a href='".$_SERVER['PHP_SELF']."?id=".$i.
+						"'>REMOVE</a></span>";
 						echo "</div>";
 					echo "</div>";
 				echo "</div>";
-				$sum += $product['price'];
+				$sum += $products[$i]['price'];
 			}
 		} else {
 			echo "<h2>Your cart is empty</h2>";

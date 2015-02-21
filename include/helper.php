@@ -71,6 +71,14 @@
 		$_SESSION['cache'] = array();
 	}
 
+	function remove_from_cart($id) {
+		if (sizeof($_SESSION['cart']) == 0) return;
+		else {
+			unset($_SESSION['cart'][$id]);
+		}
+		$_SESSION['cart'] = array_values($_SESSION['cart']);
+	}
+
 	function cache_product($pid, $pname, $pthumbnail, $pprice, $ptype) {
 			$_SESSION['cache'] = array();
 			$_SESSION['cache']['id'] = $pid;
