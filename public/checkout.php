@@ -24,7 +24,7 @@
 			for ($i=0, $j=sizeof($products); $i < $j ; $i++) { 
 				echo "<div class='row product-detail'>";
 					echo "<div class='col-md-3 product-img'>";
-						echo "<img src='img".DS.$products[$i]['type'].DS.$products[$i]['thumbnail']."'>";
+						echo "<br /><img src='img".DS.$products[$i]['type'].DS.$products[$i]['thumbnail']."'>";
 					echo "</div>";
 					echo "<div class='col-md-9'>";
 						echo "<div class='row product-name'>";

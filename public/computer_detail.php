@@ -1,10 +1,17 @@
 <?php include("../include/initialize.php"); ?>
+<?php
+	if (isset($_POST['buy_now'])) {
+		addToCart($_SESSION['cache']);
+		header("location: checkout.php");
+	}
+?>
 <?php $subpage = true; $detailPage = true; ?>
 <?php include(INC_PATH.DS."header.php"); ?>
 <?php require_once(INC_PATH.DS.'computer_object.php') ?>
 <section>
 	<div class='row'><?php
 		$computer = ComputerObject::select_all(htmlspecialchars($_GET['id']));
+		cache_product($computer->id,$computer->brand." ".$computer->model,$computer->img_thumb,$computer->price,"computer");
 	?>
 		<div class="preview col-sm-1"></div>
 		<div class="product-img col-sm-5">
@@ -28,11 +35,12 @@
 					echo "</ul>";?>	
 			</h4><br />
 			<h3>Rs. <?php echo $computer->price ?></h3><br /><br />
-			<button class='btn btn-warning'>ADD TO CART</button>
-			<a href='checkout.php?id=<?php echo $computer->id ?>'>
-				<button class='btn btn-success'>
-				<img src="img/shopping_bag_tag_price-128.png">BUY NOW</button>
-			</a>
+			<form method='post'>
+				<button class='btn btn-warning' name='add_to_cart'>ADD TO CART</button>
+				<button class='btn btn-success' name='buy_now' onclick='send_data()'>
+					<img src="img/shopping_bag_tag_price-128.png">BUY NOW
+				</button>
+			</form>
 		</div>
 		<div class="col-sm-1"></div>
 	</div><br /><br /><br /> <!-- End of the first row -->
@@ -47,5 +55,9 @@
 		</div>
 	</div>
 </section> <!-- main body section-->
-
+<script type="text/javascript">
+	function send_data() {
+		document.getElementsByTagName('form')[0].submit();
+	}
+</script>
 <?php include(INC_PATH.DS."footer.php"); ?>
