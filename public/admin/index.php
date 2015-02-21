@@ -8,7 +8,7 @@ if(!$session->is_logged_in()) header("location: login.php");
 
 	<section>
 		<div class='index'>
-			<h2>Hello <em><?php echo $session->admin_username; ?></em>!. Welcome to the Admin area</h2>
+			<h2>Hello <em><?php echo $session->username; ?></em>!. Welcome to the Admin area</h2>
 		</div>
 	</section>
 

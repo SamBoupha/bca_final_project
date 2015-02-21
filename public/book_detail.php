@@ -26,8 +26,8 @@
 			</h4><br />
 			<h3>Rs. <?php echo $book->price ?></h3><br /><br />
 			<button class='btn btn-warning'>ADD TO CART</button>
-			<button class='btn btn-success'>
-				<img src="img/shopping_bag_tag_price-128.png">BUY NOW</button>
+			<a href='checkout.php'><button class='btn btn-success'>
+				<img src="img/shopping_bag_tag_price-128.png">BUY NOW</button></a>
 		</div>
 		<div class="col-sm-1"></div>
 	</div><br /><br /><br /> <!-- End of the first row -->

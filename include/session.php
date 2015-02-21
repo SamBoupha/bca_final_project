@@ -1,8 +1,8 @@
 <?php
 
 class Session {
-	public $admin_id;
-	public $admin_username;
+	public $id;
+	public $username;
 	private $logged_in = false;
 
 	function __construct() {
@@ -10,9 +10,9 @@ class Session {
 		$this->check_log_in();
 	}
 
-	function log_in($admin) {
-		$this->admin_id = $_SESSION['admin_id'] = $admin['id'];
-		$this->admin_username = $_SESSION['admin_username'] = $admin['username'];
+	function log_in($user) {
+		$this->id = $_SESSION['id'] = $user['id'];
+		$this->username = $_SESSION['username'] = $user['username'];
 		$this->logged_in = true;
 	}
 
@@ -21,9 +21,9 @@ class Session {
 	}
 
 	function check_log_in() {
-		if(isset($_SESSION['admin_id'])) {
-			$this->admin_id = $_SESSION['admin_id'];
-			$this->admin_username = $_SESSION['admin_username'];
+		if(isset($_SESSION['id'])) {
+			$this->id = $_SESSION['id'];
+			$this->username = $_SESSION['username'];
 			$this->logged_in = true;
 		} else {
 			$this->logged_in = false;
@@ -32,8 +32,8 @@ class Session {
 
 	function log_out() {
 		$_SESSION = array();
-		unset($this->admin_id);
-		unset($this->admin_username);
+		unset($this->id);
+		unset($this->username);
 		$this->logged_in = false;
 	}
 }
