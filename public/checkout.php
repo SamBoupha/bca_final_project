@@ -15,32 +15,35 @@
 	<div class="row">
 		<div class='col-md-8 product-summary'>
 		<?php
+		if (isset($_SESSION['cart'])) {
 			$sum = 0;
-			// unset($_SESSION['cart'][0]);
+			//unset($_SESSION['cart']);
 			foreach ($_SESSION['cart'] as $product) {
 				echo "<div class='row product-detail'>";
-					echo "<div class='col-md-4 product-img'>";
-
+					echo "<div class='col-md-3 product-img'>";
 						echo "<img src='img".DS.$product['type'].DS.$product['thumbnail']."'>";
 					echo "</div>";
-					echo "<div class='col-md-8'>";
+					echo "<div class='col-md-9'>";
 						echo "<div class='row product-name'>";
-						echo $product['name'];
+							echo $product['name'];
 						echo "</div>";
 						echo "<div class='row product-delivery'>";
-						echo "Free Delivery.<br />Delivered in 3 business days.";
+							echo "Free Delivery.<br />Delivered in 3 business days.";
 						echo "</div>";
 						echo "<div class='row product-quantity'>";
-						echo "Quantity: 1";
+							echo "Quantity: 1";
 						echo "</div>";
 						echo "<div class='row product-price'>Rs. ";
-						echo $product['price'];
-						echo "<span><a href='".$_SERVER['PHP_SELF'].">REMOVE</a></span>";
+							echo $product['price'];
+						echo "<span><a href='".$_SERVER['PHP_SELF']."'>REMOVE</a></span>";
 						echo "</div>";
 					echo "</div>";
 				echo "</div>";
 				$sum += $product['price'];
 			}
+		} else {
+			echo "<h2>Your cart is empty</h2>";
+		}
 		?>
 		</div>
 		<div class='col-md-4 order-total'>
@@ -53,8 +56,6 @@
 			</div>	
 		</div>
 	</div>
-	
-
 </section> <!-- main body section-->
 	
 <?php include(INC_PATH.DS."footer.php"); ?>

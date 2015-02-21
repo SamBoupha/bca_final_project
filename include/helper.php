@@ -53,21 +53,31 @@
 		}
 	}
 
-	function addToCart($pid, $pname, $pthumbnail, $pprice, $ptype) {
+	function addToCart($cache) {
 		if (sizeof($_SESSION['cart']) == 0) {
-			$_SESSION['cart'][0]['id'] = $pid;
-			$_SESSION['cart'][0]['name'] = $pname;
-			$_SESSION['cart'][0]['thumbnail'] = $pthumbnail;
-			$_SESSION['cart'][0]['price'] = $pprice;
-			$_SESSION['cart'][0]['type'] = $ptype;
+			$_SESSION['cart'][0]['id'] = $cache['id'];
+			$_SESSION['cart'][0]['name'] = $cache['name'];
+			$_SESSION['cart'][0]['thumbnail'] = $cache['thumbnail'];
+			$_SESSION['cart'][0]['price'] = $cache['price'];
+			$_SESSION['cart'][0]['type'] = $cache['type'];
 		} else {
 			$last = sizeof($_SESSION['cart']);
-			$_SESSION['cart'][$last]['id'] = $pid;
-			$_SESSION['cart'][$last]['name'] = $pname;
-			$_SESSION['cart'][$last]['thumbnail'] = $pthumbnail;
-			$_SESSION['cart'][$last]['price'] = $pprice;
-			$_SESSION['cart'][$last]['type'] = $ptype;
+			$_SESSION['cart'][$last]['id'] = $cache['id'];
+			$_SESSION['cart'][$last]['name'] = $cache['name'];
+			$_SESSION['cart'][$last]['thumbnail'] = $cache['thumbnail'];
+			$_SESSION['cart'][$last]['price'] = $cache['price'];
+			$_SESSION['cart'][$last]['type'] = $cache['type'];
 		}
+		$_SESSION['cache'] = array();
+	}
+
+	function cache_product($pid, $pname, $pthumbnail, $pprice, $ptype) {
+			$_SESSION['cache'] = array();
+			$_SESSION['cache']['id'] = $pid;
+			$_SESSION['cache']['name'] = $pname;
+			$_SESSION['cache']['thumbnail'] = $pthumbnail;
+			$_SESSION['cache']['price'] = $pprice;
+			$_SESSION['cache']['type'] = $ptype;
 	}
 
 ?>

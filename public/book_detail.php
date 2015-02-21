@@ -1,18 +1,21 @@
 <?php include("../include/initialize.php"); ?>
-
-<?php $subpage = true; $detailPage = true; ?>
-<?php include(INC_PATH.DS."header.php"); ?>
-<?php require_once(INC_PATH.DS.'book_object.php') ?>
-<section>
-	<div class='row'><?php
-		$book = BookObject::select_all(htmlspecialchars($_GET['id']));
-	?>
-	<?php
+<?php
 	if (isset($_POST['buy_now'])) {
-		addToCart($book->id,$book->title,$book->img_thumb,$book->price,"book");
+		addToCart($_SESSION['cache']);
 		header("location: checkout.php");
 	}
 ?>
+<?php $subpage = true; $detailPage = true; ?>
+<?php include(INC_PATH.DS."header.php"); ?>
+<?php require_once(INC_PATH.DS.'book_object.php') ?>
+
+<section>
+	<div class='row'>
+		<?php
+			$book = BookObject::select_all(htmlspecialchars($_GET['id']));
+			cache_product($book->id,$book->title,$book->img_thumb,$book->price,"book");
+		?>
+
 		<div class="preview col-sm-1"></div>
 		<div class="product-img col-sm-5">
 			<img src="img/book/
