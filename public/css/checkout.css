@@ -1,0 +1,72 @@
+section {
+	padding: 0;
+}
+section div h2 {
+	margin: 0;
+	padding: .5em 2em !important;
+}
+
+section div.head {
+	padding: .5em 4em;
+	background-color: #F1F1F1;
+}
+
+.product-summary {
+	padding: 2em !important;
+	border-right: 1px solid gray;
+}
+
+.product-detail {
+	margin-bottom: 1em;
+	border-left: 0;
+}
+
+.product-img {
+	margin-left: -10px;
+}
+
+.product-name {
+	font-size: 2em;
+	margin-bottom: 1em;
+}
+
+.product-price {
+	font-size: 1.5em;
+	margin-top: 1em;
+}
+
+.product-price span {
+	font-size: .7em;
+	float: right;
+}
+
+.order-total {
+	position: relative;
+	padding: 2em 0;
+}
+
+.order-summary {
+	width: 95%;
+	border: 1px solid green;
+	margin: auto;
+}
+
+div.order-summary p {
+	padding: 0 3em;
+}
+
+
+div.order-summary h4 {
+	border-top: 2px solid gray;
+	color: #B12700;
+	padding: .5em 2em;
+}
+
+
+div.order-summary span {
+	float: right;
+}
+
+.success {
+	color: green;
+}

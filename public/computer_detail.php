@@ -29,7 +29,7 @@
 			</h4><br />
 			<h3>Rs. <?php echo $computer->price ?></h3><br /><br />
 			<button class='btn btn-warning'>ADD TO CART</button>
-			<a href='checkout.php?pid=<?php echo $computer->id ?>'>
+			<a href='checkout.php?id=<?php echo $computer->id ?>'>
 				<button class='btn btn-success'>
 				<img src="img/shopping_bag_tag_price-128.png">BUY NOW</button>
 			</a>

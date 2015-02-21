@@ -1,5 +1,4 @@
 <?php require_once("../include/initialize.php"); ?>
-<?php include(INC_PATH.DS."helper.php"); ?>
 <?php include(INC_PATH.DS."header.php"); ?>
 <?php include(INC_PATH.DS."side-nav.php"); ?>
 

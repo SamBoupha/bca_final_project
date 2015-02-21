@@ -1,4 +1,5 @@
 <?php include("../include/initialize.php"); ?>
+
 <?php $subpage = true; $detailPage = true; ?>
 <?php include(INC_PATH.DS."header.php"); ?>
 <?php require_once(INC_PATH.DS.'book_object.php') ?>
@@ -6,9 +7,15 @@
 	<div class='row'><?php
 		$book = BookObject::select_all(htmlspecialchars($_GET['id']));
 	?>
+	<?php
+	if (isset($_POST['buy_now'])) {
+		addToCart($book->id,$book->title,$book->img_thumb,$book->price,"book");
+		header("location: checkout.php");
+	}
+?>
 		<div class="preview col-sm-1"></div>
 		<div class="product-img col-sm-5">
-			<img src="img/books/
+			<img src="img/book/
 					<?php 
 					echo $book->img_front == null ? 
 							'product_image_not_available_400x400.jpg' : 
@@ -25,9 +32,13 @@
 				Year: <?php echo $book->year ?><br />
 			</h4><br />
 			<h3>Rs. <?php echo $book->price ?></h3><br /><br />
-			<button class='btn btn-warning'>ADD TO CART</button>
-			<a href='checkout.php'><button class='btn btn-success'>
-				<img src="img/shopping_bag_tag_price-128.png">BUY NOW</button></a>
+			<form method='post'>
+				<button class='btn btn-warning' name='add_to_cart'>ADD TO CART</button>
+				<button class='btn btn-success' name='buy_now' onclick='send_data()'>
+					<img src="img/shopping_bag_tag_price-128.png">BUY NOW
+				</button>
+			</form>
+			
 		</div>
 		<div class="col-sm-1"></div>
 	</div><br /><br /><br /> <!-- End of the first row -->
@@ -42,5 +53,9 @@
 		</div>
 	</div>
 </section> <!-- main body section-->
-
+<script type="text/javascript">
+	function send_data() {
+		document.getElementsByTagName('form')[0].submit();
+	}
+</script>
 <?php include(INC_PATH.DS."footer.php"); ?>

@@ -53,4 +53,21 @@
 		}
 	}
 
+	function addToCart($pid, $pname, $pthumbnail, $pprice, $ptype) {
+		if (sizeof($_SESSION['cart']) == 0) {
+			$_SESSION['cart'][0]['id'] = $pid;
+			$_SESSION['cart'][0]['name'] = $pname;
+			$_SESSION['cart'][0]['thumbnail'] = $pthumbnail;
+			$_SESSION['cart'][0]['price'] = $pprice;
+			$_SESSION['cart'][0]['type'] = $ptype;
+		} else {
+			$last = sizeof($_SESSION['cart']);
+			$_SESSION['cart'][$last]['id'] = $pid;
+			$_SESSION['cart'][$last]['name'] = $pname;
+			$_SESSION['cart'][$last]['thumbnail'] = $pthumbnail;
+			$_SESSION['cart'][$last]['price'] = $pprice;
+			$_SESSION['cart'][$last]['type'] = $ptype;
+		}
+	}
+
 ?>

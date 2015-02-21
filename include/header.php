@@ -14,6 +14,10 @@
 				echo '<link rel="stylesheet" type="text/css" href="css/full-detail-page.css">';
 				$detailPage = false;
 			}
+			if ($checkoutPage) {
+				echo '<link rel="stylesheet" type="text/css" href="css/checkout.css">';
+				$checkoutPage = false;
+			}
 		?>
 	</head>
 

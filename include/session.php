@@ -11,8 +11,8 @@ class Session {
 	}
 
 	function log_in($user) {
-		$this->id = $_SESSION['id'] = $user['id'];
-		$this->username = $_SESSION['username'] = $user['username'];
+		$this->id = $_SESSION['id'] = $user->id;
+		$this->username = $_SESSION['username'] = $user->username;
 		$this->logged_in = true;
 	}
 
