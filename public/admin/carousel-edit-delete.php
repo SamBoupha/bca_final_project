@@ -1,5 +1,6 @@
 <?php
 	require_once("../../include/initialize.php");
+	if(!$session->is_logged_in()) header("location: login.php");
 	$file = "..".DS."img".DS."product_slides".DS.$_GET['fn'];
 	if(file_exists($file)) {
 		if (unlink($file)) {

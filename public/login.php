@@ -1,5 +1,6 @@
 <?php require_once("../include/initialize.php"); ?>
 <?php
+	$detailPage = true;
 	if (isset($_POST['submit'])) {
 		
 		$username = htmlspecialchars($_POST['username']);
@@ -17,7 +18,6 @@
 
 	} 
 ?>
-<?php include(INC_PATH.DS."helper.php"); ?> 
 <?php include(INC_PATH.DS."header.php"); ?>
 <!-- body of the page -->
 <section>

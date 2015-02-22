@@ -19,11 +19,11 @@
 				$checkoutPage = false;
 			}
 		?>
+		<script type="text/javascript" src="js/jquery.js"></script>
 		<?php 
 			$no_of_item = count($_SESSION['cart']);
 			if ($no_of_item) {
-				echo '<script type="text/javascript" src="js/jquery.js"></script>
-					  <script type="text/javascript">
+				echo '<script type="text/javascript">
 						$( function() {
 							$("div.cart span").text('.$no_of_item.').show();
 						});

@@ -70,12 +70,99 @@ div.order-summary span {
 div.buy-now {
 	background-color: #F6CD00;
 	margin: 1em auto;
+	color: black;
 }
 
 div.buy-now:hover {
 	background-color: #E8C202;
 }
 
+div.order-summary a:hover {
+	text-decoration: none;
+}
+
 .success {
 	color: green;
 }
+
+/*
+	shipping detail page
+*/
+
+
+.lightOut {
+	width: 100%;
+	height: 100%;
+	position: fixed;
+	top: 0;
+	background-color: rgba(0,0,0,.5);
+	left: 0;
+	/*display: none;*/
+	z-index: 1;
+}
+
+span.closed {
+	position: absolute;
+	right: .5em;
+	top: .3em;
+	font-size: 1.2em;
+	cursor: pointer;
+	color: gray;
+	font-weight: bold;
+}
+
+span.closed:hover {
+	color: black;
+}
+
+form.customer-login {
+	padding: 2em 5em;
+	display: block;
+	background-color: #CDC2A5;
+	position: fixed;
+	left: 10%;
+	top: 20%;
+}
+
+p {
+	text-align: center;
+	background-color: white;
+	padding: 1em 0;
+	margin-bottom: 2em;
+}
+
+form.customer-login input[type='text'],form.customer-login input[type='email'],
+form.customer-login input[type='password'] {
+	width: 20em;
+	padding: .2em .5em;
+	margin-bottom: 1.2em;
+}
+
+
+form.customer-login input[type='submit'] {
+	font-size: 1.2em;
+	width: 14em;
+	margin: 1em auto 0em;
+	background-color: #F6CD00;
+}
+
+form.customer-login input[type='submit']:hover { 
+	background-color: #E8C202;
+}
+
+form.customer-login div {
+	float: left;
+}
+
+div.left {
+	padding-right: 4em;
+	width: 400px;
+	
+}
+
+div.right {
+	width: 400px;
+	border-left: 1px solid gray;
+	padding: 2em 4em 4em 4em;
+}
+
