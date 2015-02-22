@@ -4,6 +4,9 @@
 		addToCart($_SESSION['cache']);
 		header("location: checkout.php");
 	}
+	if (isset($_POST['add_to_cart'])) {
+		addToCart($_SESSION['cache']);
+	}
 ?>
 <?php $subpage = true; $detailPage = true; ?>
 <?php include(INC_PATH.DS."header.php"); ?>

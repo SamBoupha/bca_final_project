@@ -25,12 +25,10 @@
 				echo '<script type="text/javascript" src="js/jquery.js"></script>
 					  <script type="text/javascript">
 						$( function() {
-							$("div.cart span").text('.$no_of_item.');
-							$("div.cart span").show();
+							$("div.cart span").text('.$no_of_item.').show();
 						});
 					  </script>';
 			}
-			
 		?>
 	</head>
 
