@@ -19,18 +19,35 @@
 				$checkoutPage = false;
 			}
 		?>
+		<?php 
+			$no_of_item = count($_SESSION['cart']);
+			if ($no_of_item) {
+				echo '<script type="text/javascript" src="js/jquery.js"></script>
+					  <script type="text/javascript">
+						$( function() {
+							$("div.cart span").text('.$no_of_item.');
+							$("div.cart span").show();
+						});
+					  </script>';
+			}
+			
+		?>
 	</head>
 
 	<body >
 		<!-- header section -->
 		<header>
 				<div class="col-md-12">
-					<a href="index.php"><img style="height:60px;" src="img/abc-opt.png"></a>
+					<a href="index.php"><img class='logo' style="height:60px;" src="img/abc-opt.png"></a>
 					<input type='text' name='search_box' placeholder='Search for a product, category or brand'>
 					<input type='button' class='btn btn-primary' name='search' value='SEARCH'>
-					<div class='account'>
+					<a href='checkout.php'><div class='cart btn'>
+						<span></span>
+						<img src="img/cart.png">
+					</div></a>
+					<div class='account btn'>
 						<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
-						My account
+						My Account
 						<span class='caret'></span>
 					</div>
 				</div>

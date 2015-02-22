@@ -15,7 +15,7 @@ if (isset($_POST['submit'])) {
 	$new_book['quantity'] = htmlspecialchars($_POST['quantity']);
 	$new_book['intro'] = htmlspecialchars($_POST['intro']);
 
-	$location = "..".DS."img".DS."books".DS;
+	$location = "..".DS."img".DS."book".DS;
 	$reports = array();
 
 	if (isset($_FILES['img_thumb']['tmp_name'])) {

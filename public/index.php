@@ -67,7 +67,7 @@
 				foreach ($books as $book) {
 					echo "<div class='book-thumb'>";
 					echo "<a href='book_detail.php?id=".$book->id."''>";
-					echo "<img src='img/books/";
+					echo "<img src='img/book/";
 					echo $book->img_thumb;
 					echo "' style='height:125px'>";
 					echo "<p class='info'>";

@@ -18,7 +18,7 @@ if (isset($_POST['submit'])) {
 	$updated_book['visibility']   = htmlspecialchars($_POST['visibility']);
 $updated_book['show_at_index_page']   = htmlspecialchars($_POST['show_at_index_page']);
 
-	$location = "..".DS."img".DS."books".DS;
+	$location = "..".DS."img".DS."book".DS;
 	$reports = array();
 
 	if (!empty($_FILES['img_thumb']['tmp_name'])) {

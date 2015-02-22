@@ -8,7 +8,7 @@ body {
 	background-color: #F1F1F1;
 }
 
-header img {
+header img.logo {
 	margin-left: 9em;
 }
 
@@ -36,18 +36,47 @@ header input[type='button'] {
 	border-color: #F6CD00;
 }
 
+.cart {
+	padding: .3em .4em;
+	font-size: 1.3em;
+	border: 1px solid black;
+	width: 3em;
+	text-align: center;
+	display: inline-block;
+	margin-left: 1.5em;
+	position: relative;
+}
+
+.cart:hover {
+	cursor: pointer;
+	background-color: #F6CD00;
+}
+
+.cart span {
+	background-color: red;
+	color: white;
+	position: absolute;
+	display: block;
+	width: 1.5em;
+	height: 1.5em;
+	font-size: .7em;
+	border-radius: 1em;
+	left: 2.4em;
+	bottom: 1.6em;
+	display: none;
+}
+
 .account {
-	padding: 0.8em;
-	background-color: white;
-	width: 8em;
-	display: inline;
-	margin-left: 4em;
+	margin-left: 1.5em;
+	padding: .7em;
 }
 
 .account:hover {
 	cursor: pointer;
 	background-color: #F6CD00;
 }
+
+
 
 nav {
 	position: fixed !important;
