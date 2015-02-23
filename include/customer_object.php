@@ -8,17 +8,16 @@ class Customer extends DatabaseObject {
 		   $shipping_address,
 		   $shipping_state_id,
 		   $shipping_city_id,
-		   $phone_number,
-		   $postcode,
-		   $username;
+		   $mobile_number,
+		   $postcode;
 
 	protected static $table_name = 'customer';
 
-	public function select_by($username, $password) {
+	public function select_by($email, $password) {
 		global $db;
-		$username = $db->prep_sql($username);
+		$email = $db->prep_sql($email);
 		$password = $db->prep_sql($password);
-		$sql = "SELECT id, first_name FROM ".static::$table_name." WHERE username='$username' and password = '$password'";
+		$sql = "SELECT id, name, email, shipping_address, shipping_state_id, shipping_city_id, mobile_number, postcode FROM ".static::$table_name." WHERE email='$email' and password = '$password'";
 
 		return self::instanciate($sql); 
 	}

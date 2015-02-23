@@ -2,6 +2,7 @@
 	require_once(INC_PATH.DS.'db_connection.php');
 
 	class DatabaseObject {
+		public $affected_rows;
 		protected static $table_name;
 
 		protected static function get_column_names($sql) {
@@ -56,6 +57,7 @@
 				foreach ($field_names as $field_name) {
 					$object->$field_name = $db_rows[$i][$field_name];
 				}
+
 				$array_of_objects[] = $object;
 			}
 			// If sql query returns only one row then just returns one object
@@ -63,6 +65,7 @@
 			return sizeof($array_of_objects) > 1 ? $array_of_objects : $array_of_objects[0];
 		}
 
+		// $new should come in the form of assoc array
 		public static function insert($new, $table_name=null) {
 			global $db;
 			$sql1 = "";

@@ -72,7 +72,7 @@
 	}
 
 	function remove_from_cart($id) {
-		if (sizeof($_SESSION['cart']) == 0) return;
+		if (get_items_in_the_cart() == 0) return;
 		else {
 			unset($_SESSION['cart'][$id]);
 		}
@@ -86,6 +86,10 @@
 			$_SESSION['cache']['thumbnail'] = $pthumbnail;
 			$_SESSION['cache']['price'] = $pprice;
 			$_SESSION['cache']['type'] = $ptype;
+	}
+
+	function get_items_in_the_cart() {
+		return sizeof($_SESSION['cart']);
 	}
 
 ?>

@@ -10,10 +10,7 @@
 		private $last_query;
 
 		function __construct() {
-			$this->connection = new mysqli(DB_HOST, DB_USERNAME, DB_PASSWORD, DB_NAME);
-			if(!$this->connection) {
-				die("Unable to connect to the database".$this->connection->connect_error);
-			}
+			self::open_connection();
 		}
 
 		function open_connection() {

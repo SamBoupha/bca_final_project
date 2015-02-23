@@ -115,20 +115,25 @@ span.closed:hover {
 	color: black;
 }
 
+h3 {
+	text-align: center;
+	margin-bottom: 1em;
+	background-color: white;
+	padding: 1em 0;
+}
+
 form.customer-login {
 	padding: 2em 5em;
 	display: block;
 	background-color: #CDC2A5;
 	position: fixed;
-	left: 10%;
-	top: 20%;
+	left: 50%;
+	top: 50%;
 }
 
 p {
 	text-align: center;
-	background-color: white;
-	padding: 1em 0;
-	margin-bottom: 2em;
+	margin-bottom: 1em;
 }
 
 form.customer-login input[type='text'],form.customer-login input[type='email'],
@@ -166,3 +171,24 @@ div.right {
 	padding: 2em 4em 4em 4em;
 }
 
+/*
+	Shipping page
+*/
+form.shipping {
+	padding: 2em 0 2em 8em;
+}
+
+form.shipping input[type='text'], form.shipping .address {
+	width: 500px;
+	padding: .5em 1em;
+}
+
+form.shipping .address {
+	width: 500px;
+	height: 100px;
+	resize: none;
+}
+
+form.shipping div {
+	margin-bottom: 1em;
+}

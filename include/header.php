@@ -45,7 +45,7 @@
 					</div></a>
 					<div class='account btn'>
 						<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
-						My Account
+						<?php echo $customer_session->name ? $customer_session->name : "My Account" ?>
 						<span class='caret'></span>
 					</div>
 				</div>

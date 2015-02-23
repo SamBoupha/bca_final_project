@@ -3,7 +3,7 @@
 class Session {
 	public $id;
 	public $username;
-	private $logged_in = false;
+	protected $logged_in = false;
 
 	function __construct() {
 		session_start();
@@ -11,8 +11,8 @@ class Session {
 	}
 
 	function log_in($user) {
-		$this->id = $_SESSION['id'] = $user->id;
-		$this->username = $_SESSION['username'] = $user->username;
+		$this->id = $_SESSION['user']['id'] = $user->id;
+		$this->username = $_SESSION['user']['username'] = $user->username;
 		$this->logged_in = true;
 	}
 
@@ -21,9 +21,9 @@ class Session {
 	}
 
 	function check_log_in() {
-		if(isset($_SESSION['id'])) {
-			$this->id = $_SESSION['id'];
-			$this->username = $_SESSION['username'];
+		if(isset($_SESSION['user']['id'])) {
+			$this->id = $_SESSION['user']['id'];
+			$this->username = $_SESSION['user']['username'];
 			$this->logged_in = true;
 		} else {
 			$this->logged_in = false;
@@ -31,7 +31,7 @@ class Session {
 	}
 
 	function log_out() {
-		$_SESSION = array();
+		$_SESSION['user'] = array();
 		unset($this->id);
 		unset($this->username);
 		$this->logged_in = false;
