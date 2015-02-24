@@ -14,4 +14,5 @@ require_once(INC_PATH.DS.'admin.php');
 require_once(INC_PATH.DS.'session.php');
 require_once(INC_PATH.DS.'session_customer.php');
 require_once(INC_PATH.DS.'helper.php');
+require_once(INC_PATH.DS.'customer_object.php');
 ?>

@@ -36,7 +36,6 @@
 
 		function check_log_in() {
 			if(isset($_SESSION['customer']['id'])) {
-				echo "wt";
 				$this->init();
 			} else {
 				$this->logged_in = false;

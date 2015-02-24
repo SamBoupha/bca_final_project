@@ -1,17 +1,17 @@
 <?php require_once("../include/initialize.php"); ?>
-<?php require_once(INC_PATH.DS.'customer_object.php');?>
-<?php $detailPage = true; $checkoutPage = true; ?> 
+<?php $detailPage = true; $checkout_page = true; ?> 
 <?php include(INC_PATH.DS."header.php"); ?>
 <?php
 	if (isset($_GET['id'])) {
 		remove_from_cart($_GET['id']);
 		header("location: checkout.php");
 	}
+	
+	if (!$customer_session->is_logged_in()) {
+		header('location: index.php');
+	}
 ?>
-<!-- in order to proceed the user has to be a member -->
-<?php require_once(INC_PATH.DS.'customer-login-form.php'); 
-			// $customer_session->log_out();
-		?>
+
 <!-- body of the page -->
 
 <section class='container'>

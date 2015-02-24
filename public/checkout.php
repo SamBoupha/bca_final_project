@@ -1,5 +1,5 @@
 <?php require_once("../include/initialize.php"); ?>
-<?php $detailPage = true; $checkoutPage = true; ?> 
+<?php $detailPage = true; $checkout_page = true; ?> 
 <?php include(INC_PATH.DS."header.php"); ?>
 <?php
 	if (isset($_GET['id'])) {
@@ -58,11 +58,27 @@
 				<p>Delivery: <span class='success'><?php echo "Free" ?></span></p>
 				<h4>Order total: <span><?php echo "Rs. ".$sum ?></h4>
 				<?php if (get_items_in_the_cart()): ?>
-					<a href='shipping_detail.php'><div class="btn buy-now">PLACE ORDER</div></a>
+					<a id='go_checkout' href='shipping_detail.php'><div class="btn buy-now">PLACE ORDER</div></a>
 				<?php endif ?>
 			</div>	
 		</div>
 	</div>
 </section> <!-- main body section-->
-	
+
+<script type="text/javascript">
+	<?php 
+		if ($customer_session->is_logged_in()) {
+			echo "var is_logged_in = true";
+		} else {
+			echo "var is_logged_in = false";
+		}
+	 ?>
+
+	$('div.buy-now').click( function() {
+		if (!is_logged_in) {
+			$('a#go_checkout').attr('href','#');
+			$('div.lightOut').show();
+		}
+	});
+</script>
 <?php include(INC_PATH.DS."footer.php"); ?>

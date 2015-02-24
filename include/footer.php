@@ -40,6 +40,12 @@
 <!-- js script -->
 		<script type="text/javascript" src="js/jquery.js"></script>
 		<script type="text/javascript" src="js/bootstrap.min.js"></script>
-		<script type="text/javascript" src="js/myscript.js"></script>
+		<script type="text/javascript">
+		$('div.account').hover( function() { $('.dropdown-menu').show() }, 
+								function() { $('.dropdown-menu').hide(); });
+
+		$('.dropdown-toggle').dropdown();
+			
+		</script>
 	</body>
 </html>
