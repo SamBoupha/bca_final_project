@@ -11,7 +11,7 @@
 		header('location: index.php');
 	}
 
-	
+
 ?>
 
 <!-- body of the page -->

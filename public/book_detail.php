@@ -40,7 +40,7 @@
 			<h3>Rs. <?php echo $book->price ?></h3><br /><br />
 			<form method='post'>
 				<button class='btn btn-warning' name='add_to_cart'>ADD TO CART</button>
-				<button class='btn btn-success' name='buy_now' onclick='send_data()'>
+				<button class='btn btn-success' name='buy_now'>
 					<img src="img/shopping_bag_tag_price-128.png">BUY NOW
 				</button>
 			</form>
@@ -59,9 +59,5 @@
 		</div>
 	</div>
 </section> <!-- main body section-->
-<script type="text/javascript">
-	function send_data() {
-		document.getElementsByTagName('form')[0].submit();
-	}
-</script>
+
 <?php include(INC_PATH.DS."footer.php"); ?>
