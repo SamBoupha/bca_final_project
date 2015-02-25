@@ -67,13 +67,13 @@ div.order-summary span {
 	float: right;
 }
 
-div.buy-now {
+.buy-now {
 	background-color: #F6CD00;
 	margin: 1em auto;
 	color: black;
 }
 
-div.buy-now:hover {
+.buy-now:hover {
 	background-color: #E8C202;
 }
 
@@ -96,7 +96,8 @@ div.order-summary a:hover {
 	Shipping page
 */
 form.shipping {
-	padding: 2em 0 2em 8em;
+	padding: 2em 8em;
+	display: inline-block;
 }
 
 form.shipping input[type='text'], form.shipping .address {

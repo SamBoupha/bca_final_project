@@ -239,7 +239,7 @@ $book = BookObject::select_all($_GET['id']);
 				<input type='file' name='img_thumb'>
 				<input type='hidden' name='current_img_thumb' value='<?php echo $book->img_thumb ?>'>
 			</div>
-			<img src='../img/books/<?php 
+			<img src='../img/book/<?php 
 						echo $book->img_thumb == null ? "product_image_not_available_200x200.jpg" : $book->img_thumb
 						?>'><br /><br />
 			
@@ -249,7 +249,7 @@ $book = BookObject::select_all($_GET['id']);
 				<input type='file' name='img_front'>
 				<input type='hidden' name='current_img_front' value='<?php echo $book->img_front ?>'>
 			</div>
-			<img src='../img/books/<?php echo $book->img_front == null ? "product_image_not_available_400x400.jpg" : $book->img_front ?>'><br /><br />
+			<img src='../img/book/<?php echo $book->img_front == null ? "product_image_not_available_400x400.jpg" : $book->img_front ?>'><br /><br />
 			
 			<!-- Back cover upload section -->
 			<div style='display:inline-block'>
@@ -257,10 +257,10 @@ $book = BookObject::select_all($_GET['id']);
 				<input type='file' name='img_back'>
 				<input type='hidden' name='current_img_back' value='<?php echo $book->img_back ?>'>
 			</div>
-			<img src='../img/books/<?php echo $book->img_back == null ? "product_image_not_available_400x400.jpg" : $book->img_back ?>'><br /><br />
+			<img src='../img/book/<?php echo $book->img_back == null ? "product_image_not_available_400x400.jpg" : $book->img_back ?>'><br /><br />
 
 			<input type='hidden' name='id' value='<?php echo $book->id ?>'>
-			<input type='submit' class='btn btn-default' name='submit' value='Upload'>
+			<input type='submit' class='btn btn-default' name='submit' value='Update'>
 		</form>
 	</div>
 	</section>

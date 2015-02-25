@@ -121,6 +121,7 @@
 			return $db->get_affected_rows();
 		}
 
+		// to keep the code unbreak
 		public static function select_from_table($table, $column1=',name' , $column2=null , $column3=null, $column4=null, $column5=null) {
 			if ($column1 != ',name') {
 				$column1 = ",".$column1;
@@ -140,6 +141,10 @@
 
 			$sql = "SELECT id".$column1." as name ".$column2.$column3.$column4.$column5." FROM ".$table." WHERE id != 0 ORDER BY name ASC";
 
+			return self::instanciate($sql);
+		}
+
+		public static function select_by_query($sql) {
 			return self::instanciate($sql);
 		}
 
