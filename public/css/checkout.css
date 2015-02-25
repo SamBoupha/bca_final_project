@@ -89,12 +89,11 @@ div.order-summary a:hover {
 	shipping detail page
 */
 
+.danger {
+	margin-left: 2em;
+	color: red;
+}
 
-
-
-/*
-	Shipping page
-*/
 form.shipping {
 	padding: 2em 8em;
 	display: inline-block;
@@ -113,4 +112,43 @@ form.shipping .address {
 
 form.shipping div {
 	margin-bottom: 1em;
+}
+
+/*
+	Payment page
+*/
+
+
+.example {
+	border: 1px solid transparent;
+	width: 400px;
+	display: inline-block;
+	height: 45px;
+	position: absolute;
+	display: none;
+	bottom: 100px;
+	left: 330px;
+	z-index: 1;
+}
+
+/*
+	Thank you page
+*/
+
+div.product {	
+	margin-top: 4em;
+	text-align: center;
+}
+div.product-img {
+	display: inline-block;
+	margin-left: 4em;
+}
+section div h2 {
+	margin-top: 2em;
+	text-align: center;
+}
+section div h3 {
+	text-align: center;
+	margin: auto;
+	padding: .5em 5em !important;
 }
