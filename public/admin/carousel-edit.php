@@ -1,6 +1,5 @@
 <?php 
 require_once("../../include/initialize.php");
-include(INC_PATH.DS."helper.php");
 if(!$session->is_logged_in()) header("location: login.php");
 ?>
 

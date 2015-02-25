@@ -137,6 +137,11 @@ section {
 	margin: auto;
 }
 
+div.item img {
+	min-height: 300px;
+	min-width: 730px;
+}
+
 .product-thumbnail-section {
 	background-color: white;
 	padding: 2em;

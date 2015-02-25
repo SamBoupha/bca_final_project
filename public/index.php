@@ -6,7 +6,7 @@
 <section>
 	<div id="carousel-product" class="carousel slide" data-ride="carousel">
 	  <!-- Wrapper for slides -->
-	  <div class="carousel-inner" role="listbox">
+	  <div class="carousel-inner">
 	    <?php carouselAutoGen("img".DS."product_slides"); ?>
 	  </div>
 	  <!-- Controls -->
