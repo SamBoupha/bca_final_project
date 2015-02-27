@@ -88,7 +88,7 @@
 			</div>
 			<div>
 				<label>Mobile number:</label><br />
-				<input type='text' name='mobile_number' required value='<?php echo $_POST['mobile_number'] ? htmlspecialchars($_POST['mobile_number']) : $customer_session->mobile_number ?>'>
+				<input type='text' name='mobile_number' maxlength='10' required value='<?php echo $_POST['mobile_number'] ? htmlspecialchars($_POST['mobile_number']) : $customer_session->mobile_number ?>'>
 			</div>
 			
 			<input type='submit' class='btn buy-now' style='margin: 2em auto' value='PROCEED' name='submit'>
