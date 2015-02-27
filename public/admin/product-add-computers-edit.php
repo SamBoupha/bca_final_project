@@ -403,7 +403,7 @@ $computer = ComputerObject::select_all($_GET['id']);
 		</form>
 	</div>
 	</section>
-<script type="text/javascript" src="../js/jquery.js"></script>
+
 <script type="text/javascript">
 
 $( function() {

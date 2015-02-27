@@ -6,7 +6,6 @@ if(isset($_POST['add'])) {
 
 	DatabaseObject::insert($_POST,$table_name);
 } 
-
 ?>
 
 <div class='lightOut'>

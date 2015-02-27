@@ -4,7 +4,7 @@
 		<meta charset="UTF-8">
 		<link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
 		<link rel="stylesheet" type="text/css" href="../css/admin-main.css">
-		
+		<script type="text/javascript" src="../js/jquery.js"></script>
 	</head>
 	<body>
 		<header>
