@@ -8,10 +8,6 @@ body {
 	background-color: #F1F1F1;
 }
 
-header img.logo {
-	margin-left: 9em;
-}
-
 header {
 	background-color: #CDC2A5;
 	width: 100%;
@@ -19,6 +15,10 @@ header {
 	position: fixed;
 	top: 0;
 	z-index: 1;
+}
+
+header img.logo {
+	margin-left: 9em;
 }
 
 header input[type='text'] {
@@ -94,7 +94,6 @@ nav {
 	height: 100%;
 	top: 11%;
 	background-color: #F7F7F7;
-	
 }
 
 nav a {
@@ -109,14 +108,13 @@ nav a:hover {
 nav div {
 	padding: 1em 0;
 	border-bottom: 1px solid #B5A373;
-
 }
 
 nav div h4 {
-	font-size: 1.3em; padding-left: 1em;
+	font-size: 1.2em; padding-left: 1em;
 }
 
-nav div h4 span { font-size: 0.5em; opacity: .5; padding: 0.3em; right: 1em;
+nav div h4 span { font-size: 0.5em; opacity: .5; padding: 0.3em; right: 1.5em;
 		border: 1px solid black; border-radius: 50%; }
 
 nav div:hover {

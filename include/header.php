@@ -47,7 +47,7 @@
 		<!-- header section -->
 		<header>
 				<div class="col-md-12">
-					<a href="index.php"><img class='logo' style="height:60px;" src="img/abc-opt.png"></a>
+					<a href="index.php"><img class='logo' style="height:54px;" src="img/abc-opt.png"></a>
 					<input type='text' name='search_box' placeholder='Search for a product, category or brand'>
 					<input type='button' class='btn btn-primary' name='search' value='SEARCH'>
 					<a href='checkout.php'><div class='cart btn'>
