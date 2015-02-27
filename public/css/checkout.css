@@ -42,6 +42,27 @@ section div.head {
 	float: right;
 }
 
+.product-price > p {
+	position: relative;
+	top: 2em;
+	color: #B12700;
+	display: block;
+	width: 60%;
+	
+}
+
+/* <<< quantity */
+input[type='number'] {
+	width: 3em;
+	text-align: center;
+}
+
+div.product-quantity span {
+	color: gray;
+}
+
+/* >>> */
+
 .order-total {
 	position: relative;
 	padding: 2em 0;
@@ -66,6 +87,8 @@ div.order-summary h4 {
 div.order-summary span {
 	float: right;
 }
+
+
 
 .buy-now {
 	background-color: #F6CD00;

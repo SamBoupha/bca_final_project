@@ -60,6 +60,7 @@
 			$_SESSION['cart'][0]['thumbnail'] = $cache['thumbnail'];
 			$_SESSION['cart'][0]['price'] = $cache['price'];
 			$_SESSION['cart'][0]['type'] = $cache['type'];
+			$_SESSION['cart'][0]['quantity'] = 1;
 		} else {
 			$last = sizeof($_SESSION['cart']);
 			$_SESSION['cart'][$last]['id'] = $cache['id'];
@@ -67,6 +68,7 @@
 			$_SESSION['cart'][$last]['thumbnail'] = $cache['thumbnail'];
 			$_SESSION['cart'][$last]['price'] = $cache['price'];
 			$_SESSION['cart'][$last]['type'] = $cache['type'];
+			$_SESSION['cart'][$last]['quantity'] = 1;
 		}
 		$_SESSION['cache'] = array();
 	}
