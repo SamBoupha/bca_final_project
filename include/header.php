@@ -64,7 +64,7 @@
 							</a>
 							<ul class='dropdown-menu'>
 								<li><a href='#'>My Account</a></li>
-								<li><a href='#'>My Order</a></li>
+								<li><a href='my-order.php'>My Order</a></li>
 								<li><a href='#'>Track Order</a></li>
 								<li class="divider"></li>
 								<li><a href="log_out.php?from=<?php echo $_SERVER['REQUEST_URI'] ?>">Log out</a></li>

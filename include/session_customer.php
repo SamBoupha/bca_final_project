@@ -7,7 +7,8 @@
 			   $shipping_address,
 			   $shipping_state_id,
 			   $shipping_city_id,
-			   $postcode;
+			   $postcode,
+			   $last_batch_no;
 
 		private function init() {
 			
@@ -19,6 +20,7 @@
 			$this->shipping_state_id = $_SESSION['customer']['shipping_state_id'];
 			$this->shipping_city_id = $_SESSION['customer']['shipping_city_id'];
 			$this->postcode = $_SESSION['customer']['postcode'];
+			$this->last_batch_no = $_SESSION['customer']['last_batch_no'];
 			$this->logged_in = true;
 		}
 
@@ -31,6 +33,7 @@
 			$_SESSION['customer']['shipping_state_id'] = $customer->shipping_state_id;
 			$_SESSION['customer']['shipping_city_id'] = $customer->shipping_city_id;
 			$_SESSION['customer']['postcode'] = $customer->postcode;
+			$_SESSION['customer']['last_batch_no'] = $customer->last_batch_no;
 			$this->init();
 		}
 
@@ -52,6 +55,7 @@
 			unset($this->shipping_state_id);
 			unset($this->shipping_city_id);
 			unset($this->postcode);
+			unset($this->last_batch_no);
 			$this->logged_in = false;
 		}
 	}
