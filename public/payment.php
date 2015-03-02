@@ -5,7 +5,9 @@
 if (!$customer_session->is_logged_in()) {
 		header('location: index.php');
 	}
+
 ?>
+
 <!-- body of the page -->
 
 <section><br />

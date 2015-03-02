@@ -9,6 +9,8 @@
 	if (isset($_POST['quantity']) && $_POST['quantity'] > 0) {
 		$_SESSION['cart'][$_POST['index']]['quantity'] = htmlspecialchars($_POST['quantity']);
 	}
+
+	
 ?>
 
 <!-- body of the page -->

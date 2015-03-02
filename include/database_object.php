@@ -119,6 +119,7 @@
 			//$db->close_connection();
 
 			return $db->get_affected_rows();
+			
 		}
 
 		// to keep the code unbreak

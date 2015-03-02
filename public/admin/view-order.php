@@ -3,8 +3,13 @@ require_once("../../include/initialize.php");
 require_once(INC_PATH.DS.'order_object.php');
 if(!$session->is_logged_in()) header("location: login.php");
 if (isset($_GET['q'])) {
-	$table_name = 'order_on_'.$_GET['q'];
-	$orders = Order::select_all_from($table_name,$limit=10);
+	Order::set_table_name($_GET['q']);
+
+	$orders = Order::select_all($limit=10);
+	if (is_object($orders)) {
+		$temp = clone $orders;
+		$orders = array($temp);
+	}
 }
 ?>
 
@@ -15,11 +20,11 @@ if (isset($_GET['q'])) {
 		<div >
 			<h2>All orders on <?php echo htmlspecialchars($_GET['q'])?></h2>
 			<?php
-			
-				$date = explode(",",date("d M Y H:i:s",strtotime($orders[0]->order_date)));
+		
 				echo "<table class='order'>";
 				echo "<tr>";
-				echo "<th>ID</th>";
+				echo "<th></th>";
+				echo "<th>Order ID</th>";
 				echo "<th>Date and Time</th>";
 				echo "<th>".$_GET['q']." ID</th>";
 				echo "<th>Quantity</th>";
@@ -27,10 +32,11 @@ if (isset($_GET['q'])) {
 				echo "</tr>";
 				
 				foreach ($orders as $order) {
-					$date = explode(",",date("d M Y H:i:s",strtotime($order->order_date)));
-					echo "<tr>";
+	
+					echo "<tr data-id=".$order->id.">";
+					echo "<td><a href='#'>HIDE<a/></td>";
 					echo "<td>".$order->id."</td>";
-					echo "<td>".date("d M Y,H:i:s",strtotime($order->order_date))."</td>";
+					echo "<td>".date("d M Y H:i:s",strtotime($order->order_date))."</td>";
 					echo "<td>".$order->product_id."</td>";
 					echo "<td>".$order->qty."</td>";
 					echo "<td>".$order->customer_id."</td>";
@@ -40,6 +46,14 @@ if (isset($_GET['q'])) {
 			?>
 		</div>
 	</section>
-
+<script type="text/javascript">
+	$('a').click( function() {
+		$(this).parents("tr").hide();
+		$.get('hide-order.php?id='+$(this).parents("tr").data('id')+'&table='+<?php echo "'".$_GET['q']."'" ?>, function(data) {
+			$('<h4 class="success">Done</h4>').appendTo('h2');
+			console.log(data);
+		});
+	});
+</script>
 <?php include(INC_PATH.DS.'footer-admin.php');?>
 

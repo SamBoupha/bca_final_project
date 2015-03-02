@@ -7,7 +7,8 @@ class Order extends DatabaseObject {
 		   $customer_id,
 		   $order_date,
 		   $qty;
-
+		   
+	protected static $table_name = "order_on_";
 
 	public function select_by($email, $password) {
 		global $db;
@@ -18,15 +19,18 @@ class Order extends DatabaseObject {
 		return self::instanciate($sql); 
 	}
 
-	public function select_all_from($table_name, $limit=null) {
+	public function select_all($limit=null) {
 		
-		global $db;
+
 		$limit = $limit == null ? "" : " LIMIT {$limit}";
 
-		$table_name = $db->prep_sql($table_name);
-		$sql = "SELECT * FROM {$table_name} ".$limit;
+		$sql = "SELECT * FROM ".static::$table_name." WHERE visibility = 1 ".$limit;
 
 		return self::instanciate($sql);
+	}
+
+	public static function set_table_name($table) {
+		static::$table_name .= $table;
 	}
 }
 

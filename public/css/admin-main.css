@@ -98,6 +98,10 @@ table.order {
 	width: 100%;
 }
 
+table.order tr:nth-child(even) {
+	background-color: #CCC;
+}
+
 table.order th {
 	font-size: 1.3em;
 }

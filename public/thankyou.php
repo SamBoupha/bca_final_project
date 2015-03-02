@@ -4,13 +4,14 @@
 if (!$customer_session->is_logged_in()) {
 		header('location: index.php');
 	}
-
+		
 $products = $_SESSION['cart'];
 $new['customer_id'] = $customer_session->id;
 
 if ($_POST['success'] == 1) {
 	foreach ($products as $product) {
 		$new['product_id'] = $product['id'];
+		$new['qty'] = $product['quantity'];
 		if ($product['type'] == 'book') {
 			
 				DatabaseObject::insert($new, 'order_on_book');
