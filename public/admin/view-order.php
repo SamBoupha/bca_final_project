@@ -3,8 +3,8 @@ require_once("../../include/initialize.php");
 require_once(INC_PATH.DS.'order_object.php');
 if(!$session->is_logged_in()) header("location: login.php");
 if (isset($_GET['q'])) {
-	$table = 'order_on_'.$_GET['q'];
-	$orders = Order::select_all_from($table,$limit=10);
+	$table_name = 'order_on_'.$_GET['q'];
+	$orders = Order::select_all_from($table_name,$limit=10);
 }
 ?>
 
@@ -17,6 +17,26 @@ if (isset($_GET['q'])) {
 			<?php
 			
 				$date = explode(",",date("d M Y,H:i:s",strtotime($orders[0]->order_date)));
+				echo "<table>";
+				echo "<tr>";
+				echo "<th>ID</th>";
+				echo "<th>Date and Time</th>";
+				echo "<th>Product ID</th>";
+				echo "<th>Quantity</th>";
+				echo "<th>Customer ID</th>";
+				echo "</tr>";
+				
+				foreach ($orders as $order) {
+					$date = explode(",",date("d M Y,H:i:s",strtotime($order->order_date)));
+					echo "<tr>";
+					echo "<td>".$order->id."</td>";
+					echo "<td>".date("d M Y,H:i:s",strtotime($order->order_date))."</td>";
+					echo "<td>".$order->product_id."</td>";
+					echo "<td>".$order->qty."</td>";
+					echo "<td>".$order->customer_id."</td>";
+					echo "</tr>";
+				}
+				echo "</table>";
 			?>
 		</div>
 	</section>
