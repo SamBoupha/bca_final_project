@@ -85,6 +85,27 @@ div.success, div.danger {
 
 /* >>END index */
 
+/*
+	view-order
+*/
+
+section.view-order {
+
+	width: 80%;
+}
+
+table.order {
+	width: 100%;
+}
+
+table.order th {
+	font-size: 1.3em;
+}
+
+table.order td {
+	padding: .3em;
+}
+
 /* Carousel-edit */
 table {
 	margin: 2em auto;

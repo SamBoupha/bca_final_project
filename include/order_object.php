@@ -19,8 +19,11 @@ class Order extends DatabaseObject {
 	}
 
 	public function select_all_from($table_name, $limit=null) {
+		
+		global $db;
 		$limit = $limit == null ? "" : " LIMIT {$limit}";
 
+		$table_name = $db->prep_sql($table_name);
 		$sql = "SELECT * FROM {$table_name} ".$limit;
 
 		return self::instanciate($sql);

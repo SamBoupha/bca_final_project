@@ -16,18 +16,18 @@ if (isset($_GET['q'])) {
 			<h2>All orders on <?php echo htmlspecialchars($_GET['q'])?></h2>
 			<?php
 			
-				$date = explode(",",date("d M Y,H:i:s",strtotime($orders[0]->order_date)));
-				echo "<table>";
+				$date = explode(",",date("d M Y H:i:s",strtotime($orders[0]->order_date)));
+				echo "<table class='order'>";
 				echo "<tr>";
 				echo "<th>ID</th>";
 				echo "<th>Date and Time</th>";
-				echo "<th>Product ID</th>";
+				echo "<th>".$_GET['q']." ID</th>";
 				echo "<th>Quantity</th>";
 				echo "<th>Customer ID</th>";
 				echo "</tr>";
 				
 				foreach ($orders as $order) {
-					$date = explode(",",date("d M Y,H:i:s",strtotime($order->order_date)));
+					$date = explode(",",date("d M Y H:i:s",strtotime($order->order_date)));
 					echo "<tr>";
 					echo "<td>".$order->id."</td>";
 					echo "<td>".date("d M Y,H:i:s",strtotime($order->order_date))."</td>";
