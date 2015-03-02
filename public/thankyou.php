@@ -22,8 +22,10 @@ if ($_POST['success'] == 1) {
 			}	
 	}
 
-Customer::update($update);
-$customer_session->re_log_in($customer_session->id);
+if(Customer::update($update)){
+	$customer_session->re_log_in($customer_session->id);
+}
+
 $_SESSION['cart'] = array();
 }
 

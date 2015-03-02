@@ -31,8 +31,10 @@
 		}
 
 		if ($state_id && $city_id) {
-			Customer::update($info);
-			$customer_session->re_log_in($customer_session->id);
+			if (Customer::update($info)) {
+				$customer_session->re_log_in($customer_session->id);
+			}
+
 			header('location: payment.php');
 		}
 	}
