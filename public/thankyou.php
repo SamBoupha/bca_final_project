@@ -1,7 +1,7 @@
 <?php require_once("../include/initialize.php"); ?>
 <?php $detailPage = true; $checkout_page = true; ?> 
 <?php
-if (!$customer_session->is_logged_in()) {
+if (!$customer_session->is_logged_in() || get_items_in_the_cart() == 0) {
 		header('location: index.php');
 	}
 		
@@ -23,6 +23,7 @@ if ($_POST['success'] == 1) {
 	}
 
 Customer::update($update);
+$customer_session->re_log_in($customer_session->id);
 $_SESSION['cart'] = array();
 }
 

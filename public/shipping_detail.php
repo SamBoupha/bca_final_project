@@ -6,7 +6,7 @@
 	$state_id = true;
 	$city_id = true;
 
-	if (!$customer_session->is_logged_in()) {
+	if (!$customer_session->is_logged_in() || get_items_in_the_cart() == 0) {
 		header('location: index.php');
 	}
 
@@ -32,6 +32,7 @@
 
 		if ($state_id && $city_id) {
 			Customer::update($info);
+			$customer_session->re_log_in($customer_session->id);
 			header('location: payment.php');
 		}
 	}
@@ -61,7 +62,7 @@
 			</div>
 			<div>
 				<label>State:</label>
-				<select name='state_id' id='state'  onchange='showCity(this.value)'>
+				<select name='state_id' id='state' onchange='showCity(this.value)' onload='showCity(1)' >
 					<option value='0'> Please select your state </option>
 					<?php 
 						$states = DatabaseObject::select_from_table('customer_state','state_name');
@@ -79,7 +80,18 @@
 				<label>City:</label>
 				<select name='city_id' id='city' >
 					<option value='0' id='default_city'> Please select your city</option>
-					
+					<?php
+						if (isset($customer_session->shipping_city_id)) {
+							$cities = DatabaseObject::select_by_query('SELECT id, city_name as name FROM customer_city where state_id='.$customer_session->shipping_state_id);
+							foreach ($cities as $city) {
+								echo "<option class='value_from_db' value='".$city->id."' ";
+								if ($customer_session->shipping_city_id == $city->id) {
+									echo "selected";
+								}
+								echo "> ".$city->name."</option>";
+							}
+						}
+					?>
 				</select> <?php echo $city_id ? "": "<span class='danger'>You must select this option" ?>
 			</div>
 			<div>

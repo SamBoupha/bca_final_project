@@ -2,10 +2,9 @@
 <?php $detailPage = true; $checkout_page = true; ?> 
 <?php include(INC_PATH.DS."header.php"); ?>
 <?php
-if (!$customer_session->is_logged_in()) {
+if (!$customer_session->is_logged_in() || get_items_in_the_cart() == 0) {
 		header('location: index.php');
 	}
-
 ?>
 
 <!-- body of the page -->

@@ -1,4 +1,5 @@
 <?php
+	require_once(INC_PATH.DS.'customer_object.php');
 	class CustomerSession extends Session {
 		public $id,
 			   $name,
@@ -43,6 +44,14 @@
 			} else {
 				$this->logged_in = false;
 			}
+		}
+
+		function re_log_in($customer_id) {
+			$sql = "SELECT id, name, email, shipping_address, 
+						shipping_state_id, shipping_city_id, mobile_number, 
+						postcode, last_batch_no FROM customer WHERE id = ".$customer_id;
+			$customer = Customer::select_by_query($sql);
+			self::log_in($customer);
 		}
 
 		function log_out() {
