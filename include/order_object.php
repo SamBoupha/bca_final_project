@@ -28,14 +28,6 @@ class Order extends DatabaseObject {
 		return self::instanciate($sql);
 	}
 
-	public static function last_order_no() {
-		global $db;
-		$sql = "SELECT MAX(id) as order_no FROM `".static::$table_name."`";
-		$result = $db->execute_query($sql);
-		$result = $db->db_fetch_assoc($result);
-		return $result['order_no'];
-	}
-
 	// $new should come in the form of assoc array
 		public static function insert($new, $table_name=null) {
 			global $db;

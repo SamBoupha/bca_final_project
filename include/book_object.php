@@ -20,41 +20,41 @@ class BookObject extends DatabaseObject {
 			$visibility,
 			$show_at_index_page;
 
-	protected static $table_name = "books_title";
+	protected static $table_name = "book";
 
 	public static function select_all($id) {
 		global $db;
 
 		$sql = "select 
-					books_title.id, 
-					books_title.title,
-					books_title.price, 
-					books_title.quantity, 
-					books_title.year, 
-					books_title.length, 
-					books_title.intro, 
+					book.id, 
+					book.title,
+					book.price, 
+					book.quantity, 
+					book.year, 
+					book.length, 
+					book.intro, 
 					books_author.name as author,
 					books_author.about as author_about, 
 					books_category.name as category, 
 					books_publisher.name as publisher, 
-					books_title.img_front, 
-					books_title.img_back,
-					books_title.img_thumb,
-					books_title.visibility,
-					books_title.show_at_index_page 
+					book.img_front, 
+					book.img_back,
+					book.img_thumb,
+					book.visibility,
+					book.show_at_index_page 
 				from 
-					books_title, 
+					book, 
 					books_author, 
 					books_category, 
 					books_publisher 
 				where 
-					books_title.author_id = books_author.id 
+					book.author_id = books_author.id 
 				and 
-					books_title.category_id = books_category.id 
+					book.category_id = books_category.id 
 				and 
-					books_title.publisher_id = books_publisher.id
+					book.publisher_id = books_publisher.id
 				and 
-					books_title.id = ";
+					book.id = ";
 			$sql .= $id;
 
 		return self::instanciate($sql);
@@ -65,41 +65,41 @@ class BookObject extends DatabaseObject {
 
 		$limit = $limit == null ? "" : " LIMIT ".$limit;
 		// The public page should not have shown all the books in the database
-		$public = $public ? " WHERE books_title.visibility = 1 " :
-					 " ORDER BY books_title.show_at_index_page DESC ";
+		$public = $public ? " WHERE book.visibility = 1 " :
+					 " ORDER BY book.show_at_index_page DESC ";
 		// Highlight at index page ?
-		$highlight = $highlight ? " AND books_title.show_at_index_page = 1 " : "";
+		$highlight = $highlight ? " AND book.show_at_index_page = 1 " : "";
 
 		$sql = "SELECT 
-					books_title.id,
-					books_title.title,
+					book.id,
+					book.title,
 					books_author.name as author,
-					books_title.price,
-					books_title.img_thumb,
-					books_title.visibility,
-					books_title.show_at_index_page 
+					book.price,
+					book.img_thumb,
+					book.visibility,
+					book.show_at_index_page 
 	
-				FROM books_title LEFT JOIN books_author
+				FROM book LEFT JOIN books_author
 				ON
-					books_title.author_id = books_author.id".$public.$highlight.$limit;
+					book.author_id = books_author.id".$public.$highlight.$limit;
 
 		return self::instanciate($sql);
 		
 	}
 
 	public static function order_select($id) {
-		$sql = "SELECT books_title.title,
+		$sql = "SELECT book.title,
 					   books_author.name as author,
-					   books_title.price, 
-					   books_title.img_thumb 
+					   book.price, 
+					   book.img_thumb 
 				FROM 
-					   books_title 
+					   book 
 				LEFT JOIN 
 					   books_author
 				ON 
-					   books_title.author_id = books_author.id 
+					   book.author_id = books_author.id 
 				WHERE
-					   books_title.id = ".$id;
+					   book.id = ".$id;
 				
 		return self::select_by_query($sql);
 	}

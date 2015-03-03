@@ -33,33 +33,33 @@ class ComputerObject extends DatabaseObject {
 			$visibility,
 			$show_at_index_page;
 
-	protected static $table_name = "computer_model";
+	protected static $table_name = "computer";
 
 	public static function select($limit=null, $public=false, $highlight=false) {
 
 		$limit = $limit == null ? "" : " LIMIT ".$limit;
 		// The public page should not have shown all the books in the database
-		$public = $public ? " WHERE computer_model.visibility = 1 " :
-					 " ORDER BY computer_model.show_at_index_page DESC ";
+		$public = $public ? " WHERE computer.visibility = 1 " :
+					 " ORDER BY computer.show_at_index_page DESC ";
 		// Highlight at index page ?
-		$highlight = $highlight ? " AND computer_model.show_at_index_page = 1 " : "";
+		$highlight = $highlight ? " AND computer.show_at_index_page = 1 " : "";
 
 		$sql = "SELECT 
-					computer_model.id,
+					computer.id,
 					computer_brand.name as brand,
-					computer_model.model,
-					computer_model.price,
-					computer_model.quantity,
-					computer_model.img_thumb,
-					computer_model.visibility,
-					computer_model.show_at_index_page
+					computer.model,
+					computer.price,
+					computer.quantity,
+					computer.img_thumb,
+					computer.visibility,
+					computer.show_at_index_page
 					
 				FROM 
-					computer_model
+					computer
 				LEFT JOIN
 					computer_brand 
 				ON
-					computer_model.brand_id    = computer_brand.id ";
+					computer.brand_id    = computer_brand.id ";
 
 			$sql .= $public.$highlight.$limit;
 
@@ -73,18 +73,18 @@ class ComputerObject extends DatabaseObject {
 
 		$limit = $limit == null ? "" : " LIMIT ".$limit;
 		// The public page should not have shown all the books in the database
-		$public = $public ? " AND computer_model.visibility = 1 " :
-					 " ORDER BY computer_model.show_at_index_page DESC ";
+		$public = $public ? " AND computer.visibility = 1 " :
+					 " ORDER BY computer.show_at_index_page DESC ";
 		// Highlight at index page ?
-		$highlight = $highlight ? " AND computer_model.show_at_index_page = 1 " : "";
+		$highlight = $highlight ? " AND computer.show_at_index_page = 1 " : "";
 
 		$sql = "SELECT 
-					computer_model.id,
+					computer.id,
 					computer_brand.name as brand,
-					computer_model.model,
-					computer_model.price,
-					computer_model.quantity,
-					computer_model.mfg,
+					computer.model,
+					computer.price,
+					computer.quantity,
+					computer.mfg,
 					computer_spec_cpu.family as cpu,
 					computer_spec_hdd.capacity as hdd,
 					computer_spec_ram.capacity as ram,
@@ -94,14 +94,14 @@ class ComputerObject extends DatabaseObject {
 					computer_spec_graphic.capacity as graphic_capacity,
 					computer_spec_mornitor.inch as mornitor,
 					computer_spec_mornitor.resolution,
-					computer_model.img_thumb,
-					computer_model.img_front,
-					computer_model.img_left_side,
-					computer_model.img_back,
-					computer_model.visibility,
-					computer_model.show_at_index_page
+					computer.img_thumb,
+					computer.img_front,
+					computer.img_left_side,
+					computer.img_back,
+					computer.visibility,
+					computer.show_at_index_page
 					from 
-					computer_model,
+					computer,
 					computer_spec_hdd,
 					computer_spec_ram,
 					computer_spec_cpu,
@@ -110,13 +110,13 @@ class ComputerObject extends DatabaseObject {
 					computer_spec_mornitor,
 					computer_brand 
 					where 
-					computer_model.brand_id    = computer_brand.id and 
-					computer_model.cpu_id      = computer_spec_cpu.id and 
-					computer_model.graphic_id  = computer_spec_graphic.id and 
-					computer_model.hdd_id      = computer_spec_hdd.id and 
-					computer_model.mornitor_id = computer_spec_mornitor.id and 
-					computer_model.os          = computer_spec_os.id and 
-					computer_model.ram_id      = computer_spec_ram.id ";
+					computer.brand_id    = computer_brand.id and 
+					computer.cpu_id      = computer_spec_cpu.id and 
+					computer.graphic_id  = computer_spec_graphic.id and 
+					computer.hdd_id      = computer_spec_hdd.id and 
+					computer.mornitor_id = computer_spec_mornitor.id and 
+					computer.os          = computer_spec_os.id and 
+					computer.ram_id      = computer_spec_ram.id ";
 	
 			$sql .= $id;
 			$sql .= $public.$highlight.$limit;
@@ -128,17 +128,17 @@ class ComputerObject extends DatabaseObject {
 	public static function order_select($id) {
 		$sql = "SELECT
 					computer_brand.name as brand,
-					computer_model.model,
-					computer_model.price,
-					computer_model.img_thumb
+					computer.model,
+					computer.price,
+					computer.img_thumb
 				FROM 
-					computer_model
+					computer
 				LEFT JOIN
 					computer_brand 
 				ON
-					computer_model.brand_id    = computer_brand.id 
+					computer.brand_id    = computer_brand.id 
 				WHERE 
-					computer_model.id = ".$id;
+					computer.id = ".$id;
 
 		return self::select_by_query($sql);
 	}

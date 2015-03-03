@@ -10,7 +10,6 @@ $products = $_SESSION['cart'];
 $new['customer_id'] = $order['customer_id'] = $update['id'] = $customer_session->id;
 $new['batch_no'] = $update['last_batch_no'] = $customer_session->last_batch_no+1;
 
-
 if ($_POST['success'] == 1) {
 	
 	$order['amount'] = $_SESSION['sum'];
@@ -21,7 +20,7 @@ if ($_POST['success'] == 1) {
 	foreach ($products as $product) {
 		$new['product_id'] = $product['id'];
 		$new['qty'] = $product['quantity'];
-
+		$new['price'] = $product['price'];
 		if ($product['type'] == 'book') {
 				DatabaseObject::insert($new, 'order_on_book');
 			}
