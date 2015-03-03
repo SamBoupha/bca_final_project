@@ -5,10 +5,19 @@ if (!$customer_session->is_logged_in() || get_items_in_the_cart() == 0) {
 		header('location: index.php');
 	}
 		
+require_once(INC_PATH.DS.'order_object.php');
 $products = $_SESSION['cart'];
-$new['customer_id'] = $update['id'] = $customer_session->id;
+$new['customer_id'] = $order['customer_id'] = $update['id'] = $customer_session->id;
 $new['batch_no'] = $update['last_batch_no'] = $customer_session->last_batch_no+1;
+
+
 if ($_POST['success'] == 1) {
+	
+	$order['amount'] = $_SESSION['sum'];
+	$order['shipping_address'] = $customer_session->shipping_address;
+	$order['shipping_state'] = $customer_session->shipping_state_id;
+	$order['shipping_city'] = $customer_session->shipping_city_id;
+	$new['order_id'] = Order::insert($order, '`order`');
 	foreach ($products as $product) {
 		$new['product_id'] = $product['id'];
 		$new['qty'] = $product['quantity'];
@@ -22,11 +31,12 @@ if ($_POST['success'] == 1) {
 			}	
 	}
 
+
 if(Customer::update($update)){
 	$customer_session->re_log_in($customer_session->id);
 }
 
-$_SESSION['cart'] = array();
+$_SESSION['cart'] = $_SESSION['sum'] = array();
 }
 
 ?>

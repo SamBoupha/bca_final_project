@@ -57,6 +57,7 @@
 				echo "</div>";
 				$sum += $sub_total;
 			}
+			$_SESSION['sum'] = $sum;
 		} else {
 			echo "<h2>Your cart is empty</h2>";
 		}

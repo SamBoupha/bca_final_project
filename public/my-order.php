@@ -59,7 +59,7 @@
 							echo "<div class='date'>".date("D, d M Y h:i:s",strtotime($order->order_date))."</div><br />";
 							$j++;
 							echo "<div class='order row equal' >";
-							echo "<div class='status'>PROCESSING</div>";
+							echo "<div class='status'>PROCESSING . . .</div>";
 							echo "<div class='col-md-8' >";
 						}
 									

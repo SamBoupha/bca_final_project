@@ -62,6 +62,11 @@
 		function get_field($result) {
 			return $result->fetch_field();
 		}
+
+		function get_last_id() {
+			return $this->connection->insert_id;
+		}
+
 	}
 
 	$db = new connect_database();
