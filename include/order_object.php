@@ -32,6 +32,11 @@ class Order extends DatabaseObject {
 	public static function set_table_name($table) {
 		static::$table_name .= $table;
 	}
+
+	public static function select_order_of_user($customer_id,$table_name) {
+		$sql = "SELECT batch_no, product_id, order_date, qty FROM order_on_".$table_name." WHERE customer_id = ".$customer_id;
+		return self::instanciate($sql);
+	}
 }
 
 ?>
