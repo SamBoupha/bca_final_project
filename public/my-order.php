@@ -7,6 +7,8 @@
 	}
 
 	require_once(INC_PATH.DS."order_object.php");
+	require_once(INC_PATH.DS."book_object.php");
+	require_once(INC_PATH.DS."computer_object.php");
 
 	$orders = array();
 
@@ -15,9 +17,25 @@
 	} else {
 		if ($book_orders = Order::select_order_of_user($customer_session->id,"book")) {
 			$orders = array_merge($orders, $book_orders);
+			foreach ($orders as $order) {
+				// the product _id will be replace by more meaningful details of that product id
+				$order->product_id = BookObject::order_select($order->product_id);
+				// since this id prop is free and not relevant here 
+				// so I use it to store category identification instead
+				$order->customer_id = "book";
+			}
 		} 
 
 		if ($computer_orders = Order::select_order_of_user($customer_session->id,"Computer")) {
+			
+			foreach ($computer_orders as $order) {
+				// the product _id will be replace by more meaningful details of that product id
+				$order->product_id = ComputerObject::order_select($order->product_id);
+				// since this id prop is free and not relevant here 
+				// so I use it to store category identification instead
+				$order->customer_id = "computer";
+			}
+
 			$orders = array_merge($orders, $computer_orders);
 		} 
 	}
@@ -38,15 +56,34 @@
 					if ($order->batch_no == $i) {
 						
 						if ($j == 0) {
-							echo "<div class='date'>".$order->order_date."</div><br />";
+							echo "<div class='date'>".date("D, d M Y h:i:s",strtotime($order->order_date))."</div><br />";
 							$j++;
-							echo "<div class='order'>";
+							echo "<div class='order row equal' >";
+							echo "<div class='status'>PROCESSING</div>";
+							echo "<div class='col-md-8' >";
 						}
-					
-						echo $order->product_id." x".$order->qty."<br />";
-						
+									
+						echo "<div class='row'>";
+						echo "<div class='col-md-5 product-img '>";
+						echo "<img height='100px' src='img".DS.$order->customer_id.DS.$order->product_id->img_thumb."'>";
+						echo "</div>";
+						echo "<div class='col-md-7' >";
+						if ($order->customer_id == 'book') {
+							echo "<h4>".$order->product_id->title."</h4>";
+							echo "by ".$order->product_id->author;
+						}
+						elseif ($order->customer_id == 'computer') {
+							echo "<h4>".$order->product_id->brand." ".$order->product_id->model."</h4>";
+							echo "by ".$order->product_id->brand;
+						}
+
+						echo "<br />Quantity: ".$order->qty;
+						echo "</div>";	
+						echo "</div>";
 					}
 				}
+				echo "</div>";
+				echo "<div class='col-md-4 total'>Total</div>";
 				echo "</div>";
 			}
 		?>

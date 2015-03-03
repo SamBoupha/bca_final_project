@@ -87,6 +87,23 @@ class BookObject extends DatabaseObject {
 		
 	}
 
+	public static function order_select($id) {
+		$sql = "SELECT books_title.title,
+					   books_author.name as author,
+					   books_title.price, 
+					   books_title.img_thumb 
+				FROM 
+					   books_title 
+				LEFT JOIN 
+					   books_author
+				ON 
+					   books_title.author_id = books_author.id 
+				WHERE
+					   books_title.id = ".$id;
+				
+		return self::select_by_query($sql);
+	}
+
 }
 
 ?>

@@ -75,16 +75,43 @@ div.my-order h2 {
 }
 
 div.date {
-	border: 1px solid black;
 	border-bottom: 0;
 	display: inline-block;
-	padding: .5em 2em;
+	padding: .8em 2em;
+	position: relative;
+	margin-bottom: -.05em;
+	background-color: #CDC2A5;
+	color: black;
+	font-size: 1.3em;
 }
 
 div.order {
-	border: 1px solid black;
+	border: 1px solid #CDC2A5;
 	margin-bottom: 2em;
 	padding: 2em;
+	background-color: white;
 }
+
+div.status {
+	border: 1px solid black;
+	text-align: center;
+	padding: .5em 0;
+	margin-bottom: 2em;
+}
+div.product-img {
+	text-align: center;
+}
+
+div.col-md-8 .row {
+	margin-bottom: 3em;
+}
+
+div.total {
+	
+	position: relative;
+	height: 100%;
+}
+
+
 
 

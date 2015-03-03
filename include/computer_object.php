@@ -125,7 +125,23 @@ class ComputerObject extends DatabaseObject {
 
 	}
 
-	
+	public static function order_select($id) {
+		$sql = "SELECT
+					computer_brand.name as brand,
+					computer_model.model,
+					computer_model.price,
+					computer_model.img_thumb
+				FROM 
+					computer_model
+				LEFT JOIN
+					computer_brand 
+				ON
+					computer_model.brand_id    = computer_brand.id 
+				WHERE 
+					computer_model.id = ".$id;
+
+		return self::select_by_query($sql);
+	}
 
 }
 
