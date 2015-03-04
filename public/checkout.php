@@ -47,9 +47,9 @@
 							echo ">&nbsp;&nbsp;<span>save</span>";
 						echo "</div>";
 						echo "<div class='row product-price'>Rs. ";
-							echo $products[$i]['price'];
+							echo number_format($products[$i]['price']);
 							$sub_total = $products[$i]['price']*$products[$i]['quantity'];
-							echo "<p>Sub total: ".$sub_total."</p>";
+							echo "<p>Sub total: ".number_format($sub_total)."</p>";
 						echo "<span><a href='".$_SERVER['PHP_SELF']."?id=".$i.
 						"'><p>REMOVE</p></a></span>";
 						echo "</div>";
@@ -69,7 +69,7 @@
 				<p>Total: <span><?php echo "Rs. ".$sum ?></span></p>
 				<p>Discount: <span><?php echo "Rs. 0" ?></span></p>
 				<p>Delivery: <span class='success'><?php echo "Free" ?></span></p>
-				<h4>Order total: <span><?php echo "Rs. ".$sum ?></h4>
+				<h4>Order total: <span><?php echo "Rs. ".number_format($sum) ?></h4>
 				<?php if (get_items_in_the_cart()): ?>
 					<a id='go_checkout' href='shipping_detail.php'><div class="btn buy-now">PLACE ORDER</div></a>
 				<?php endif ?>

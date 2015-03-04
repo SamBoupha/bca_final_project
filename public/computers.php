@@ -27,7 +27,7 @@
 					echo "<li>".$computer->os."".$computer->architecture."</li>";
 					echo "</ul>";
 
-					echo "</a><p class='price'>Rs. ".$computer->price."</p>";
+					echo "</a><p class='price'>Rs. ".number_format($computer->price)."</p>";
 
 					echo "</div>";
 				}

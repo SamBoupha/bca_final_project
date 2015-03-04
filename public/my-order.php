@@ -16,8 +16,9 @@
 		$no_order = "You haven't placed any order yet";
 	} else {
 		$list_of_orders = Order::get_last_5_orders($customer_session->id, $customer_session->recent_order);
+		$last_index = count($list_of_orders)-1;
 		
-		if ($book_orders = Order::select_order_of_user($customer_session->id,"book",$customer_session->recent_order,$list_of_orders[4])) {
+		if ($book_orders = Order::select_order_of_user($customer_session->id,"book",$customer_session->recent_order,$list_of_orders[$last_index]->id)) {
 			$orders = array_merge($orders, $book_orders);
 			foreach ($orders as $order) {
 				// the product _id will be replace by more meaningful details of that product id
@@ -28,7 +29,7 @@
 			}
 		} 
 
-		if ($computer_orders = Order::select_order_of_user($customer_session->id,"computer",$customer_session->recent_order,$list_of_orders[4])) {
+		if ($computer_orders = Order::select_order_of_user($customer_session->id,"computer",$customer_session->recent_order,$list_of_orders[$last_index]->id)) {
 			
 			foreach ($computer_orders as $order) {
 				// the product _id will be replace by more meaningful details of that product id
@@ -40,7 +41,7 @@
 
 			$orders = array_merge($orders, $computer_orders);
 		} 
-		}
+	}
 
 ?>
 <?php include(INC_PATH.DS."side-nav.php"); ?>
@@ -58,11 +59,11 @@
 					
 					foreach ($orders as $order) {
 						
-						if ($order->order_id == $list_of_order) {
+						if ($order->order_id == $list_of_order->id) {
 							
 							if ($j == 0) {
 
-								echo "<div class='date'><span class='less_important'>Order id:</span> #OD".$order->order_id."<br /><span class='less_important'>Placed on ".date("D, d M Y",strtotime($order->order_date))."</span></div><br />";
+								echo "<div class='date'><span class='less_important'>Order id:</span> #OD".$order->order_id." <span class='less_important'><span>|</span> Placed on ".date("D, d M Y",strtotime($order->order_date))."</span></div><br />";
 								$j++;
 								echo "<div class='order row equal' >";
 								echo "<div class='status'>PROCESSING . . .</div>";
@@ -84,16 +85,22 @@
 							}
 
 							echo "<br />Quantity: ".$order->qty;
+							echo "<br />Price per unit: ".number_format($order->price);
 							echo "</div>";	
 							echo "</div>";
 						}
 					}
 					echo "</div>";
-					echo "<div class='col-md-4 total'>Total</div>";
+					echo "<div class='col-md-4 total'>";
+					echo "<span class='total-order'>Total: ".number_format($list_of_order->amount)."</span>";
+					echo "<div class='address'>";
+					echo "ship to address:";
+					echo $order->shipping_address;
 					echo "</div>";
+					echo "</div></div>";
 				}
 			}
-		
+			echo "<div class='btn more'>Load more</div>";
 		?>
 	</div>
 	

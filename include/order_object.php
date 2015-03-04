@@ -7,6 +7,7 @@ class Order extends DatabaseObject {
 		   $customer_id,
 		   $order_date,
 		   $qty,
+		   $amount,
 		   $order_id;
 		   
 	protected static $table_name = "order";
@@ -34,16 +35,18 @@ class Order extends DatabaseObject {
 
 	public static function get_last_5_orders($customer_id, $recent_order_id) {
 		global $db;
-		$sql  = "select id from `order` where customer_id = ";
+		$sql  = "select id, amount, shipping_address, shipping_state, shipping_city from `order` where customer_id = ";
 		$sql .= $customer_id ." and id <= ";
-		$sql .= $recent_order_id." order by id desc limit 5 ";
+		$sql .= $recent_order_id." order by id desc limit 20 ";
 		
-		$result = $db->execute_query($sql);
-		$results = array();
-		while($row = $db->db_fetch_assoc($result)) {
-			$results[] = $row['id'];
-		}
-		return $results;
+		// $result = $db->execute_query($sql);
+		// $results = array();
+		// while($row = $db->db_fetch_assoc($result)) {
+		// 	$results[] = $row;
+		// }
+		// return $results;
+
+		return self::instanciate($sql);
 	}
 
 	// $new should come in the form of assoc array

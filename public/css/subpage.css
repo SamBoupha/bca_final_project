@@ -67,6 +67,7 @@ div.my-order {
 	background-color: white;
 	padding: 1em 3em;
 	min-height: 500px;
+	margin-bottom: -2em;
 }
 
 div.my-order h2 {
@@ -91,9 +92,16 @@ div.date {
 	opacity: .7;
 }
 
+.less_important span {
+	font-size: 2em;
+	opacity: .3;
+	margin: 0 1em;
+}
+
+
 div.order {
 	border: 1px solid #CDC2A5;
-	margin-bottom: 4em;
+	margin-bottom: 6em;
 	padding: 2em;
 	background-color: white;
 }
@@ -113,11 +121,20 @@ div.col-md-8 .row {
 }
 
 div.total {
-	
-	position: relative;
-	height: 100%;
+	text-align: center;
 }
 
+.more {
+	background-color: #F6CD00;
+	display: block;
+	margin: 0 auto 2em;
+	width: 40%;
+}
 
+.total-order {
+	font-size: 1.8em;
+	font-family: tahoma;
+	color: #B12700;
+}
 
 

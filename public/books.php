@@ -18,7 +18,7 @@
 					echo "<img src='img/book/".$book->img_thumb."'>";
 					echo "<p class='name'>".$book->title."</p>";
 					echo "<p class='creator'>by ".$book->author."</p>";
-					echo "</a><p class='price'>Rs. ".$book->price."</p>";
+					echo "</a><p class='price'>Rs. ".number_format($book->price)."</p>";
 
 					echo "</div>";
 				}

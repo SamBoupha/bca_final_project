@@ -39,7 +39,7 @@
 					echo "<li>".$computer->os."".$computer->architecture."</li>";
 					echo "</ul>";?>	
 			</h4><br />
-			<h3>Rs. <?php echo $computer->price ?></h3><br /><br />
+			<h3>Rs. <?php echo number_format($computer->price) ?></h3><br /><br />
 			<form method='post'>
 				<button class='btn btn-warning' name='add_to_cart'>ADD TO CART</button>
 				<button class='btn btn-success' name='buy_now'>

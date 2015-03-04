@@ -82,6 +82,7 @@ div.order-summary h4 {
 	border-top: 2px solid gray;
 	color: #B12700;
 	padding: .5em 2em;
+	font-family: tahoma;
 }
 
 div.order-summary span {

@@ -39,7 +39,7 @@
 					echo "</p>";
 					echo "</a>";
 					echo "<p class='price'>Rs. ";
-					echo $computer->price;
+					echo number_format($computer->price);
 					echo "</p>";
 					echo "</div>";
 				}
@@ -76,7 +76,7 @@
 					echo "</p>";
 					echo "</a>";
 					echo "<p class='price'>Rs. ";
-					echo $book->price;
+					echo number_format($book->price);
 					echo "</p>";
 					echo "</div>";
 				}

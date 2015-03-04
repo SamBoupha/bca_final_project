@@ -37,7 +37,7 @@
 				Publisher: <?php echo $book->publisher ?><br /> 
 				Year: <?php echo $book->year ?><br />
 			</h4><br />
-			<h3>Rs. <?php echo $book->price ?></h3><br /><br />
+			<h3>Rs. <?php echo number_format($book->price) ?></h3><br /><br />
 			<form method='post'>
 				<button class='btn btn-warning' name='add_to_cart'>ADD TO CART</button>
 				<button class='btn btn-success' name='buy_now'>
