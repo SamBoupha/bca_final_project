@@ -6,7 +6,8 @@ class Order extends DatabaseObject {
 		   $product_id,
 		   $customer_id,
 		   $order_date,
-		   $qty;
+		   $qty,
+		   $order_id;
 		   
 	protected static $table_name = "order";
 

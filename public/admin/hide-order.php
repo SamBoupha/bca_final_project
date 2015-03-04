@@ -5,7 +5,7 @@
 	$update['id'] = $_GET['id'];
 	$update['visibility'] = 0;
 
-	Order::set_table_name($_GET['table']);
+	Order::set_table_name("_on_".$_GET['table']);
 	Order::update($update);
 
 
