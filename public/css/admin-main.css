@@ -89,24 +89,24 @@ div.success, div.danger {
 	view-order
 */
 
-div.order {
-	margin-bottom: 2em;
+table.all-order {
+	margin-bottom: 6em;
+	width: 100%;	
 }
 
-div.order h3{
+table.all-order * {
+	padding: 1em;
+}
+
+table.all-order th {
 	background-color: #CDC2A5;
-	padding: .5em 1em;
+	font-size: 1.5em;
+	text-align: left;
 }
 
-div.order h3 span {
-	font-size: .8em;
-	opacity: .8;
-}
-
-div.order div {
-	border: 1px solid #CDC2A5;
-	padding: 2em 1em;
-	margin-top: -1em;
+table.all-order th span {
+	font-size: 1em;
+	opacity: .6;
 }
 
 section.view-order {

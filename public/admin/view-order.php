@@ -60,10 +60,10 @@ if (isset($table)) {
 					// whereas $orders[0]->product_id[1] indicates computer
 
 					foreach ($orders as $order) {
-						echo "<div class='order row'>";
-						echo "<h3>#OD".$order->id."<span> placed on ". $order->order_date."</span></h3>";
+						echo "<table class='all-order'>";
+						echo "<tr><th colspan='3'>#OD".$order->id."<span> placed on ". $order->order_date."</span></th></tr>";
 						
-						echo "<div class='col-sm-4'>";
+						echo "<tr><td>";
 						for ($i=0; $i < 2; $i++) { 
 							if ($i==0 && !empty($order->product_id[$i])) {
 								foreach ($order->product_id[$i] as $item ) {
@@ -75,17 +75,17 @@ if (isset($table)) {
 								}
 							}
 						}
-						echo "</div>";
-						echo "<div class='col-sm-4'>";
+						echo "</td>";
+						echo "<td >";
 						echo "Ship to: ";
 						echo $order->shipping_address." ".$order->shipping_city." ";
 						echo $order->shipping_state;
-						echo "</div>";
-						echo "<div class='col-sm-4'>";
-						echo $order->amount;
-						echo "</div>";
-						
-						echo "</div>";
+						echo "</td>";
+						echo "<td> Total: ";
+						echo number_format($order->amount);
+						echo "</td>";
+
+						echo "</tr></table>";
 
 					}
 
