@@ -1,6 +1,6 @@
 <nav>
 	<ul>
-		<li>View Orders</li>
+		<li><a href='view-order.php?q=all'>View Orders</a></li>
 		<ul>
 			<a href='view-order.php?q=Computer'><li>Orders on computers</li></a></a>
 			<a href='view-order.php?q=Book'><li>Orders on books</li></a>

@@ -29,7 +29,7 @@ nav ul {
 }
 
 nav ul > li:first-child {
-	margin-bottom: -1em;
+	margin-bottom: -.8em;
 }
 
 nav ul li {
@@ -88,6 +88,26 @@ div.success, div.danger {
 /*
 	view-order
 */
+
+div.order {
+	margin-bottom: 2em;
+}
+
+div.order h3{
+	background-color: #CDC2A5;
+	padding: .5em 1em;
+}
+
+div.order h3 span {
+	font-size: .8em;
+	opacity: .8;
+}
+
+div.order div {
+	border: 1px solid #CDC2A5;
+	padding: 2em 1em;
+	margin-top: -1em;
+}
 
 section.view-order {
 
