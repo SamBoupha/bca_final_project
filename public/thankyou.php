@@ -8,7 +8,6 @@ if (!$customer_session->is_logged_in() || get_items_in_the_cart() == 0) {
 require_once(INC_PATH.DS.'order_object.php');
 $products = $_SESSION['cart'];
 $new['customer_id'] = $order['customer_id'] = $update['id'] = $customer_session->id;
-$new['batch_no'] = $update['last_batch_no'] = $customer_session->last_batch_no+1;
 
 if ($_POST['success'] == 1) {
 	
@@ -16,7 +15,7 @@ if ($_POST['success'] == 1) {
 	$order['shipping_address'] = $customer_session->shipping_address;
 	$order['shipping_state'] = $customer_session->shipping_state_id;
 	$order['shipping_city'] = $customer_session->shipping_city_id;
-	$new['order_id'] = Order::insert($order, '`order`');
+	$new['order_id'] = $update['rcent_order'] = Order::insert($order, '`order`');
 	foreach ($products as $product) {
 		$new['product_id'] = $product['id'];
 		$new['qty'] = $product['quantity'];

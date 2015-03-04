@@ -9,7 +9,7 @@
 			   $shipping_state_id,
 			   $shipping_city_id,
 			   $postcode,
-			   $last_batch_no;
+			   $recent_order;
 
 		private function init() {
 			
@@ -21,7 +21,7 @@
 			$this->shipping_state_id = $_SESSION['customer']['shipping_state_id'];
 			$this->shipping_city_id = $_SESSION['customer']['shipping_city_id'];
 			$this->postcode = $_SESSION['customer']['postcode'];
-			$this->last_batch_no = $_SESSION['customer']['last_batch_no'];
+			$this->recent_order = $_SESSION['customer']['recent_order'];
 			$this->logged_in = true;
 		}
 
@@ -34,7 +34,7 @@
 			$_SESSION['customer']['shipping_state_id'] = $customer->shipping_state_id;
 			$_SESSION['customer']['shipping_city_id'] = $customer->shipping_city_id;
 			$_SESSION['customer']['postcode'] = $customer->postcode;
-			$_SESSION['customer']['last_batch_no'] = $customer->last_batch_no;
+			$_SESSION['customer']['recent_order'] = $customer->recent_order;
 			$this->init();
 		}
 
@@ -49,7 +49,7 @@
 		function re_log_in($customer_id) {
 			$sql = "SELECT id, name, email, shipping_address, 
 						shipping_state_id, shipping_city_id, mobile_number, 
-						postcode, last_batch_no FROM customer WHERE id = ".$customer_id;
+						postcode, recent_order FROM customer WHERE id = ".$customer_id;
 			$customer = Customer::select_by_query($sql);
 			self::log_in($customer);
 		}
@@ -64,7 +64,7 @@
 			unset($this->shipping_state_id);
 			unset($this->shipping_city_id);
 			unset($this->postcode);
-			unset($this->last_batch_no);
+			unset($this->recent_order);
 			$this->logged_in = false;
 		}
 	}

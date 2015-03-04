@@ -24,9 +24,26 @@ class Order extends DatabaseObject {
 		static::$table_name .= $table;
 	}
 
-	public static function select_order_of_user($customer_id,$table_name) {
-		$sql = "SELECT id, batch_no, product_id, order_date, qty FROM order_on_".$table_name." WHERE customer_id = ".$customer_id;
+	public static function select_order_of_user($customer_id, $table_name, $recent_order_id, $min) {
+	
+		$sql = "SELECT id, order_id, product_id, order_date, qty, price 
+				FROM order_on_".$table_name." where order_id <= ".$recent_order_id." and order_id >= ".$min." and customer_id = ".$customer_id;
+		
 		return self::instanciate($sql);
+	}
+
+	public static function get_last_5_orders($customer_id, $recent_order_id) {
+		global $db;
+		$sql  = "select id from `order` where customer_id = ";
+		$sql .= $customer_id ." and id <= ";
+		$sql .= $recent_order_id." order by id desc limit 5 ";
+		
+		$result = $db->execute_query($sql);
+		$results = array();
+		while($row = $db->db_fetch_assoc($result)) {
+			$results[] = $row['id'];
+		}
+		return $results;
 	}
 
 	// $new should come in the form of assoc array

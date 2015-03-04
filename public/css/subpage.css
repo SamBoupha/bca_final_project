@@ -66,6 +66,7 @@ div.product-thumbnail ul li {
 div.my-order {
 	background-color: white;
 	padding: 1em 3em;
+	min-height: 500px;
 }
 
 div.my-order h2 {
@@ -85,9 +86,14 @@ div.date {
 	font-size: 1.3em;
 }
 
+.less_important {
+	font-size: .8em;
+	opacity: .7;
+}
+
 div.order {
 	border: 1px solid #CDC2A5;
-	margin-bottom: 2em;
+	margin-bottom: 4em;
 	padding: 2em;
 	background-color: white;
 }
