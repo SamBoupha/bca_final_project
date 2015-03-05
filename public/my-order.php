@@ -6,43 +6,11 @@
 		header('location: index.php');
 	}
 
-	require_once(INC_PATH.DS."order_object.php");
-	require_once(INC_PATH.DS."book_object.php");
-	require_once(INC_PATH.DS."computer_object.php");
-
-	$orders = array();
-
 	if ($customer_session->recent_order == 0) {
 		$no_order = "You haven't placed any order yet";
 	} else {
-		$list_of_orders = Order::get_last_orders($customer_session->id, $customer_session->recent_order);
-		$last_index = count($list_of_orders)-1;
-		
-		if ($book_orders = Order::select_order_of_user($customer_session->id,"book",$customer_session->recent_order,$list_of_orders[$last_index]->id)) {
-			$orders = array_merge($orders, $book_orders);
-			foreach ($orders as $order) {
-				// the product _id will be replace by more meaningful details of that product id
-				$order->product_id = BookObject::order_select($order->product_id);
-				// since this id prop is free and not relevant here 
-				// so I use it to store category identification instead
-				$order->customer_id = "book";
-			}
-		} 
-
-		if ($computer_orders = Order::select_order_of_user($customer_session->id,"computer",$customer_session->recent_order,$list_of_orders[$last_index]->id)) {
-			
-			foreach ($computer_orders as $order) {
-				// the product _id will be replace by more meaningful details of that product id
-				$order->product_id = ComputerObject::order_select($order->product_id);
-				// since this id prop is free and not relevant here 
-				// so I use it to store category identification instead
-				$order->customer_id = "computer";
-			}
-
-			$orders = array_merge($orders, $computer_orders);
-		} 
+		require_once(INC_PATH.DS.'get_my_order.php');
 	}
-
 ?>
 <?php include(INC_PATH.DS."side-nav.php"); ?>
 <section>
@@ -76,11 +44,13 @@
 							echo "</div>";
 							echo "<div class='col-md-7' >";
 							if ($order->customer_id == 'book') {
-								echo "<h4>".$order->product_id->title."</h4>";
+								echo "<h4><a href='book_detail.php?id=".$order->product_id->id."'>";
+								echo $order->product_id->title."</a></h4>";
 								echo "by ".$order->product_id->author;
 							}
 							elseif ($order->customer_id == 'computer') {
-								echo "<h4>".$order->product_id->brand." ".$order->product_id->model."</h4>";
+								echo "<h4><a href='computer_detail.php?id=".$order->product_id->id."'>";
+								echo $order->product_id->brand." ".$order->product_id->model."</a></h4>";
 								echo "by ".$order->product_id->brand;
 							}
 
@@ -94,13 +64,20 @@
 					echo "<div class='col-md-4 total'>";
 					echo "<span class='total-order'>Total: ".number_format($list_of_order->amount)."</span>";
 					echo "<div class='address'>";
-					echo "ship to address:";
-					echo $order->shipping_address;
+					echo "<h4>Ship to address:</h4><br />";
+					echo $list_of_order->shipping_address;
+					echo "<br />";
+					echo $list_of_order->shipping_city;
+					echo "<br />";
+					echo $list_of_order->shipping_state;
+					echo "<br />";
+					echo $list_of_order->postcode;
 					echo "</div>";
 					echo "</div></div>";
 				}
+				echo "<div class='btn more'>Load more</div>";
 			}
-			echo "<div class='btn more'>Load more</div>";
+			
 		?>
 	</div>
 	

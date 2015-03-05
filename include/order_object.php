@@ -11,7 +11,8 @@ class Order extends DatabaseObject {
 		   $order_id,
 		   $shipping_address,
 		   $shipping_state,
-		   $shipping_city;
+		   $shipping_city,
+		   $postcode;
 		   
 	protected static $table_name = "`order`";
 
@@ -42,12 +43,32 @@ class Order extends DatabaseObject {
 		return self::instanciate($sql);
 	}
 
-	public static function get_last_orders($customer_id, $recent_order_id, $limit=10) {
+	public static function get_last_orders($customer_id, $recent_order_id, $limit=5, $offset=0) {
 		global $db;
 		$limit = " limit ".$limit;
-		$sql  = "select id, amount, shipping_address, shipping_state, shipping_city from `order` where customer_id = ";
-		$sql .= $customer_id ." and id <= ";
-		$sql .= $recent_order_id." order by id desc ".$limit;
+		$offset = " offset ".$offset;
+
+		$sql  = "SELECT 
+					`order`.id, 
+					`order`.amount, 
+					`order`.shipping_address, 
+					customer.postcode,
+					customer_state.state_name as shipping_state, 
+					customer_city.city_name as shipping_city 
+				FROM 
+					`order`, customer_state, customer_city, customer 
+				WHERE 
+					`order`.customer_id = ".$customer_id." 
+				AND 
+					`order`.id <= ".$recent_order_id." 
+				AND 
+					customer_city.id = `order`.shipping_city 
+				AND 
+					`order`.shipping_state = customer_state.id 
+				AND 
+					`order`.customer_id = customer.id
+				ORDER BY 
+					`order`.id DESC ".$limit.$offset;	
 		
 		return self::instanciate($sql);
 	}

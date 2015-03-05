@@ -98,7 +98,6 @@ div.date {
 	margin: 0 1em;
 }
 
-
 div.order {
 	border: 1px solid #CDC2A5;
 	margin-bottom: 6em;
@@ -135,6 +134,16 @@ div.total {
 	font-size: 1.8em;
 	font-family: tahoma;
 	color: #B12700;
+}
+
+div.address {
+	border: 1px solid #E5D3B7;
+	padding: 1em 1em 2em;
+	width: 65%;
+	margin: 2em auto;
+	/*border-radius: 2em;	*/
+	font-family: trebuchet;
+	font-size: 1.2em;
 }
 
 

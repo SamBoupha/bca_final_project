@@ -104,7 +104,7 @@ table.all-order th {
 	text-align: left;
 }
 
-table.all-order th span {
+table.all-order th span.less_important {
 	font-size: 1em;
 	opacity: .6;
 }
@@ -124,10 +124,18 @@ table.order tr:nth-child(even) {
 
 table.order th {
 	font-size: 1.3em;
+	position: relative;
 }
 
 table.order td {
 	padding: .3em;
+}
+
+span.remove {
+	font-weight: normal;
+	position: absolute;
+	font-size: .8em;
+	right: 2em;
 }
 
 /* Carousel-edit */

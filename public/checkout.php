@@ -66,7 +66,7 @@
 		<div class='col-md-4 order-total'>
 			<div class='order-summary'>
 				<h2>Cart Summary:</h2>
-				<p>Total: <span><?php echo "Rs. ".$sum ?></span></p>
+				<p>Total: <span><?php echo "Rs. ".number_format($sum) ?></span></p>
 				<p>Discount: <span><?php echo "Rs. 0" ?></span></p>
 				<p>Delivery: <span class='success'><?php echo "Free" ?></span></p>
 				<h4>Order total: <span><?php echo "Rs. ".number_format($sum) ?></h4>

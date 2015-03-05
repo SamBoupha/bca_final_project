@@ -15,7 +15,7 @@ if ($_POST['success'] == 1) {
 	$order['shipping_address'] = $customer_session->shipping_address;
 	$order['shipping_state'] = $customer_session->shipping_state_id;
 	$order['shipping_city'] = $customer_session->shipping_city_id;
-	$new['order_id'] = $update['rcent_order'] = Order::insert($order, '`order`');
+	$new['order_id'] = $update['recent_order'] = Order::insert($order, '`order`');
 	foreach ($products as $product) {
 		$new['product_id'] = $product['id'];
 		$new['qty'] = $product['quantity'];
@@ -35,6 +35,7 @@ if(Customer::update($update)){
 }
 
 $_SESSION['cart'] = $_SESSION['sum'] = array();
+unset($_POST['success']);
 }
 
 ?>
@@ -44,7 +45,7 @@ $_SESSION['cart'] = $_SESSION['sum'] = array();
 <section class='thankyou'>
 	<br />
 	<div>
-		<h2>Your order has been successfully placed </h2>
+		<h2>Your order with <em>OrderID #OD<?php echo $update['recent_order'] ?></em>  has been successfully placed </h2>
 		<h3>Thank you for shopping with us!</h3>
 
 	</div>

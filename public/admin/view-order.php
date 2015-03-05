@@ -61,7 +61,9 @@ if (isset($table)) {
 
 					foreach ($orders as $order) {
 						echo "<table class='all-order'>";
-						echo "<tr><th colspan='3'>#OD".$order->id."<span> placed on ". $order->order_date."</span></th></tr>";
+						echo "<tr data-order-id = ".$order->id.">";
+						echo "<th colspan='3'>#OD".$order->id."<span class='less_important'> placed on ". $order->order_date."</span>";
+						echo "<span class='remove'><a href='#'>HIDE</a></span></th></tr>";
 						
 						echo "<tr><td>";
 						for ($i=0; $i < 2; $i++) { 
@@ -127,12 +129,21 @@ if (isset($table)) {
 		</div>
 	</section>
 <script type="text/javascript">
-	$('a').click( function() {
+	$('td > a').click( function() {
 		$(this).parents("tr").fadeOut(1000);
 		$.get('hide-order.php?id='+$(this).parents("tr").data('id')+'&table='+<?php echo "'".$table."'" ?>, function(data) {
 			$('<h4 class="success">Done</h4>').appendTo('h2');
 			console.log(data);
 		});
+	});
+
+	$('th > span a').click( function() {
+		$(this).parents("table").fadeOut(1000);
+		$.get('hide-order.php?id='+$(this).parents("tr").data('order-id'), function(data) {
+			$('<h4 class="success">Done</h4>').appendTo('h2');
+			console.log(data);
+		});
+		//alert('hide-order.php?id='+$(this).parents("tr").data('order-id'));
 	});
 </script>
 <?php include(INC_PATH.DS.'footer-admin.php');?>

@@ -58,9 +58,7 @@
 			</div>
 			<div>
 				<label>Shipping Address:</label><br />
-				<textarea class='address' name='address' required>
-					<?php echo $_POST['address'] ? trim($_POST['address']) : $customer_session->shipping_address ?>
-				</textarea>
+				<textarea class='address' name='address' required><?php echo $_POST['address'] ? trim($_POST['address']) : trim($customer_session->shipping_address)?></textarea>
 			</div>
 			<div>
 				<label>State:</label>

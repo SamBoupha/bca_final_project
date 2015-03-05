@@ -43,8 +43,8 @@
 			</div>
 			<div class='right'>
 			
-				<input type='email' name='email' placeholder='Email'>			
-				<input type='password' name='password' placeholder='Password'>	
+				<input type='email' name='email' placeholder='Email' required>			
+				<input type='password' name='password' placeholder='Password' required>	
 								
 				<input type='submit' class='btn login-btn' value='LOG INTO MY ACCOUNT' name='log_in'> 
 				
@@ -79,9 +79,9 @@
 			$('form.customer-login a').click( function() {
 				if (i % 2 == 1) {
 					$('input.login-btn').remove();
-					$("<input type='text' name='name' id='mobile' placeholder='Enter Your Name'> ").prependTo('div.right');
-					$("<input type='text' name='mobile_number' id='mobile' placeholder='Mobile Number'> ").appendTo('div.right');
-					$("<input type='submit' class='btn login-btn' value='CREATE MY ACCOUNT' name='register'> ").appendTo('div.right');
+					$("<input type='text' name='name' id='mobile' placeholder='Enter Your Name' required> ").prependTo('div.right');
+					$("<input type='text' name='mobile_number' id='mobile' placeholder='Mobile Number' maxlength='10' required> ").appendTo('div.right');
+					$("<input type='submit' class='btn login-btn' value='CREATE MY ACCOUNT' name='register' required> ").appendTo('div.right');
 					$('form.customer-login p span').text("Already have an account?");
 					$('form.customer-login p a').text("Login to BCA.com");
 					$('form.customer-login h3').text("Registration");
