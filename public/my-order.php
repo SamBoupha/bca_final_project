@@ -15,9 +15,8 @@
 <?php include(INC_PATH.DS."side-nav.php"); ?>
 <section>
 	<div class='my-order'>
-		<h2>My Order</h2>
+		<h2>My Order( <?php echo $customer_session->total_order ?> )</h2>
 		<?php
-
 			if (isset($no_order)) {
 				echo "<h3>".$no_order."</h3>";
 			} else {

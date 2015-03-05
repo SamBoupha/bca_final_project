@@ -10,6 +10,7 @@ class Customer extends DatabaseObject {
 		   $shipping_city_id,
 		   $mobile_number,
 		   $postcode,
+		   $total_order,
 		   $recent_order;
 
 	protected static $table_name = 'customer';
@@ -18,7 +19,10 @@ class Customer extends DatabaseObject {
 		global $db;
 		$email = $db->prep_sql($email);
 		$password = $db->prep_sql($password);
-		$sql = "SELECT id, name, email, shipping_address, shipping_state_id, shipping_city_id, mobile_number, postcode, recent_order FROM ".static::$table_name." WHERE email='$email' and password = '$password' LIMIT 1";
+		$sql = "SELECT id, name, email, shipping_address, shipping_state_id, total_order, 
+					   shipping_city_id, mobile_number, postcode, recent_order
+				FROM ".static::$table_name." WHERE email='$email' 
+				and password = '$password' LIMIT 1";
 
 		return self::instanciate($sql); 
 	}

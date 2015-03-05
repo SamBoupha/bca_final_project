@@ -9,6 +9,7 @@
 			   $shipping_state_id,
 			   $shipping_city_id,
 			   $postcode,
+			   $total_order,
 			   $recent_order;
 
 		private function init() {
@@ -22,6 +23,7 @@
 			$this->shipping_city_id = $_SESSION['customer']['shipping_city_id'];
 			$this->postcode = $_SESSION['customer']['postcode'];
 			$this->recent_order = $_SESSION['customer']['recent_order'];
+			$this->total_order = $_SESSION['customer']['total_order'];
 			$this->logged_in = true;
 		}
 
@@ -35,6 +37,7 @@
 			$_SESSION['customer']['shipping_city_id'] = $customer->shipping_city_id;
 			$_SESSION['customer']['postcode'] = $customer->postcode;
 			$_SESSION['customer']['recent_order'] = $customer->recent_order;
+			$_SESSION['customer']['total_order'] = $customer->total_order;
 			$this->init();
 		}
 
@@ -47,7 +50,7 @@
 		}
 
 		function re_log_in($customer_id) {
-			$sql = "SELECT id, name, email, shipping_address, 
+			$sql = "SELECT id, name, email, shipping_address, total_order,
 						shipping_state_id, shipping_city_id, mobile_number, 
 						postcode, recent_order FROM customer WHERE id = ".$customer_id;
 			$customer = Customer::select_by_query($sql);
@@ -65,6 +68,7 @@
 			unset($this->shipping_city_id);
 			unset($this->postcode);
 			unset($this->recent_order);
+			unset($this->total_order);
 			$this->logged_in = false;
 		}
 	}

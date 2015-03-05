@@ -24,12 +24,11 @@ if ($_POST['success'] == 1) {
 				DatabaseObject::insert($new, 'order_on_book');
 			}
 		if ($product['type'] == 'computer') {
-
 				DatabaseObject::insert($new, 'order_on_computer');
 			}	
 	}
 
-
+$update['total_order'] = $customer_session->total_order+1;
 if(Customer::update($update)){
 	$customer_session->re_log_in($customer_session->id);
 }
