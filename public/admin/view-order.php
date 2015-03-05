@@ -55,7 +55,7 @@ if (isset($table)) {
 						Order::set_table_name("order_on_computer");
 						$order->product_id[] = Order::select_by_order_id($order->id);
 					}
-
+						print_r($orders);
 					// after foreach $orders[0]->product_id[0] = book category
 					// whereas $orders[0]->product_id[1] indicates computer
 
@@ -63,17 +63,20 @@ if (isset($table)) {
 						echo "<table class='all-order'>";
 						echo "<tr data-order-id = ".$order->id.">";
 						echo "<th colspan='3'>#OD".$order->id."<span class='less_important'> placed on ". $order->order_date."</span>";
+						echo "";
 						echo "<span class='remove'><a href='#'>HIDE</a></span></th></tr>";
 						
 						echo "<tr><td>";
 						for ($i=0; $i < 2; $i++) { 
 							if ($i==0 && !empty($order->product_id[$i])) {
 								foreach ($order->product_id[$i] as $item ) {
-									echo "BookID = ".$item->product_id."<br />";
+									echo "BookID ".$item->product_id;
+									echo " X".$item->qty."<br />";
 								}
 							} elseif ($i==1 && !empty($order->product_id[$i])) {
 								foreach ($order->product_id[$i] as $item ) {
-									echo "ComputerID = ".$item->product_id."<br />";
+									echo "ComputerID ".$item->product_id;
+									echo " X".$item->qty."<br />";
 								}
 							}
 						}
