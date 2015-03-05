@@ -94,4 +94,43 @@
 		return sizeof($_SESSION['cart']);
 	}
 
+	function pagination($total_item, $item_per_page, $offset, $page_name=null) {
+		$indexes = ceil($total_item/$item_per_page);
+		$q = 0;
+
+		echo '<div id="pagi" class="text-center">';
+		echo '<ul class="pagination">';
+
+		if ($offset != 0) {
+			echo '<li>';
+				echo '<a href="'.$page_name.'?q=';
+				echo $offset-$item_per_page;
+				echo '" aria-label="Previous">';
+				echo '<span aria-hidden="true">&laquo;</span>';
+				echo '</a>';
+			echo '</li>'; 
+		}
+		  
+		for ($i=0; $i < $indexes; $i++) { 
+
+			echo '<li ';
+			if ($i == $offset/$item_per_page) {
+				echo "class='selected'";
+			}
+			echo '><a href="'.$page_name.'?q='.$q.'">';
+			$q = $q + $item_per_page;
+			echo $i+1;
+			echo '</a></li>';
+		}
+
+		if ($offset+$item_per_page < $total_item) {
+			echo '<li>';
+			echo '<a href="'.$page_name.'?q=';
+			echo $offset+$item_per_page;
+			echo '" aria-label="Next">';
+			echo '<span aria-hidden="true">&raquo;</span>';
+			echo '</a></li></ul></div>';
+		}
+	}
+
 ?>

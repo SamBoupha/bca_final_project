@@ -29,6 +29,7 @@ if ($_POST['success'] == 1) {
 	}
 
 $update['total_order'] = $customer_session->total_order+1;
+
 if(Customer::update($update)){
 	$customer_session->re_log_in($customer_session->id);
 }

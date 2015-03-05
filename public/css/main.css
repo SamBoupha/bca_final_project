@@ -303,3 +303,13 @@ div.right {
 	border-left: 1px solid gray;
 	padding: 2em 4em 4em 4em;
 }
+
+#pagi .selected a {
+	background-color: #F6CD00;
+}
+
+#pagi a {
+	color: black;
+	font-size: 1.2em;
+}
+

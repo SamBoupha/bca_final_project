@@ -9,6 +9,7 @@
 	if ($customer_session->recent_order == 0) {
 		$no_order = "You haven't placed any order yet";
 	} else {
+		$item_per_page = 3;
 		require_once(INC_PATH.DS.'get_my_order.php');
 	}
 ?>
@@ -74,7 +75,8 @@
 					echo "</div>";
 					echo "</div></div>";
 				}
-				echo "<div class='btn more'>Load more</div>";
+				// most of the variables can find in get_my_order
+				echo pagination($customer_session->total_order,$item_per_page,$offset,$_SERVER['PHP_SELF']);
 			}
 			
 		?>
