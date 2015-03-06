@@ -229,7 +229,6 @@ $computer = ComputerObject::select_all($_GET['id']);
 							echo ">";
 							echo $hdd->name." ".$hdd->hdd_type;
 							echo "</option>"; 
-							print_r($hdd);
 						}
 					?>
 				</select>

@@ -55,7 +55,7 @@ if (isset($table)) {
 						Order::set_table_name("order_on_computer");
 						$order->product_id[] = Order::select_by_order_id($order->id);
 					}
-						print_r($orders);
+					
 					// after foreach $orders[0]->product_id[0] = book category
 					// whereas $orders[0]->product_id[1] indicates computer
 
