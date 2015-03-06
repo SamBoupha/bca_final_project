@@ -5,19 +5,20 @@ if(!$session->is_logged_in()) header("location: login.php");
 
 if (isset($_POST['submit'])) {
 
-	$mobile['id']       		     = htmlspecialchars($_POST['id']);
-	$mobile['manufacturer_id'] 			 = htmlspecialchars($_POST['manufacturer']);
-	$mobile['model'] 	    		 = htmlspecialchars($_POST['model']);
-	$mobile['cpu_id']    		     = htmlspecialchars($_POST['cpu']);
-	$mobile['hdd_id']    		 	 = htmlspecialchars($_POST['hdd']);
+	$mobile['id']       		 = htmlspecialchars($_POST['id']);
+	$mobile['manufacturer_id'] 	 = htmlspecialchars($_POST['manufacturer']);
+	$mobile['model'] 	    	 = htmlspecialchars($_POST['model']);
+	$mobile['cpu_id']    		 = htmlspecialchars($_POST['cpu']);
+	$mobile['hdd_id']    		 = htmlspecialchars($_POST['hdd']);
 	$mobile['ram_id'] 			 = htmlspecialchars($_POST['ram']);
 	$mobile['screen_id']		 = htmlspecialchars($_POST['mornitor']);
-	$mobile['os_id'] 	    		 = htmlspecialchars($_POST['os']);
-	$mobile['price'] 				 = htmlspecialchars($_POST['price']);
-	$mobile['quantity'] 			 = htmlspecialchars($_POST['quantity']);
+	$mobile['os_id'] 	    	 = htmlspecialchars($_POST['os']);
+	$mobile['price'] 			 = htmlspecialchars($_POST['price']);
+	$mobile['quantity'] 		 = htmlspecialchars($_POST['quantity']);
 	$mobile['visibility']  		 = htmlspecialchars($_POST['visibility']);
-	$mobile['show_at_index_page']  = htmlspecialchars($_POST['show_at_index_page']);
+	$mobile['show_at_index_page'] = htmlspecialchars($_POST['show_at_index_page']);
 	$mobile['wireless_product_category_id'] = 1;
+	
 	$location = "..".DS."img".DS."mobile".DS;
 	$reports = array();
 
@@ -72,7 +73,7 @@ header("location: product-add.php?category=Mobiles");
 <?php include_once(INC_PATH.DS."product-add".DS."component-lightOut+form.php") ?>
 	<section>
 		<div class='product-add-book-form'>
-		<h2>mobile Editing: Add new computers</h2>
+		<h2>mobile Editing: Add new mobiles</h2>
 		<form class='product-add-books' 
 			  action='<?php echo htmlspecialchars($_SERVER['PHP_SELF'])?>' 
 			  method='post' enctype='multipart/form-data'>

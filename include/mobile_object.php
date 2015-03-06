@@ -12,6 +12,7 @@ class MobileObject extends DatabaseObject {
 			$hdd,
 			$external,
 			$ram,
+			$screen,
 			$screen_type,
 			$resolution,
 			$os,
@@ -68,43 +69,34 @@ class MobileObject extends DatabaseObject {
 
 		$sql = "SELECT 
 					wireless_product.id,
-					wireless_product_brand.name as brand,
+					wireless_product_manufacturer.name as brand,
 					wireless_product.model,
 					wireless_product.price,
 					wireless_product.quantity,
-					wireless_product.mfg,
-					wireless_product_spec_cpu.family as cpu,
-					wireless_product_spec_hdd.capacity as hdd,
-					wireless_product_spec_ram.capacity as ram,
-					wireless_product_spec_ram.ram_type, 
-					wireless_product_spec_os.name as os,
-					wireless_product_spec_graphic.processor as graphic,
-					wireless_product_spec_graphic.capacity as graphic_capacity,
-					wireless_product_spec_mornitor.inch as mornitor,
-					wireless_product_spec_mornitor.resolution,
+					wireless_product_cpu.processor as cpu,
+					wireless_product_hdd.internal as hdd,
+					wireless_product_ram.capacity as ram,
+					wireless_product_os.name as os,
+					wireless_product_screen.size as screen,
 					wireless_product.img_thumb,
 					wireless_product.img_front,
-					wireless_product.img_left_side,
-					wireless_product.img_back,
 					wireless_product.visibility,
 					wireless_product.show_at_index_page
 					from 
 					wireless_product,
-					wireless_product_spec_hdd,
-					wireless_product_spec_ram,
-					wireless_product_spec_cpu,
-					wireless_product_spec_graphic,
-					wireless_product_spec_os,
-					wireless_product_spec_mornitor,
-					wireless_product_brand 
+					wireless_product_hdd,
+					wireless_product_ram,
+					wireless_product_cpu,
+					wireless_product_os,
+					wireless_product_screen,
+					wireless_product_manufacturer 
 					where 
-					wireless_product.brand_id    = wireless_product_brand.id and 
-					wireless_product.cpu_id      = wireless_product_spec_cpu.id and 
-					wireless_product.graphic_id  = wireless_product_spec_graphic.id and 
-					wireless_product.hdd_id      = wireless_product_spec_hdd.id and 
-					wireless_product.mornitor_id = wireless_product_spec_mornitor.id and 
-					wireless_product.os          = wireless_product_spec_os.id and 
-					wireless_product.ram_id      = wireless_product_spec_ram.id ";
+					wireless_product.manufacturer_id = wireless_product_manufacturer.id and 
+					wireless_product.cpu_id      = wireless_product_cpu.id and 
+					wireless_product.hdd_id      = wireless_product_hdd.id and 
+					wireless_product.screen_id   = wireless_product_screen.id and 
+					wireless_product.os_id       = wireless_product_os.id and 
+					wireless_product.ram_id      = wireless_product_ram.id ";
 	
 			$sql .= $id;
 			$sql .= $public.$highlight.$limit;
