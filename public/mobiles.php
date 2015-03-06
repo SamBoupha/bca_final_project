@@ -8,21 +8,20 @@
 <?php include(INC_PATH.DS."side-nav.php"); ?>
 <section>
 	<div class='products'>
-		<h1>mobiles &amp; Tablets</h1>
+		<h1>Mobiles &amp; Tablets</h1>
 		<div class='products-display'>
 			<?php
 				foreach ($mobiles as $mobile) {
 					echo "<div class='product-thumbnail'>";
 
 					echo "<a href='mobile_detail.php?id=".$mobile->id."'>";
-					echo "<img src='img/mobile/".$mobile->img_thumb."' style='height:85px'>";
+					echo "<img src='img/mobile/".$mobile->img_thumb."' style='height:100px'>";
 					echo "<p class='name'>".$mobile->brand." ".$mobile->model;
 					echo "<span class='creator'> by ".$mobile->brand."</span></p>";
 
 					echo "<ul>";
 					echo "<li>".$mobile->cpu."</li>";
-					echo "<li>HDD ".$mobile->hdd."</li>";
-					echo "<li>RAM ".$mobile->ram."</li>";
+					echo "<li>HDD ".$mobile->hdd." RAM ".$mobile->ram."</li>";
 					echo "<li>".$mobile->screen." inch display ".$mobile->screen_type."</li>";
 					echo "<li>".$mobile->os."</li>";
 					echo "</ul>";

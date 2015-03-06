@@ -2,7 +2,7 @@
 	<a href='computers.php'><div class="row">
 		<h4>Computers &amp; Accessories <span class='pull-right glyphicon glyphicon-chevron-right'></span></h4>
 	</div></a>
-	<a href='mobilesntabs.php'><div class="row">
+	<a href='mobiles.php'><div class="row">
 		<h4>Mobiles &amp; Tablets <span class='pull-right glyphicon glyphicon-chevron-right'></h4>
 	</div></a>
 	<a href='books.php'><div class="row">

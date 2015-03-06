@@ -66,6 +66,7 @@ header("location: product-add.php?category=Mobiles");
 
 $mobile = MobileObject::select_all($_GET['id']);
 
+
 ?>
 
 <?php include(INC_PATH.DS.'header-admin.php');?>
