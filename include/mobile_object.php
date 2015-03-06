@@ -78,6 +78,7 @@ class MobileObject extends DatabaseObject {
 					wireless_product_ram.capacity as ram,
 					wireless_product_os.name as os,
 					wireless_product_screen.size as screen,
+					wireless_product_screen.type as screen_type,
 					wireless_product.img_thumb,
 					wireless_product.img_front,
 					wireless_product.visibility,

@@ -51,13 +51,30 @@
 		<br /><br /><br /><br /><br />
 		<h2>Mobiles &amp; Tablets</h2>
 		<div>
+			<div class='product-row'>
 			<?php 
-				// $dirPath = "img".DS."mobilestablets";
-				// $images = imgSrcAutoGen($dirPath);
-				// foreach ($images as $image) {
-				// 	echo $image;
-				// }
+				include(INC_PATH.DS."mobile_object.php");
+				$mobiles = mobileObject::select($limit=4,$public=true,$highlighted=true);
+				foreach ($mobiles as $mobile) {
+					echo "<div class='book-thumb'>";
+					echo "<a href='mobile_detail.php?id=".$mobile->id."''>";
+					echo "<img src='img/mobile/";
+					echo $mobile->img_thumb;
+					echo "'>";
+					echo "<p class='info'>";
+					echo $mobile->brand." ".$mobile->model;
+					echo "</p>";
+					echo "</a>";
+					echo "<p class='price'>Rs. ";
+					echo number_format($mobile->price);
+					echo "</p>";
+					echo "</div>";
+				}
+				echo "<a href='mobiles.php'> <div class='view-all'>";
+				echo "View all";
+				echo "</div></a>";
 			?>
+		</div>
 		</div>
 		<br /><br /><br /><br /><br />
 		<h2>Books</h2>
