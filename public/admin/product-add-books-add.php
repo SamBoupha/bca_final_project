@@ -32,7 +32,7 @@ if (isset($_POST['submit'])) {
 		if (move_uploaded_file($_FILES['img_front']['tmp_name'], $location)) {
 			$new_book['img_front'] = htmlspecialchars($_POST['img_front']);
 		} else {
-			$reports[] = "<p class='danger'>Back image was failed to upload</p>";
+			$reports[] = "<p class='danger'>Front image was failed to upload</p>";
 		}
 	}
 
