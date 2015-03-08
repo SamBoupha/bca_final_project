@@ -4,8 +4,8 @@
 	</div>
 </a>
 <?php 
-	require_once(INC_PATH.DS.'mobile_object.php');
-	$mobiles = MobileObject::select();
+	require_once(INC_PATH.DS.'wireless_object.php');
+	$mobiles = WirelessObject::select();
 ?>
 <table class='table table-striped'>
 	<tr>
@@ -31,7 +31,7 @@
 			echo "</td>";			
 			// 
 			echo "<td>";
-			echo "<img src='../img/mobile/";
+			echo "<img src='../img/wireless_product/";
 			echo $mobile->img_thumb == null ? "product_image_not_available_200x200.jpg" : $mobile->img_thumb;
 			echo "'>";
 			echo "</td>";

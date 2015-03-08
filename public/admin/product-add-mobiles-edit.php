@@ -1,6 +1,6 @@
 <?php 
 require_once("../../include/initialize.php");
-require_once(INC_PATH.DS.'mobile_object.php');
+require_once(INC_PATH.DS.'wireless_object.php');
 if(!$session->is_logged_in()) header("location: login.php");
 
 if (isset($_POST['submit'])) {
@@ -53,7 +53,7 @@ if (isset($_POST['submit'])) {
 		$updated_['img_front'] = htmlspecialchars($file_name);
 	}
 
-	if(MobileObject::update($updated_mobile)) {
+	if(WirelessObject::update($updated_mobile)) {
 		$reports[] = "<p class='success'>The mobile <em><span>".$updated_mobile['model']."</spam></em> has been added successfully</p>";
 	} else {
 		$reports[] = "<p class='danger'>Failed to add</p>";
@@ -64,7 +64,7 @@ header("location: product-add.php?category=Mobiles");
 
 }
 
-$mobile = MobileObject::select_all($_GET['id']);
+$mobile = WirelessObject::select_all($_GET['id']);
 
 
 ?>
@@ -111,7 +111,7 @@ $mobile = MobileObject::select_all($_GET['id']);
 				<label>Brand:</label><br />
 				<select name='manufacturer'>
 					<?php 
-						$brands = MobileObject::select_from_table("wireless_product_manufacturer");
+						$brands = WirelessObject::select_from_table("wireless_product_manufacturer");
 						echo "<option value='0'>Unknown</option>";
 						foreach ($brands as $brand) {
 							echo "<option value='".$brand->id;
@@ -144,7 +144,7 @@ $mobile = MobileObject::select_all($_GET['id']);
 				<label>CPU:</label><br />
 				<select name='cpu'>
 					<?php 
-						$cpus = MobileObject::select_from_table("wireless_product_cpu","processor");
+						$cpus = WirelessObject::select_from_table("wireless_product_cpu","processor");
 						echo "<option value='0'>Unknown</option>";
 						foreach ($cpus as $cpu) {
 							echo "<option value='".$cpu->id;
@@ -173,7 +173,7 @@ $mobile = MobileObject::select_all($_GET['id']);
 				<label>Storage:</label><br />
 				<select name='hdd'>
 					<?php 
-						$hdds = MobileObject::select_from_table("wireless_product_hdd","internal","external");
+						$hdds = WirelessObject::select_from_table("wireless_product_hdd","internal","external");
 						echo "<option value='0'>Unknown</option>";
 						foreach ($hdds as $hdd) {
 							echo "<option value='".$hdd->id;
@@ -202,7 +202,7 @@ $mobile = MobileObject::select_all($_GET['id']);
 				<label>RAM:</label><br />
 				<select name='ram'>
 					<?php 
-						$rams = MobileObject::select_from_table("wireless_product_ram","capacity");
+						$rams = WirelessObject::select_from_table("wireless_product_ram","capacity");
 						echo "<option value='0'>Unknown</option>";
 						foreach ($rams as $ram) {
 							echo "<option value='".$ram->id;
@@ -233,7 +233,7 @@ $mobile = MobileObject::select_all($_GET['id']);
 				<label>Screen:</label><br />
 				<select name='mornitor'>
 					<?php 
-						$screens = MobileObject::select_from_table("wireless_product_screen","size","type as screen_type","resolution");
+						$screens = WirelessObject::select_from_table("wireless_product_screen","size","type as screen_type","resolution");
 						echo "<option value='0'>Unknown</option>";
 						foreach ($screens as $screen) {
 							echo "<option value='".$screen->id;
@@ -262,7 +262,7 @@ $mobile = MobileObject::select_all($_GET['id']);
 				<label>Operating System:</label><br />
 				<select name='os'>
 					<?php 
-						$oss = MobileObject::select_from_table("wireless_product_os","name");
+						$oss = WirelessObject::select_from_table("wireless_product_os","name");
 						echo "<option value='0'>Unknown</option>";
 						foreach ($oss as $os) {
 							echo "<option value='".$os->id;
