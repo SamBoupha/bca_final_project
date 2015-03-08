@@ -96,18 +96,22 @@ if (isset($table)) {
 
 				
 				} else {
-					echo "on ".htmlspecialchars($table)."</h2>";
-			
+					echo "on ";
+					if ($table == 'wireless_product') {
+						echo "Mobiles";
+					} else {
+						echo htmlspecialchars($table);
+					}
+					
+					echo "</h2>";
 					echo "<table class='order'>";
 					echo "<tr>";
 					echo "<th>index</th>";
 					echo "<th></th>";
 					echo "<th>Date and Time</th>";
 					echo "<th>Order ID</th>";
-					if ($table !== 'all') {
-						echo "<th>".$table." ID</th>";
-						echo "<th>Quantity</th>";
-					}
+					echo "<th>".$table." ID</th>";
+					echo "<th>Quantity</th>";
 					echo "<th>Customer ID</th>";
 					echo "</tr>";
 					$i = 0;
@@ -116,13 +120,11 @@ if (isset($table)) {
 						echo "<td>".++$i."</td>";
 						echo "<td><a href='#'>HIDE<a/></td>";
 						echo "<td>".date("d M Y H:i:s",strtotime($order->order_date))."</td>";
-						if ($table == 'all') {
-							echo "<td>OD".$order->id."</td>";
-						} else {
-							echo "<td>OD".$order->order_id."</td>";
-							echo "<td>".$order->product_id."</td>";
-							echo "<td>".$order->qty."</td>";
-						}	
+						
+						echo "<td>OD".$order->order_id."</td>";
+						echo "<td>".$order->product_id."</td>";
+						echo "<td>".$order->qty."</td>";
+							
 						echo "<td>".$order->customer_id."</td>";
 						echo "</tr>";
 					}
