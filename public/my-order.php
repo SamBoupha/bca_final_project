@@ -53,6 +53,11 @@
 								echo $order->product_id->brand." ".$order->product_id->model."</a></h4>";
 								echo "by ".$order->product_id->brand;
 							}
+							elseif ($order->customer_id == 'wireless_product') {
+								echo "<h4><a href='mobile_detail.php?id=".$order->product_id->id."'>";
+								echo $order->product_id->brand." ".$order->product_id->model."</a></h4>";
+								echo "by ".$order->product_id->brand;
+							}
 
 							echo "<br />Quantity: ".$order->qty;
 							echo "<br />Price per unit: ".number_format($order->price);

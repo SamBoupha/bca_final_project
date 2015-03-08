@@ -23,8 +23,11 @@ if ($_POST['success'] == 1) {
 		if ($product['type'] == 'book') {
 				DatabaseObject::insert($new, 'order_on_book');
 			}
-		if ($product['type'] == 'computer') {
+		elseif ($product['type'] == 'computer') {
 				DatabaseObject::insert($new, 'order_on_computer');
+			}
+		elseif ($product['type'] == 'mobile') {
+				DatabaseObject::insert($new, 'order_on_wireless_product');
 			}	
 	}
 

@@ -1,7 +1,7 @@
 <?php
 require_once(INC_PATH.DS.'db_connection.php');
 
-class MobileObject extends DatabaseObject {
+class WirelessObject extends DatabaseObject {
 
 	public 	$id,
 			$category_id,
@@ -108,16 +108,16 @@ class MobileObject extends DatabaseObject {
 
 	public static function order_select($id) {
 		$sql = "SELECT
-					wireless_product_brand.name as brand,
+					wireless_product_manufacturer.name as brand,
 					wireless_product.model,
 					wireless_product.price,
 					wireless_product.img_thumb
 				FROM 
 					wireless_product
 				LEFT JOIN
-					wireless_product_brand 
+					wireless_product_manufacturer 
 				ON
-					wireless_product.brand_id    = wireless_product_brand.id 
+					wireless_product.manufacturer_id = wireless_product_manufacturer.id 
 				WHERE 
 					wireless_product.id = ".$id;
 

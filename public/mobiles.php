@@ -2,8 +2,8 @@
 <?php $subpage = true; ?>
 <?php include(INC_PATH.DS."header.php"); ?>
 <?php 
-	require_once(INC_PATH.DS.'mobile_object.php'); 
-	$mobiles = mobileObject::select_all($id=null, $limit=16, $public=true, $highlight=false);
+	require_once(INC_PATH.DS.'wireless_object.php'); 
+	$mobiles = WirelessObject::select_all($id=null, $limit=16, $public=true, $highlight=false);
 ?>
 <?php include(INC_PATH.DS."side-nav.php"); ?>
 <section>
@@ -15,7 +15,7 @@
 					echo "<div class='product-thumbnail'>";
 
 					echo "<a href='mobile_detail.php?id=".$mobile->id."'>";
-					echo "<img src='img/mobile/".$mobile->img_thumb."' style='height:100px'>";
+					echo "<img src='img/wireless_product/".$mobile->img_thumb."' style='height:100px'>";
 					echo "<p class='name'>".$mobile->brand." ".$mobile->model;
 					echo "<span class='creator'> by ".$mobile->brand."</span></p>";
 

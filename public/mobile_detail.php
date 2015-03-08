@@ -12,16 +12,16 @@
 ?>
 <?php $subpage = true; $detailPage = true; ?>
 <?php include(INC_PATH.DS."header.php"); ?>
-<?php require_once(INC_PATH.DS.'mobile_object.php') ?>
+<?php require_once(INC_PATH.DS.'wireless_object.php') ?>
 <section>
 	<div class='row'><?php
-		$mobile = MobileObject::select_all(htmlspecialchars($_GET['id']));
+		$mobile = WirelessObject::select_all(htmlspecialchars($_GET['id']));
 		cache_product($mobile->id,$mobile->brand." ".$mobile->model,$mobile->img_thumb,$mobile->price,"mobile");
 	?>
 		<div class="preview col-sm-1"></div>
 		<div class="product-img col-sm-5">
 			<br /><br /><br />
-			<img src="img/mobile/
+			<img src="img/wireless_product/
 					<?php 
 					echo $mobile->img_front == null ? 
 							'product_image_not_available_400x400.jpg' : 

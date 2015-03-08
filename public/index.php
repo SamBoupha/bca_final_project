@@ -53,12 +53,12 @@
 		<div>
 			<div class='product-row'>
 			<?php 
-				include(INC_PATH.DS."mobile_object.php");
-				$mobiles = mobileObject::select($limit=4,$public=true,$highlighted=true);
+				include(INC_PATH.DS."wireless_object.php");
+				$mobiles = WirelessObject::select($limit=4,$public=true,$highlighted=true);
 				foreach ($mobiles as $mobile) {
 					echo "<div class='book-thumb'>";
 					echo "<a href='mobile_detail.php?id=".$mobile->id."''>";
-					echo "<img src='img/mobile/";
+					echo "<img src='img/wireless_product/";
 					echo $mobile->img_thumb;
 					echo "'>";
 					echo "<p class='info'>";

@@ -2,6 +2,7 @@
 require_once(INC_PATH.DS."order_object.php");
 require_once(INC_PATH.DS."book_object.php");
 require_once(INC_PATH.DS."computer_object.php");
+require_once(INC_PATH.DS."wireless_object.php");
 
 $orders = array();
 
@@ -40,6 +41,23 @@ if ($computer_orders = Order::select_order_of_user($customer_session->id,"comput
 	}
 
 	$orders = array_merge($orders, $computer_orders);
+} 
+
+if ($wireless_orders = Order::select_order_of_user($customer_session->id,"wireless_product",$customer_session->recent_order,$list_of_orders[$last_index]->id)) {
+	
+	foreach ($wireless_orders as $order) {
+		// the product _id will be replace by more meaningful details of that product id
+		// but then I figured out that I will still need the product_id so
+		// I cache it in temp then reassigns it back 
+		$temp = $order->product_id;
+		$order->product_id = WirelessObject::order_select($order->product_id);
+		$order->product_id->id = $temp;
+		// since this id prop is free and not relevant here 
+		// so I use it to store category identification instead
+		$order->customer_id = "wireless_product";
+	}
+
+	$orders = array_merge($orders, $wireless_orders);
 } 
 
 ?>
