@@ -16,7 +16,7 @@ class ClothObject extends DatabaseObject {
 			$visibility,
 			$show_at_index_page;
 
-	protected static $table_name = "clothing	";
+	protected static $table_name = "clothing";
 
 	public static function select_all($id) {
 		global $db;
@@ -57,7 +57,7 @@ class ClothObject extends DatabaseObject {
 
 	}
 
-	public static function select($limit=null, $public=false, $highlight=false) {
+	public static function select($category_id, $section_id, $limit=null, $public=false, $highlight=false) {
 
 		$limit = $limit == null ? "" : " LIMIT ".$limit;
 		// The public page should not have shown all the books in the database
@@ -83,11 +83,13 @@ class ClothObject extends DatabaseObject {
 				AND
 					clothing_img.cloth_id = clothing.id 
 				AND
-					clothing.category_id = 1 
-				AND
-					clothing.section_id = 1 
-				AND
-					clothing_img.type_id = 1"
+					clothing.category_id = ".$category_id;
+		$sql .=	
+				" AND
+					clothing.section_id = ".$section_id;
+		$sql .= "
+		         AND 
+					clothing_img.type_id = 1 "
 				.$public.$highlight.$limit;
 
 		return self::instanciate($sql);

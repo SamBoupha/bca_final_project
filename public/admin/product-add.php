@@ -14,7 +14,7 @@ if(!$session->is_logged_in()) header("location: login.php");
 			method='post' 
 			enctype='multipart/form-data'>
 
-			<label>Select Category:</label>&nbsp;&nbsp;&nbsp;
+			<label>Select category:</label>&nbsp;&nbsp;&nbsp;
 			<select name='category' id='category' onchange='load_selection()'>
 				<?php
 
@@ -86,18 +86,16 @@ if(!$session->is_logged_in()) header("location: login.php");
 						echo "<h3>";
 						echo $selected;
 						echo "</h3>";
-						echo "<label>Section:</label>";
-						echo "<select>";
+						echo "<label>Section:</label>&nbsp;&nbsp;";
+						echo "<select class='section'>";
 						echo "<option value='0'>Please select section</option>";
 						echo "<option value='1'>Men</option>";
 						echo "<option value='2'>Women</option>";
-						echo "</select>";
-						echo "<label>Category:</label>";
-						echo "<select>";
+						echo "</select>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+						echo "<label style='display:none'>Category:</label>&nbsp;&nbsp;";
+						echo "<select class='category' style='display:none'>";
 						echo "<option value='0'>Please select category</option>";
-						echo "<option value='1'>Blazer</option>";
-						echo "<option value='2'>Dress</option>";
-						echo "</select>";
+						echo "</select><br /><br />";
 						//include(INC_PATH.DS.'product-add'.DS.'clothes.php');
 					}
 					echo "</div>";
@@ -111,5 +109,35 @@ if(!$session->is_logged_in()) header("location: login.php");
 		function load_selection() {
 			document.getElementById("product_add_form").submit();
 		}
+		var $section_id,
+			$category = $('select.category, label:contains(Category)');
+
+		$('select.section').change( function() {
+			$section_id = $(this).val();
+			$("select.category option[value = '2']").remove();
+			$("select.category option[value = '1']").remove();
+			if ( $section_id == 1 ) {
+				$("<option value='1'>Blazer</option>").appendTo('select.category');
+				$category.show();
+			} else if( $section_id == 2 ) {
+				
+				$("<option value='2'>Dress</option>").appendTo('select.category');
+				$category.show();
+			} else {
+				$category.hide();
+			}
+			$('div#clothes').hide();
+		});
+
+		$('select.category').change( function() {
+			$category_id = $(this).val();
+			$('div#clothes').hide();
+			if($category_id != 0) {
+				$.get('../../include/product-add/clothes.php?category_id='+$category_id+'&section_id='+$section_id,function(data) {
+					$('div.product-add-form').append(data);
+				});
+			} 
+		});
+		
 	</script>
 <?php include(INC_PATH.DS.'footer-admin.php');?>

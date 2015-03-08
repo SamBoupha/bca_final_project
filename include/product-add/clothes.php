@@ -1,11 +1,16 @@
+<div id='clothes'>
 <a href='product-add-clothes-add.php'>
 	<div class="btn btn-success">
 		+ Add new cloth
 	</div>
 </a>
-<?php 
+<?php
+	require_once("../../include/initialize.php"); 
 	require_once(INC_PATH.DS.'cloth_object.php');
-	$clothes = ClothObject::select();
+	$clothes = ClothObject::select($_GET['category_id'],$_GET['section_id']);
+	if (!is_array($clothes)) {
+		$clothes[] = $clothes;
+	}
 ?>
 <table class='table table-striped'>
 	<tr>
@@ -65,5 +70,5 @@
 		}
 	?>
 </table>
-
+</div>
 
