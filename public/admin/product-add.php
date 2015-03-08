@@ -86,7 +86,19 @@ if(!$session->is_logged_in()) header("location: login.php");
 						echo "<h3>";
 						echo $selected;
 						echo "</h3>";
-						include(INC_PATH.DS.'product-add'.DS.'clothes.php');
+						echo "<label>Section:</label>";
+						echo "<select>";
+						echo "<option value='0'>Please select section</option>";
+						echo "<option value='1'>Men</option>";
+						echo "<option value='2'>Women</option>";
+						echo "</select>";
+						echo "<label>Category:</label>";
+						echo "<select>";
+						echo "<option value='0'>Please select category</option>";
+						echo "<option value='1'>Blazer</option>";
+						echo "<option value='2'>Dress</option>";
+						echo "</select>";
+						//include(INC_PATH.DS.'product-add'.DS.'clothes.php');
 					}
 					echo "</div>";
 				}

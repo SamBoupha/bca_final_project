@@ -48,7 +48,7 @@ if (isset($_POST['submit'])) {
 	}
 
 $_SESSION['report'] = $reports;
-header("location: product-add.php?category=cloths");
+header("location: product-add.php?category=clothing");
 }
 
 ?>
