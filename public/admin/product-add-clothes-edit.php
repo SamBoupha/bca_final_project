@@ -42,8 +42,8 @@ if (isset($_POST['submit'])) {
 		unlink($location.$_POST['current_img_thumb']);
 		
 		$new_cloth_img['img'] = htmlspecialchars($file_name);
-		$new_cloth_img['type_id'] = 1;
-		ClothObject::update($new_cloth_img,'clothing_img', 'cloth_id', $new_cloth_img['cloth_id']);
+		
+		ClothObject::update($new_cloth_img,'clothing_img', 'cloth_id', $new_cloth_img['cloth_id'], $new_cloth_img['type_id'] = 1);
 		
 	}	
 
@@ -62,8 +62,8 @@ if (isset($_POST['submit'])) {
 		unlink($location.$_POST['current_img_front']);
 	
 		$new_cloth_img['img'] = htmlspecialchars($file_name);
-		$new_cloth_img['type_id'] = 2;
-		ClothObject::update($new_cloth_img,'clothing_img', 'cloth_id', $new_cloth_img['cloth_id']);
+		
+		ClothObject::update($new_cloth_img,'clothing_img', 'cloth_id', $new_cloth_img['cloth_id'], $new_cloth_img['type_id'] = 2);
 	
 	}
 
@@ -83,8 +83,8 @@ if (isset($_POST['submit'])) {
 		unlink($location.$_POST['current_img_body']);
 		
 		$new_cloth_img['img'] = htmlspecialchars($file_name);
-		$new_cloth_img['type_id'] = 3;
-		ClothObject::update($new_cloth_img,'clothing_img', 'cloth_id', $new_cloth_img['cloth_id']);
+		
+		ClothObject::update($new_cloth_img,'clothing_img', 'cloth_id', $new_cloth_img['cloth_id'], $new_cloth_img['type_id'] = 3);
 		
 	}
 
