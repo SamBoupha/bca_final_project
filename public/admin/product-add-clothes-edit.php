@@ -11,7 +11,7 @@ if (isset($_POST['submit'])) {
 	$updated_cloth['qty_s'] 	  = htmlspecialchars($_POST['qty_s']);
 	$updated_cloth['qty_m'] 	  = htmlspecialchars($_POST['qty_m']);
 	$updated_cloth['qty_l'] 	  = htmlspecialchars($_POST['qty_l']);
-	$updated_cloth['description'] = htmlspecialchars($_POST['description']);
+	$updated_cloth['description'] = $_POST['description'];
 	$updated_cloth['visibility'] = htmlspecialchars($_POST['visibility']);
 	$updated_cloth['show_at_index_page'] = htmlspecialchars($_POST['show_at_index_page']);
 	$updated_cloth['category_id'] = $_POST['category'];
@@ -114,8 +114,8 @@ $clothing = ClothObject::select_all($_GET['id']);
 							$hide = "selected";
 						}
 					?>
-					<option value='0' > NO </option>	
-					<option value='1' > YES </option>
+					<option value='0' <?php echo $hide ?> >NO</option>	
+					<option value='1' <?php echo $show ?> >YES</option>
 				</select>
 			</div>
 			<div>
@@ -128,8 +128,8 @@ $clothing = ClothObject::select_all($_GET['id']);
 							$hide = "selected";
 						}
 					?>
-					<option value='0' class='danger'>HIDE</option>	
-					<option value='1' class='success'>SHOW</option>
+					<option value='0' <?php echo $hide ?> class='danger'>HIDE</option>	
+					<option value='1' <?php echo $show ?> class='success'>SHOW</option>
 				</select>
 			</div>
 			<div>
@@ -242,7 +242,7 @@ $clothing = ClothObject::select_all($_GET['id']);
 			</div>
 			<div>
 				<label>Product Description</label><br />
-				<textarea name='description' cols='100' rows='20'>value="<?php echo $clothing->description ?>"</textarea>
+				<textarea name='description' cols='100' rows='20'><?php echo $clothing->description ?></textarea>
 			</div>
 			<div>
 				<label>Select Thumbnail Image of the cloth (200x200px):</label>

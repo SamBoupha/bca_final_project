@@ -51,7 +51,7 @@
 	</div><br /><br /><br /> <!-- End of the first row -->
 	<div class="row description">
 		<div class='book-intro'>
-			<?php echo htmlspecialchars_decode($cloth->description); ?>
+			<?php echo nl2br($cloth->description); ?>
 
 		</div>
 		<!-- <div class='about-author'>
