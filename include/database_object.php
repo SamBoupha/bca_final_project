@@ -89,7 +89,7 @@
 
 			$result = $db->execute_query($sql);
 			//$db->close_connection();
-			return $db->get_affected_rows();
+			return $db->get_last_id();
 		}
 
 		public static function delete($id) {

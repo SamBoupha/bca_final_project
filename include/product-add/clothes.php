@@ -1,9 +1,10 @@
 <div id='clothes'>
-<a href='product-add-clothes-add.php'>
+<a class='link' href=''>
 	<div class="btn btn-success">
 		+ Add new cloth
 	</div>
 </a>
+
 <?php
 	require_once("../../include/initialize.php"); 
 	require_once(INC_PATH.DS.'cloth_object.php');

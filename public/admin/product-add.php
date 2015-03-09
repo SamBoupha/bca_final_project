@@ -9,10 +9,9 @@ if(!$session->is_logged_in()) header("location: login.php");
 	<section>
 		<div>
 		<h2>Product Editing: Add new product</h2><br />
-		<form id='product_add_form' 
+		<form id='form_product_add' 
 			action='<?php echo htmlspecialchars($_SERVER['PHP_SELF'])?>' 
-			method='post' 
-			enctype='multipart/form-data'>
+			method='post'>
 
 			<label>Select category:</label>&nbsp;&nbsp;&nbsp;
 			<select name='category' id='category' onchange='load_selection()'>
@@ -39,6 +38,7 @@ if(!$session->is_logged_in()) header("location: login.php");
 					}
 				?>
 			</select>
+		</form>
 			<?php
 				if (isset($_SESSION['report'])) {
 					$reports = $_SESSION['report'];
@@ -96,21 +96,20 @@ if(!$session->is_logged_in()) header("location: login.php");
 						echo "<select class='category' style='display:none'>";
 						echo "<option value='0'>Please select category</option>";
 						echo "</select><br /><br />";
-						//include(INC_PATH.DS.'product-add'.DS.'clothes.php');
 					}
 					echo "</div>";
 				}
 			?>
-		</form>
 	</div>
 	</section>
 	<script type="text/javascript">
 		// This refreshes the page when dropdown menu is selected
 		function load_selection() {
-			document.getElementById("product_add_form").submit();
+			document.getElementById("form_product_add").submit();
 		}
 		var $section_id,
-			$category = $('select.category, label:contains(Category)');
+			$category = $('select.category, label:contains(Category)'),
+			_href = 'product-add-clothes-add.php';
 
 		$('select.section').change( function() {
 			$section_id = $(this).val();
@@ -118,6 +117,7 @@ if(!$session->is_logged_in()) header("location: login.php");
 			$("select.category option[value = '1']").remove();
 			if ( $section_id == 1 ) {
 				$("<option value='1'>Blazer</option>").appendTo('select.category');
+
 				$category.show();
 			} else if( $section_id == 2 ) {
 				
@@ -133,10 +133,18 @@ if(!$session->is_logged_in()) header("location: login.php");
 			$category_id = $(this).val();
 			$('div#clothes').hide();
 			if($category_id != 0) {
-				$.get('../../include/product-add/clothes.php?category_id='+$category_id+'&section_id='+$section_id,function(data) {
+				$.get('../../include/product-add/clothes.php?category_id='+$category_id+'&section_id='+$section_id, function(data) {
 					$('div.product-add-form').append(data);
+					
+					// Because we append href, to prevent user from reselecting the choice
+					// and accidentally appended wrong url that's why we need to clean it
+					// everytime the select has been change
+					a_link = $('a.link');
+					a_link.attr('href','');
+
+					a_link.attr('href',_href+'?section_id='+$section_id+'&category_id='+$category_id);
 				});
-			} 
+			}; 
 		});
 		
 	</script>

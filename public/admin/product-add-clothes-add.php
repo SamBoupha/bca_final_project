@@ -5,50 +5,92 @@ if(!$session->is_logged_in()) header("location: login.php");
 
 if (isset($_POST['submit'])) {
 
-	$new_cloth['brand_id'] = htmlspecialchars($_POST['brand']);
-	$new_cloth['name'] = htmlspecialchars($_POST['name']);
-	$new_cloth['price'] = htmlspecialchars($_POST['price']);
-	$new_cloth['quantity'] = htmlspecialchars($_POST['quantity']);
+	$new_cloth['brand_id'] 	  = htmlspecialchars($_POST['brand']);
+	$new_cloth['name'] 		  = htmlspecialchars($_POST['name']);
+	$new_cloth['price']	      = htmlspecialchars($_POST['price']);
+	$new_cloth['qty_s'] 	  = htmlspecialchars($_POST['qty_s']);
+	$new_cloth['qty_m'] 	  = htmlspecialchars($_POST['qty_m']);
+	$new_cloth['qty_l'] 	  = htmlspecialchars($_POST['qty_l']);
 	$new_cloth['description'] = htmlspecialchars($_POST['description']);
+	$new_cloth['category_id'] = $_POST['category_id'];
+	$new_cloth['section_id']  = $_POST['section_id'];
+
 
 	$location = "..".DS."img".DS."clothing".DS;
 	$reports = array();
 
-	if (isset($_FILES['img_thumb']['tmp_name'])) {
-		$location .= $_FILES['img_thumb']['name']; 
-		if (move_uploaded_file($_FILES['img_thumb']['tmp_name'], $location)) {
-			$new_cloth['img_thumb'] = htmlspecialchars($_POST['img_thumb']);
-		} else {
-			$reports[] = "<p class='danger'>Thumbnail image was failed to upload</p>";
-		}
-	}
-
-	if (isset($_FILES['img_front']['tmp_name'])) {
-		$location .= $_FILES['img_front']['name']; 
-		if (move_uploaded_file($_FILES['img_front']['tmp_name'], $location)) {
-			$new_cloth['img_front'] = htmlspecialchars($_POST['img_front']);
-		} else {
-			$reports[] = "<p class='danger'>Front image was failed to upload</p>";
-		}
-	}
-
-	if (isset($_FILES['img_back']['tmp_name'])) {
-		$location .= $_FILES['img_back']['name']; 
-		if (move_uploaded_file($_FILES['img_back']['tmp_name'], $location)) {
-			$new_cloth['img_back'] = htmlspecialchars($_POST['img_back']);
-		} else {
-			$reports[] = "<p class='danger'>Back image was failed to upload</p>";
-		}
-	}
-
-	if(ClothObject::insert($new_cloth)) {
+	if($new_cloth_img['cloth_id'] = ClothObject::insert($new_cloth)) {
 		$reports[] = "<p class='success'>A new cloth has been added successfully</p>";
 	} else {
 		$reports[] = "<p class='danger'>Technical problem. Failed to upload</p>";
 	}
 
+	if (!empty($_FILES['img_thumb']['tmp_name'])) {
+		$file_name = $_FILES['img_thumb']['name'];
+		$new_file = $location.$file_name; 
+		
+		if(file_exists($new_file)) {
+			
+			$file_name = substr($file_name,0,strlen($file_name)-4)."(1)".substr($file_name,strlen($file_name)-4);
+			$new_file = $location.$file_name;
+		}
+		
+		if (!move_uploaded_file($_FILES['img_thumb']['tmp_name'], $new_file)) {
+			$reports[] = "<p class='danger'>Thumbnail image was failed to upload</p>";
+		}
+		unlink($location.$_POST['current_img_thumb']);
+		if ($new_cloth_img['cloth_id']) {
+			$new_cloth_img['img'] = htmlspecialchars($file_name);;
+			$new_cloth_img['type_id'] = 1;
+			ClothObject::insert($new_cloth_img,'clothing_img');
+		}
+	}	
+
+	if (!empty($_FILES['img_front']['tmp_name'])) {
+		$file_name = $_FILES['img_front']['name'];
+		$new_file = $location.$_FILES['img_front']['name']; 
+		if(file_exists($new_file)) {
+
+			$file_name = substr($file_name,0,strlen($file_name)-4)."(1)".substr($file_name,strlen($file_name)-4);
+			$new_file = $location.$file_name;
+		}
+		
+		if (!move_uploaded_file($_FILES['img_front']['tmp_name'], $new_file)) {
+			$reports[] = "<p class='danger'>Front image was failed to upload</p>";
+		}
+		unlink($location.$_POST['current_img_front']);
+		if ($new_cloth_img['cloth_id']) {
+			$new_cloth_img['img'] = htmlspecialchars($file_name);
+			$new_cloth_img['type_id'] = 2;
+			ClothObject::insert($new_cloth_img,'clothing_img');
+		}
+	
+	}
+
+	if (!empty($_FILES['img_body']['tmp_name'])) {
+		$file_name = $_FILES['img_body']['name'];
+		$new_file = $location.$_FILES['img_body']['name']; 
+		
+		if(file_exists($new_file)) {
+			
+			$file_name = substr($file_name,0,strlen($file_name)-4)."(1)".substr($file_name,strlen($file_name)-4);
+			$new_file = $location.$file_name;
+		}
+
+		if (!move_uploaded_file($_FILES['img_body']['tmp_name'], $new_file)) {
+				$reports[] = "<p class='danger'>Whole body image was failed to upload</p>";
+			}
+		unlink($location.$_POST['current_img_body']);
+		if ($new_cloth_img['cloth_id']) {
+			$new_cloth_img['img'] = htmlspecialchars($file_name);
+			$new_cloth_img['type_id'] = 3;
+			ClothObject::insert($new_cloth_img,'clothing_img');
+		}
+	}
+
+	
 $_SESSION['report'] = $reports;
-header("location: product-add.php?category=clothing");
+header("location: product-add.php?category=Clothing");
 }
 
 ?>
@@ -102,7 +144,7 @@ header("location: product-add.php?category=clothing");
 			</div>
 			<div>
 				<label>Name:</label><br />
-				<input type='text' name='name' value="<?php echo $_POST['title']?>" placeholder='Name of this clothes'>
+				<input type='text' name='name' value="<?php echo $_POST['name']?>" placeholder='Name of this clothes'>
 			</div>
 			<div class='input-price'>
 				<label>Price:</label><br />
@@ -110,8 +152,16 @@ header("location: product-add.php?category=clothing");
 			</div>
 			
 			<div>
-				<label>Quantity:</label><br />
-				<input type='text' name='quantity'><br />
+				<label>Quantity: S Size</label><br />
+				<input type='text' name='qty_s'><br />
+			</div>
+			<div>
+				<label>Quantity: M Size</label><br />
+				<input type='text' name='qty_m'><br />
+			</div>
+			<div>
+				<label>Quantity: L Size</label><br />
+				<input type='text' name='qty_l'><br />
 			</div>
 			<div>
 				<label>Product Description</label><br />
@@ -125,6 +175,12 @@ header("location: product-add.php?category=clothing");
 				<label>Select Front Image of the cloth (400x400px):</label>
 			<input type='file' name='img_front'>
 			</div>
+			<div>
+				<label>Select Whole body Image of the cloth (400x400px):</label>
+			<input type='file' name='img_body'>
+			</div>
+			<input type='hidden' name='category_id' value='<?php echo $_GET['category_id']; ?>'>
+			<input type='hidden' name='section_id' value='<?php echo $_GET['section_id']; ?>'>
 			<input type='submit' class='btn btn-default' name='submit' value='Upload'>
 		</form>
 	</div>
@@ -148,7 +204,7 @@ $( function() {
 	// with below elements
 	$('a#new_brand').click( function() {
 		$('div.lightOut').fadeIn();
-		$('<input type="text" id="name" name="name" class="name">').insertBefore('input#cancel');
+		$('<input type="text" id="name" name="brand" class="name">').insertBefore('input#cancel');
 		$('<label>Brand Name:</label><br />').insertBefore('input.name');
 
 			position();

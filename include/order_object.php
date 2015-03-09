@@ -74,31 +74,31 @@ class Order extends DatabaseObject {
 	}
 
 	// $new should come in the form of assoc array
-	public static function insert($new, $table_name=null) {
-		global $db;
-		$sql1 = "";
-		$sql2 = "";
+	// public static function insert($new, $table_name=null) {
+	// 	global $db;
+	// 	$sql1 = "";
+	// 	$sql2 = "";
 
-		foreach ($new as $key => $value) {
-			$sql1 .= "`".$db->prep_sql($key)."`,";
-			$sql2 .= "'".$db->prep_sql($value)."',";
-		}
+	// 	foreach ($new as $key => $value) {
+	// 		$sql1 .= "`".$db->prep_sql($key)."`,";
+	// 		$sql2 .= "'".$db->prep_sql($value)."',";
+	// 	}
 
-		$sql1 = substr($sql1, 0,strlen($sql1)-1);
-		$sql2 = substr($sql2, 0,strlen($sql2)-1);
+	// 	$sql1 = substr($sql1, 0,strlen($sql1)-1);
+	// 	$sql2 = substr($sql2, 0,strlen($sql2)-1);
 
-		$sql  = "INSERT INTO ";
-		$sql .= $table_name == null ? static::$table_name : $table_name;
-		$sql .= " (";
-		$sql .= $sql1;
-		$sql .= ") VALUES (";
-		$sql .= $sql2;
-		$sql .= ")";
+	// 	$sql  = "INSERT INTO ";
+	// 	$sql .= $table_name == null ? static::$table_name : $table_name;
+	// 	$sql .= " (";
+	// 	$sql .= $sql1;
+	// 	$sql .= ") VALUES (";
+	// 	$sql .= $sql2;
+	// 	$sql .= ")";
 
-		$result = $db->execute_query($sql);
-		//$db->close_connection();
-		return $db->get_last_id();
-	}
+	// 	$result = $db->execute_query($sql);
+	// 	//$db->close_connection();
+	// 	return $db->get_last_id();
+	// }
 
 	protected static function instanciate($sql) {
 
