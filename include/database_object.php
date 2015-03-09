@@ -103,22 +103,32 @@
 		}
 
 		// updates should come in a form assoc array
-		public static function update($updates) {
+		public static function update($updates, $table=null, $where_column=null, $where_value=null) {
 			global $db;
+			if ($where_column == null && $where_value == null) {
+				$where = " WHERE id=".$db->prep_sql($updates['id']);
+			} else {
+				$where = " WHERE ".$where_column." = ".$db->prep_sql($where_value);
+			}
 
-			$sql = "UPDATE ".static::$table_name." SET ";
+			if ($table == null) {
+				$table = static::$table_name;
+			} 
+
+			$sql = "UPDATE ".$table." SET ";
 			$sql1 = "";
 			foreach ($updates as $key => $value) {
 				$sql1 .= "`".$db->prep_sql($key)."`"."='".$db->prep_sql($value)."',";
 			}
 			$sql1 = substr($sql1, 0, strlen($sql1)-1);
 
-			$sql .= $sql1." WHERE id=".$db->prep_sql($updates['id']);
+			$sql .= $sql1.$where;
 
 			$result = $db->execute_query($sql);
 			//$db->close_connection();
 
-			return $db->get_affected_rows();
+			return $sql;
+			//return $db->get_affected_rows();
 			
 		}
 

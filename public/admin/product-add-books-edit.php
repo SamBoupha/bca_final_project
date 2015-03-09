@@ -71,11 +71,13 @@ $updated_book['show_at_index_page']   = htmlspecialchars($_POST['show_at_index_p
 		$updated_book['img_back'] = htmlspecialchars($file_name);
 	}
 
-	if(BookObject::update($updated_book)) {
+	if($q=BookObject::update($updated_book)) {
 		$reports[] = "<p class='success'>The book <em><span>".$updated_book['title']."</spam></em> has been editted successfully</p>";
 	} else {
 		$reports[] = "<p class='danger'>Failed to edit</p>";
 	}
+
+	echo $q;
 
 
 $_SESSION['report'] = $reports;

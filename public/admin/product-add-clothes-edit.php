@@ -4,23 +4,24 @@ require_once(INC_PATH.DS.'cloth_object.php');
 if(!$session->is_logged_in()) header("location: login.php");
 
 if (isset($_POST['submit'])) {
-
-	$new_cloth['brand_id'] 	  = htmlspecialchars($_POST['brand']);
-	$new_cloth['name'] 		  = htmlspecialchars($_POST['name']);
-	$new_cloth['price']	      = htmlspecialchars($_POST['price']);
-	$new_cloth['qty_s'] 	  = htmlspecialchars($_POST['qty_s']);
-	$new_cloth['qty_m'] 	  = htmlspecialchars($_POST['qty_m']);
-	$new_cloth['qty_l'] 	  = htmlspecialchars($_POST['qty_l']);
-	$new_cloth['description'] = htmlspecialchars($_POST['description']);
-	$new_cloth['category_id'] = $_POST['category_id'];
-	$new_cloth['section_id']  = $_POST['section_id'];
-
+	$updated_cloth['id'] = $new_cloth_img['cloth_id'] = $_POST['id'];
+	$updated_cloth['brand_id'] 	  = htmlspecialchars($_POST['brand']);
+	$updated_cloth['name'] 		  = htmlspecialchars($_POST['name']);
+	$updated_cloth['price']	      = htmlspecialchars($_POST['price']);
+	$updated_cloth['qty_s'] 	  = htmlspecialchars($_POST['qty_s']);
+	$updated_cloth['qty_m'] 	  = htmlspecialchars($_POST['qty_m']);
+	$updated_cloth['qty_l'] 	  = htmlspecialchars($_POST['qty_l']);
+	$updated_cloth['description'] = htmlspecialchars($_POST['description']);
+	$updated_cloth['visibility'] = htmlspecialchars($_POST['visibility']);
+	$updated_cloth['show_at_index_page'] = htmlspecialchars($_POST['show_at_index_page']);
+	$updated_cloth['category_id'] = $_POST['category'];
+	$updated_cloth['section_id']  = $_POST['section'];
 
 	$location = "..".DS."img".DS."clothing".DS;
 	$reports = array();
 
-	if($new_cloth_img['cloth_id'] = ClothObject::insert($new_cloth)) {
-		$reports[] = "<p class='success'>A new cloth has been added successfully</p>";
+	if(ClothObject::update($updated_cloth)) {
+		$reports[] = "<p class='success'>The selected cloth has been updated successfully</p>";
 	} else {
 		$reports[] = "<p class='danger'>Technical problem. Failed to upload</p>";
 	}
@@ -38,12 +39,12 @@ if (isset($_POST['submit'])) {
 		if (!move_uploaded_file($_FILES['img_thumb']['tmp_name'], $new_file)) {
 			$reports[] = "<p class='danger'>Thumbnail image was failed to upload</p>";
 		}
-
-		if ($new_cloth_img['cloth_id']) {
-			$new_cloth_img['img'] = htmlspecialchars($file_name);;
-			$new_cloth_img['type_id'] = 1;
-			ClothObject::insert($new_cloth_img,'clothing_img');
-		}
+		unlink($location.$_POST['current_img_thumb']);
+		
+		$new_cloth_img['img'] = htmlspecialchars($file_name);
+		$new_cloth_img['type_id'] = 1;
+		ClothObject::update($new_cloth_img,'clothing_img', 'cloth_id', $new_cloth_img['cloth_id']);
+		
 	}	
 
 	if (!empty($_FILES['img_front']['tmp_name'])) {
@@ -58,12 +59,11 @@ if (isset($_POST['submit'])) {
 		if (!move_uploaded_file($_FILES['img_front']['tmp_name'], $new_file)) {
 			$reports[] = "<p class='danger'>Front image was failed to upload</p>";
 		}
-
-		if ($new_cloth_img['cloth_id']) {
-			$new_cloth_img['img'] = htmlspecialchars($file_name);
-			$new_cloth_img['type_id'] = 2;
-			ClothObject::insert($new_cloth_img,'clothing_img');
-		}
+		unlink($location.$_POST['current_img_front']);
+	
+		$new_cloth_img['img'] = htmlspecialchars($file_name);
+		$new_cloth_img['type_id'] = 2;
+		ClothObject::update($new_cloth_img,'clothing_img', 'cloth_id', $new_cloth_img['cloth_id']);
 	
 	}
 
@@ -80,12 +80,12 @@ if (isset($_POST['submit'])) {
 		if (!move_uploaded_file($_FILES['img_body']['tmp_name'], $new_file)) {
 				$reports[] = "<p class='danger'>Whole body image was failed to upload</p>";
 			}
-
-		if ($new_cloth_img['cloth_id']) {
-			$new_cloth_img['img'] = htmlspecialchars($file_name);
-			$new_cloth_img['type_id'] = 3;
-			ClothObject::insert($new_cloth_img,'clothing_img');
-		}
+		unlink($location.$_POST['current_img_body']);
+		
+		$new_cloth_img['img'] = htmlspecialchars($file_name);
+		$new_cloth_img['type_id'] = 3;
+		ClothObject::update($new_cloth_img,'clothing_img', 'cloth_id', $new_cloth_img['cloth_id']);
+		
 	}
 
 	
@@ -93,6 +93,7 @@ $_SESSION['report'] = $reports;
 header("location: product-add.php?category=Clothing");
 }
 
+$clothing = ClothObject::select_all($_GET['id']);
 ?>
 
 <?php include(INC_PATH.DS.'header-admin.php');?>
@@ -106,6 +107,13 @@ header("location: product-add.php?category=Clothing");
 			<div>
 				<label>Show on first page:</label>
 				<select name='show_at_index_page'>
+					<?php
+						if ($clothing->show_at_index_page == 1) {
+							$show = "selected";
+						} else {
+							$hide = "selected";
+						}
+					?>
 					<option value='0' > NO </option>	
 					<option value='1' > YES </option>
 				</select>
@@ -113,9 +121,74 @@ header("location: product-add.php?category=Clothing");
 			<div>
 				<label>Visibility:</label>
 				<select name='visibility'>
+					<?php
+						if ($clothing->visibility == 1) {
+							$show = "selected";
+						} else {
+							$hide = "selected";
+						}
+					?>
 					<option value='0' class='danger'>HIDE</option>	
 					<option value='1' class='success'>SHOW</option>
 				</select>
+			</div>
+			<div>
+				<label>Section:</label><br />
+				<select name='section'>
+					<?php 
+						$sections = ClothObject::select_from_table("clothing_section");
+						echo "<option value='0'>Unknown</option>";
+						foreach ($sections as $section) {
+							echo "<option value='".$section->id;
+
+							if (strpos($section->name,'--')) {
+								$section->name = str_replace("--", " ─────", $section->name);
+								$section->name = "───── ".$section->name;
+								echo "' disabled";
+							} else {
+								echo "'";
+							}
+
+							if ($clothing->section == $section->id) {
+								echo " selected ";
+							}
+
+							echo ">";
+							echo $section->name;
+							echo "</option>";
+						}
+					?>
+				</select>
+				&nbsp;&nbsp;&nbsp;&nbsp;<a href="#" id='new_section'>+ Quick add new section</a>
+			</div>
+			<div>
+				<label>Category:</label><br />
+				<select name='category'>
+					<?php 
+						$categories = ClothObject::select_from_table("clothing_category");
+						echo "<option value='0'>Unknown</option>";
+						foreach ($categories as $category) {
+							echo "<option value='".$category->id;
+
+							if (strpos($category->name,'--')) {
+								$category->name = str_replace("--", " ─────", $category->name);
+								$category->name = "───── ".$category->name;
+								echo "' disabled";
+							} else {
+								echo "'";
+							}
+
+							if ($clothing->category == $category->id) {
+								echo " selected ";
+							}
+
+							echo ">";
+							echo $category->name;
+							echo "</option>";
+						}
+					?>
+				</select>
+				&nbsp;&nbsp;&nbsp;&nbsp;<a href="#" id='new_category'>+ Quick add new category</a>
 			</div>
 			<div>
 				<label>Brand:</label><br />
@@ -134,6 +207,10 @@ header("location: product-add.php?category=Clothing");
 								echo "'";
 							}
 
+							if ($clothing->brand == $brand->id) {
+								echo " selected ";
+							}
+
 							echo ">";
 							echo $brand->name;
 							echo "</option>";
@@ -144,44 +221,46 @@ header("location: product-add.php?category=Clothing");
 			</div>
 			<div>
 				<label>Name:</label><br />
-				<input type='text' name='name' value="<?php echo $_POST['name']?>" placeholder='Name of this clothes'>
+				<input type='text' name='name' value="<?php echo $clothing->name ?>" placeholder='Name of this clothes'>
 			</div>
 			<div class='input-price'>
 				<label>Price:</label><br />
-				<span>Rs.</span><input type="text" name='price'>
+				<span>Rs.</span><input type="text" name='price' value="<?php echo $clothing->price ?>">
 			</div>
 			
 			<div>
 				<label>Quantity: S Size</label><br />
-				<input type='text' name='qty_s'><br />
+				<input type='text' name='qty_s' value="<?php echo $clothing->qty_s ?>"><br />
 			</div>
 			<div>
 				<label>Quantity: M Size</label><br />
-				<input type='text' name='qty_m'><br />
+				<input type='text' name='qty_m' value="<?php echo $clothing->qty_m ?>"><br />
 			</div>
 			<div>
 				<label>Quantity: L Size</label><br />
-				<input type='text' name='qty_l'><br />
+				<input type='text' name='qty_l' value="<?php echo $clothing->qty_l ?>"><br />
 			</div>
 			<div>
 				<label>Product Description</label><br />
-				<textarea name='description' cols='100' rows='20'></textarea>
+				<textarea name='description' cols='100' rows='20'>value="<?php echo $clothing->description ?>"</textarea>
 			</div>
 			<div>
 				<label>Select Thumbnail Image of the cloth (200x200px):</label>
 				<input type='file' name='img_thumb'>
+				<input type='hidden' name='current_img_thumb' value='<?php echo $clothing->img_thumb ?>'>
 			</div>
 			<div>
 				<label>Select Front Image of the cloth (400x400px):</label>
-			<input type='file' name='img_front'>
+				<input type='file' name='img_front'>
+				<input type='hidden' name='current_img_front' value='<?php echo $clothing->img_front ?>'>
 			</div>
 			<div>
 				<label>Select Whole body Image of the cloth (400x400px):</label>
 			<input type='file' name='img_body'>
+			<input type='hidden' name='current_img_whole_body' value='<?php echo $clothing->img_whole_body ?>'>
 			</div>
-			<input type='hidden' name='category_id' value='<?php echo $_GET['category_id']; ?>'>
-			<input type='hidden' name='section_id' value='<?php echo $_GET['section_id']; ?>'>
-			<input type='submit' class='btn btn-default' name='submit' value='Upload'>
+			<input type='hidden' name='id' value='<?php echo $_GET['id'] ?>'>
+			<input type='submit' class='btn btn-default' name='submit' value='Update'>
 		</form>
 	</div>
 	</section>

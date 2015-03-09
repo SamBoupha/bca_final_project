@@ -10,6 +10,9 @@ class ClothObject extends DatabaseObject {
 			$name,
 			$price,
 			$description,
+			$qty_s,
+			$qty_m,
+			$qty_l,
 			$img_thumb,
 			$img_front,
 			$img_whole,
@@ -21,37 +24,27 @@ class ClothObject extends DatabaseObject {
 	public static function select_all($id) {
 		global $db;
 
-		$sql = "select 
-					book.id, 
-					book.title,
-					book.price, 
-					book.quantity, 
-					book.year, 
-					book.length, 
-					book.intro, 
-					books_author.name as author,
-					books_author.about as author_about, 
-					books_category.name as category, 
-					books_publisher.name as publisher, 
-					book.img_front, 
-					book.img_back,
-					book.img_thumb,
-					book.visibility,
-					book.show_at_index_page 
-				from 
-					book, 
-					books_author, 
-					books_category, 
-					books_publisher 
-				where 
-					book.author_id = books_author.id 
-				and 
-					book.category_id = books_category.id 
-				and 
-					book.publisher_id = books_publisher.id
-				and 
-					book.id = ";
-			$sql .= $id;
+		$sql = " SELECT 
+					clothing.id,
+					clothing.category_id as category,
+					clothing.section_id as section, 
+					clothing_brand.id as brand, 
+					clothing.name, 
+					clothing.price, 
+					clothing.description, 
+					clothing.qty_s, 
+					clothing.qty_m, 
+					clothing.qty_l, 
+					clothing.visibility, 
+					clothing.show_at_index_page 
+				FROM 
+					clothing, 
+					clothing_brand
+				WHERE
+					clothing.id = ".$id.
+				"
+				AND
+					clothing.brand_id = clothing_brand.id";
 
 		return self::instanciate($sql);
 
