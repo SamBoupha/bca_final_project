@@ -144,6 +144,7 @@ div.item img {
 	background-color: white;
 	padding: 2em;
 	padding-bottom: 5em;
+	overflow: hidden;
 }
 
 .product-thumbnail-section h2 {
@@ -191,6 +192,7 @@ p.price {
 }
 
 footer {
+	clear: both;
 	margin-top: 2em;
 	margin-left: 16.5%;
 }

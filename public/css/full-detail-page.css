@@ -17,6 +17,20 @@ section {
 	opacity: .8;
 }
 
+ul.size_select {
+	margin-top: 2em;		
+}
+
+ul.size_select li.btn {
+	display: inline;
+	margin-right: .5em;
+	border: 1px solid gray;
+}
+
+ul.size_select li.btn:hover, .selected {
+	background-color: #F6CD00;
+}
+
 section .btn {
 	width: 10em;
 	font-size: 1.5em;

@@ -7,6 +7,7 @@ class ClothObject extends DatabaseObject {
 			$section,
 			$category,
 			$brand,
+			$brand_name,
 			$name,
 			$price,
 			$description,
@@ -29,20 +30,27 @@ class ClothObject extends DatabaseObject {
 					clothing.category_id as category,
 					clothing.section_id as section, 
 					clothing_brand.id as brand, 
+					clothing_brand.name as brand_name,
 					clothing.name, 
 					clothing.price, 
 					clothing.description, 
 					clothing.qty_s, 
 					clothing.qty_m, 
-					clothing.qty_l, 
+					clothing.qty_l,
+					clothing_img.img as img_whole, 
 					clothing.visibility, 
 					clothing.show_at_index_page 
 				FROM 
 					clothing, 
-					clothing_brand
+					clothing_brand,
+					clothing_img
 				WHERE
 					clothing.id = ".$id.
 				"
+				AND
+					clothing_img.cloth_id = clothing.id 
+				AND
+					clothing_img.type_id = 3 
 				AND
 					clothing.brand_id = clothing_brand.id";
 
@@ -54,7 +62,7 @@ class ClothObject extends DatabaseObject {
 
 		$limit = $limit == null ? "" : " LIMIT ".$limit;
 		// The public page should not have shown all the books in the database
-		$public = $public ? " WHERE clothing.visibility = 1 " :
+		$public = $public ? " AND clothing.visibility = 1 " :
 					 " ORDER BY clothing.show_at_index_page DESC ";
 		// Highlight at index page ?
 		$highlight = $highlight ? " AND clothing.show_at_index_page = 1 " : "";

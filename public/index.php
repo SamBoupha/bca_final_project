@@ -77,6 +77,58 @@
 		</div>
 		</div>
 		<br /><br /><br /><br /><br />
+		<h2>Clothing (Men)</h2>
+		<div class='product-row'>
+			<?php 
+				include_once(INC_PATH.DS."cloth_object.php");
+				$clothes = ClothObject::select(1,1,$limit=4,$public=true,$highlighted=true);
+				foreach ($clothes as $cloth) {
+					echo "<div class='book-thumb'>";
+					echo "<a href='cloth_detail.php?id=".$cloth->id."''>";
+					echo "<img src='img/clothing/";
+					echo $cloth->img_thumb;
+					echo "' style='height:125px'>";
+					echo "<p class='info'>";
+					echo $cloth->brand." ".$cloth->name;
+					echo "</p>";
+					echo "</a>";
+					echo "<p class='price'>Rs. ";
+					echo number_format($cloth->price);
+					echo "</p>";
+					echo "</div>";
+				}
+				echo "<a href='clothes.php?section=1&category=1'> <div class='view-all'>";
+				echo "View all";
+				echo "</div></a>";
+			?>
+		</div>
+		<br /><br /><br /><br /><br />
+		<h2>Clothing (Women)</h2>
+		<div class='product-row'>
+			<?php 
+				include_once(INC_PATH.DS."cloth_object.php");
+				$clothes = ClothObject::select(2,2,$limit=4,$public=true,$highlighted=true);
+				foreach ($clothes as $cloth) {
+					echo "<div class='book-thumb'>";
+					echo "<a href='cloth_detail.php?id=".$cloth->id."''>";
+					echo "<img src='img/clothing/";
+					echo $cloth->img_thumb;
+					echo "' style='height:125px'>";
+					echo "<p class='info'>";
+					echo $cloth->brand." ".$cloth->name;
+					echo "</p>";
+					echo "</a>";
+					echo "<p class='price'>Rs. ";
+					echo number_format($cloth->price);
+					echo "</p>";
+					echo "</div>";
+				}
+				echo "<a href='clothes.php?section=2&category=2'> <div class='view-all'>";
+				echo "View all";
+				echo "</div></a>";
+			?>
+		</div>
+		<br /><br /><br /><br /><br />
 		<h2>Books</h2>
 		<div class='product-row'>
 			<?php 
@@ -100,17 +152,6 @@
 				echo "<a href='books.php'> <div class='view-all'>";
 				echo "View all";
 				echo "</div></a>";
-			?>
-		</div>
-		<br /><br /><br /><br /><br />
-		<h2>Clothing</h2>
-		<div>
-			<?php 
-				// $dirPath = "img".DS."computer";
-				// $images = imgSrcAutoGen($dirPath);
-				// foreach ($images as $image) {
-				// 	echo $image;
-				// }
 			?>
 		</div>
 	</div> <!--	product thumbnail -->
