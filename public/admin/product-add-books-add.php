@@ -18,31 +18,54 @@ if (isset($_POST['submit'])) {
 	$location = "..".DS."img".DS."book".DS;
 	$reports = array();
 
-	if (isset($_FILES['img_thumb']['tmp_name'])) {
-		$location .= $_FILES['img_thumb']['name']; 
-		if (move_uploaded_file($_FILES['img_thumb']['tmp_name'], $location)) {
-			$new_book['img_thumb'] = htmlspecialchars($_POST['img_thumb']);
-		} else {
+	if (!empty($_FILES['img_thumb']['tmp_name'])) {
+		$file_name = $_FILES['img_thumb']['name'];
+		$new_file = $location.$file_name; 
+		
+		if(file_exists($new_file)) {
+			
+			$file_name = substr($file_name,0,strlen($file_name)-4)."(1)".substr($file_name,strlen($file_name)-4);
+			$new_file = $location.$file_name;
+		}
+		
+		if (!move_uploaded_file($_FILES['img_thumb']['tmp_name'], $new_file)) {
 			$reports[] = "<p class='danger'>Thumbnail image was failed to upload</p>";
 		}
-	}
+		unlink($location.$_POST['current_img_thumb']);
+		$new_book['img_thumb'] = htmlspecialchars($file_name);
+	}	
 
-	if (isset($_FILES['img_front']['tmp_name'])) {
-		$location .= $_FILES['img_front']['name']; 
-		if (move_uploaded_file($_FILES['img_front']['tmp_name'], $location)) {
-			$new_book['img_front'] = htmlspecialchars($_POST['img_front']);
-		} else {
+	if (!empty($_FILES['img_front']['tmp_name'])) {
+		$file_name = $_FILES['img_front']['name'];
+		$new_file = $location.$_FILES['img_front']['name']; 
+		if(file_exists($new_file)) {
+
+			$file_name = substr($file_name,0,strlen($file_name)-4)."(1)".substr($file_name,strlen($file_name)-4);
+			$new_file = $location.$file_name;
+		}
+		
+		if (!move_uploaded_file($_FILES['img_front']['tmp_name'], $new_file)) {
 			$reports[] = "<p class='danger'>Front image was failed to upload</p>";
 		}
+		unlink($location.$_POST['current_img_front']);
+		$new_book['img_front'] = htmlspecialchars($file_name);
 	}
 
-	if (isset($_FILES['img_back']['tmp_name'])) {
-		$location .= $_FILES['img_back']['name']; 
-		if (move_uploaded_file($_FILES['img_back']['tmp_name'], $location)) {
-			$new_book['img_back'] = htmlspecialchars($_POST['img_back']);
-		} else {
-			$reports[] = "<p class='danger'>Back image was failed to upload</p>";
+	if (!empty($_FILES['img_back']['tmp_name'])) {
+		$file_name = $_FILES['img_back']['name'];
+		$new_file = $location.$_FILES['img_back']['name']; 
+		
+		if(file_exists($new_file)) {
+			
+			$file_name = substr($file_name,0,strlen($file_name)-4)."(1)".substr($file_name,strlen($file_name)-4);
+			$new_file = $location.$file_name;
 		}
+
+		if (!move_uploaded_file($_FILES['img_back']['tmp_name'], $new_file)) {
+				$reports[] = "<p class='danger'>Back image was failed to upload</p>";
+			}
+		unlink($location.$_POST['current_img_back']);
+		$new_book['img_back'] = htmlspecialchars($file_name);
 	}
 
 	if(BookObject::insert($new_book)) {
