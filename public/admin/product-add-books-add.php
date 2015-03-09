@@ -31,7 +31,7 @@ if (isset($_POST['submit'])) {
 		if (!move_uploaded_file($_FILES['img_thumb']['tmp_name'], $new_file)) {
 			$reports[] = "<p class='danger'>Thumbnail image was failed to upload</p>";
 		}
-		unlink($location.$_POST['current_img_thumb']);
+
 		$new_book['img_thumb'] = htmlspecialchars($file_name);
 	}	
 
@@ -47,7 +47,7 @@ if (isset($_POST['submit'])) {
 		if (!move_uploaded_file($_FILES['img_front']['tmp_name'], $new_file)) {
 			$reports[] = "<p class='danger'>Front image was failed to upload</p>";
 		}
-		unlink($location.$_POST['current_img_front']);
+
 		$new_book['img_front'] = htmlspecialchars($file_name);
 	}
 
@@ -64,7 +64,7 @@ if (isset($_POST['submit'])) {
 		if (!move_uploaded_file($_FILES['img_back']['tmp_name'], $new_file)) {
 				$reports[] = "<p class='danger'>Back image was failed to upload</p>";
 			}
-		unlink($location.$_POST['current_img_back']);
+
 		$new_book['img_back'] = htmlspecialchars($file_name);
 	}
 
@@ -163,7 +163,7 @@ header("location: product-add.php?category=Books");
 						$publishers = BookObject::select_from_table("books_publisher");
 						echo "<option value='0'>Unknown</option>";
 						foreach ($publishers as $publisher) {
-							echo "<option value='".$category->id;
+							echo "<option value='".$publisher->id;
 
 							if (strpos($publisher->name,'--')) {
 								$publisher->name = str_replace("--", " ─────", $publisher->name);
