@@ -14,9 +14,11 @@ class ClothObject extends DatabaseObject {
 			$qty_s,
 			$qty_m,
 			$qty_l,
+			$img,
+			$img_type,
 			$img_thumb,
 			$img_front,
-			$img_whole,
+			$img_whole_body,
 			$visibility,
 			$show_at_index_page;
 
@@ -36,21 +38,15 @@ class ClothObject extends DatabaseObject {
 					clothing.description, 
 					clothing.qty_s, 
 					clothing.qty_m, 
-					clothing.qty_l,
-					clothing_img.img as img_whole, 
+					clothing.qty_l, 
 					clothing.visibility, 
 					clothing.show_at_index_page 
 				FROM 
 					clothing, 
-					clothing_brand,
-					clothing_img
+					clothing_brand
 				WHERE
 					clothing.id = ".$id.
 				"
-				AND
-					clothing_img.cloth_id = clothing.id 
-				AND
-					clothing_img.type_id = 3 
 				AND
 					clothing.brand_id = clothing_brand.id";
 
@@ -115,35 +111,60 @@ class ClothObject extends DatabaseObject {
 	}
 
 	// updates should come in a form assoc array
-		public static function update_img($updates, $table=null, $where_column=null, $where_value=null, $type_id=null) {
-			global $db;
-			if ($where_column == null && $where_value == null && $type_id == null) {
-				$where = " WHERE id=".$db->prep_sql($updates['id']);
-			} else {
-				$where  = " WHERE ".$where_column." = ".$db->prep_sql($where_value);
-				$where .= " AND type_id=".$type_id;
-			}
-
-			if ($table == null) {
-				$table = static::$table_name;
-			} 
-
-			$sql = "UPDATE ".$table." SET ";
-			$sql1 = "";
-			foreach ($updates as $key => $value) {
-				$sql1 .= "`".$db->prep_sql($key)."`"."='".$db->prep_sql($value)."',";
-			}
-			$sql1 = substr($sql1, 0, strlen($sql1)-1);
-
-			$sql .= $sql1.$where;
-
-			$result = $db->execute_query($sql);
-			//$db->close_connection();
-
-			return $sql;
-			//return $db->get_affected_rows();
-			
+	public static function update_img($updates, $table=null, $where_column=null, $where_value=null, $type_id=null) {
+		global $db;
+		if ($where_column == null && $where_value == null && $type_id == null) {
+			$where = " WHERE id=".$db->prep_sql($updates['id']);
+		} else {
+			$where  = " WHERE ".$where_column." = ".$db->prep_sql($where_value);
+			$where .= " AND type_id=".$type_id;
 		}
+
+		if ($table == null) {
+			$table = static::$table_name;
+		} 
+
+		$sql = "UPDATE ".$table." SET ";
+		$sql1 = "";
+		foreach ($updates as $key => $value) {
+			$sql1 .= "`".$db->prep_sql($key)."`"."='".$db->prep_sql($value)."',";
+		}
+		$sql1 = substr($sql1, 0, strlen($sql1)-1);
+
+		$sql .= $sql1.$where;
+
+		$result = $db->execute_query($sql);
+		//$db->close_connection();
+
+		return $sql;
+		//return $db->get_affected_rows();
+		
+	}
+
+	public static function select_cloth_img_of_id($cloth_id) {
+		$sql = "SELECT type_id, img FROM clothing_img WHERE cloth_id = ".$cloth_id;
+
+		// this will return objects of images because images are stored in different rows
+		$cloth_imgs = self::instanciate($sql);
+	
+		foreach ($cloth_imgs as $cloth_img) {
+			if ($cloth_img->type_id == 1) {
+				$img['img_thumb']= $cloth_img->img;
+			} elseif ($cloth_img->type_id == 2) {
+				$img['img_front'] = $cloth_img->img;
+			} elseif ($cloth_img->type_id == 3) {
+				$img['img_whole_body'] = $cloth_img->img;
+			} elseif ($cloth_img->type_id == 4) {
+				$img['img_back'] = $cloth_img->img;
+			}
+		}
+		// since images are stored in different rows. It's hard to merge it into the
+		// one row. So the better way is to put it all in one assoc array
+		// then retrieve that img according to its key
+		return $img;
+	}
+
+
 
 }
 

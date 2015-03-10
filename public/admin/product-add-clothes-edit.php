@@ -4,7 +4,7 @@ require_once(INC_PATH.DS.'cloth_object.php');
 if(!$session->is_logged_in()) header("location: login.php");
 
 if (isset($_POST['submit'])) {
-	$updated_cloth['id'] = $new_cloth_img['cloth_id'] = $_POST['id'];
+	$updated_cloth['id'] = $_POST['id'];
 	$updated_cloth['brand_id'] 	  = htmlspecialchars($_POST['brand']);
 	$updated_cloth['name'] 		  = htmlspecialchars($_POST['name']);
 	$updated_cloth['price']	      = htmlspecialchars($_POST['price']);
@@ -43,7 +43,7 @@ if (isset($_POST['submit'])) {
 		
 		$new_cloth_img['img'] = htmlspecialchars($file_name);
 		
-		ClothObject::update($new_cloth_img,'clothing_img', 'cloth_id', $new_cloth_img['cloth_id'], $new_cloth_img['type_id'] = 1);
+		ClothObject::update_img($new_cloth_img,'clothing_img', 'cloth_id', $_POST['id'], 1);
 		
 	}	
 
@@ -63,7 +63,7 @@ if (isset($_POST['submit'])) {
 	
 		$new_cloth_img['img'] = htmlspecialchars($file_name);
 		
-		ClothObject::update($new_cloth_img,'clothing_img', 'cloth_id', $new_cloth_img['cloth_id'], $new_cloth_img['type_id'] = 2);
+		ClothObject::update_img($new_cloth_img, 'clothing_img', 'cloth_id', $_POST['id'], 2);
 	
 	}
 
@@ -84,11 +84,11 @@ if (isset($_POST['submit'])) {
 		
 		$new_cloth_img['img'] = htmlspecialchars($file_name);
 		
-		ClothObject::update($new_cloth_img,'clothing_img', 'cloth_id', $new_cloth_img['cloth_id'], $new_cloth_img['type_id'] = 3);
+		ClothObject::update_img($new_cloth_img,'clothing_img', 'cloth_id', $_POST['id'], 3);
 		
 	}
 
-	
+
 $_SESSION['report'] = $reports;
 header("location: product-add.php?category=Clothing");
 }
@@ -103,7 +103,7 @@ $clothing = ClothObject::select_all($_GET['id']);
 	<section>
 		<div class='product-add-book-form'>
 		<h2>cloth Editing: Add new cloths</h2>
-		<form class='product-add-books' action='<?php echo htmlspecialchars($_SERVER['PHP_SELF'])?>' method='post' enctype='multipart/form-data'>
+		<form class='product-add-books' action='<?php echo htmlspecialchars($_SERVER['PHP_SELF']) ?>' method='post' enctype='multipart/form-data'>
 			<div>
 				<label>Show on first page:</label>
 				<select name='show_at_index_page'>

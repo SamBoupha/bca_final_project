@@ -15,17 +15,21 @@
 <section>
 	<div class='row'>
 		<?php
-			$cloth = ClothObject::select_all(htmlspecialchars($_GET['id']));
-			cache_product($cloth->id,$cloth->brand." ".$cloth->name,$cloth->img_thumb,$cloth->price,"clothing");
+			$cloth = ClothObject::select_all($_GET['id']);
+			// since I chose to store img in another table. it's hard to retrieve all
+			// relevant imgs along with the cloth
+			// for now we will have two variables one deals with cloth another with its imgs
+			$cloth_imgs = ClothObject::select_cloth_img_of_id($_GET['id']);
+			cache_product($cloth->id,$cloth->brand." ".$cloth->name,$cloth_imgs['img_thumb'],$cloth->price,"clothing");
 		?>
 
 		<div class="preview col-sm-1"></div>
 		<div class="product-img col-sm-5">
 			<img src="img/clothing/
 					<?php 
-					echo $cloth->img_whole == null ? 
+					echo $cloth_imgs['img_whole_body'] == null ? 
 							'product_image_not_available_400x400.jpg' : 
-							$cloth->img_whole;
+							$cloth_imgs['img_whole_body'];
 					 ?>
 			">
 		</div>
