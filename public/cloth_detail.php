@@ -20,7 +20,11 @@
 			// relevant imgs along with the cloth
 			// for now we will have two variables one deals with cloth another with its imgs
 			$cloth_imgs = ClothObject::select_cloth_img_of_id($_GET['id']);
-			cache_product($cloth->id,$cloth->brand_name." ".$cloth->name,$cloth_imgs['img_thumb'],$cloth->price,"clothing");
+			cache_product(	$cloth->id,
+							$cloth->brand_name." ".$cloth->name,
+							$cloth_imgs['img_thumb'],
+							$cloth->price,
+							"clothing"); // <----- folder name where imgs of the product locate
 		?>
 
 		<div class="preview col-sm-1"></div>

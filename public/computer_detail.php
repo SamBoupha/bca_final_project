@@ -16,7 +16,10 @@
 <section>
 	<div class='row'><?php
 		$computer = ComputerObject::select_all(htmlspecialchars($_GET['id']));
-		cache_product($computer->id,$computer->brand." ".$computer->model,$computer->img_thumb,$computer->price,"computer");
+		cache_product($computer->id,
+					  $computer->brand." ".$computer->model,
+					  $computer->img_thumb,
+					  $computer->price,"computer"); // <----- folder name where img of the product locates
 	?>
 		<div class="preview col-sm-1"></div>
 		<div class="product-img col-sm-5">

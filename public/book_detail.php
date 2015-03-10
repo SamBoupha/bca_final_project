@@ -16,7 +16,11 @@
 	<div class='row'>
 		<?php
 			$book = BookObject::select_all(htmlspecialchars($_GET['id']));
-			cache_product($book->id,$book->title,$book->img_thumb,$book->price,"book");
+			cache_product(	$book->id,
+							$book->title,
+							$book->img_thumb,
+							$book->price,
+							"book"); // <----- folder name where imgs of the product locate
 		?>
 
 		<div class="preview col-sm-1"></div>

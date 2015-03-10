@@ -16,7 +16,10 @@
 <section>
 	<div class='row'><?php
 		$mobile = WirelessObject::select_all(htmlspecialchars($_GET['id']));
-		cache_product($mobile->id,$mobile->brand." ".$mobile->model,$mobile->img_thumb,$mobile->price,"mobile");
+		cache_product($mobile->id, 
+			 $mobile->brand." ".$mobile->model,
+			 $mobile->img_thumb,$mobile->price,
+			 "wireless_product"); // <----- folder name where img of the product locates
 	?>
 		<div class="preview col-sm-1"></div>
 		<div class="product-img col-sm-5">
