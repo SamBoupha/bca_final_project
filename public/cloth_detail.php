@@ -65,15 +65,19 @@
 	</div>
 </section> <!-- main body section-->
 <script type="text/javascript">
+	var size_selected;
 	$('ul.size_select li').click( function() {
 		$('ul *').removeClass('selected');
 		$(this).addClass('selected');
+		size_selected = $(this).text();
 		$('div.product-detail h4').removeClass('warning');
 	});
 
 	$('form#buy').submit( function(e) {
 		if($('ul.size_select li').hasClass('selected')) { 
 			return; 
+			$.post('../include/clothes_size_select.php',
+					{ size:size_selected , index: <?php echo get_items_in_the_cart(); ?>});
 		}
 
 		$('div.product-detail h4').addClass('warning');
