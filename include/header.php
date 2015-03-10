@@ -4,7 +4,7 @@
 		<meta charset="UTF-8">
 		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
 		<link rel="stylesheet" type="text/css" href="css/main.css">
-		<!-- if it is subpage then link this css in -->
+		<!-- if it is a subpage then link this css in -->
 		<?php 
 			if($subpage) {
 				echo '<link rel="stylesheet" type="text/css" href="css/subpage.css">';

@@ -63,6 +63,9 @@
 			$_SESSION['cart'][0]['quantity'] = 1;
 		} else {
 			$last = sizeof($_SESSION['cart']);
+			if ($cache['type'] == 'clothing') {
+				$last--;
+			}
 			$_SESSION['cart'][$last]['id'] = $cache['id'];
 			$_SESSION['cart'][$last]['name'] = $cache['name'];
 			$_SESSION['cart'][$last]['thumbnail'] = $cache['thumbnail'];

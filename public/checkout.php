@@ -22,7 +22,6 @@
 		<div class='col-md-8 product-summary'>
 		<?php
 		$sum = $sub_total = 0;
-
 		if (isset($_SESSION['cart']) && !empty($_SESSION['cart'])) {
 			$products = $_SESSION['cart'];
 			for ($i=0, $j=sizeof($products); $i < $j ; $i++) { 
@@ -34,6 +33,11 @@
 						echo "<div class='row product-name'>";
 							echo $products[$i]['name'];
 						echo "</div>";
+						if (isset($products[$i]['size'])) {
+							echo "<div class='row clothes_size'>";
+								echo "Size: ".$products[$i]['size'];
+							echo "</div>";
+						}
 						echo "<div class='row product-delivery'>";
 							echo "Free Delivery.<br />Delivered in 3 business days.";
 						echo "</div>";

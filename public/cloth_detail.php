@@ -75,9 +75,9 @@
 
 	$('form#buy').submit( function(e) {
 		if($('ul.size_select li').hasClass('selected')) { 
-			return; 
 			$.post('../include/clothes_size_select.php',
-					{ size:size_selected , index: <?php echo get_items_in_the_cart(); ?>});
+					{ size:size_selected });
+						return;
 		}
 
 		$('div.product-detail h4').addClass('warning');
