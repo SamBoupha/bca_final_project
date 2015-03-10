@@ -1,15 +1,12 @@
 <?php 
 require_once("../../include/initialize.php");
 require_once(INC_PATH.DS.'order_object.php');
-require_once(INC_PATH.DS.'book_object.php');
-require_once(INC_PATH.DS.'computer_object.php');
+
 if(!$session->is_logged_in()) header("location: login.php");
 $table = htmlspecialchars($_GET['q']);
-if (isset($table)) {
-	if ($table !== 'all') {
-		Order::set_table_name("order_on_".$table);
-	}
-
+if (isset($table) && $table !== 'all') {
+	
+	Order::set_table_name("order_on_".$table);
 	$orders = Order::select_all($limit=10);
 	if (is_object($orders)) {
 		$temp = clone $orders;
@@ -45,7 +42,7 @@ if (isset($table)) {
 							LIMIT 10 ";
 
 					$orders = Order::select_by_query($sql);
-			
+					// the main idea here is similar to view_order on the public page 
 					foreach ($orders as $order) {
 						// $order->product_id field contains irrelevant values
 						// so I reuse it to store more details coming from database
@@ -54,11 +51,17 @@ if (isset($table)) {
 						$order->product_id[] = Order::select_by_order_id($order->id);
 						Order::set_table_name("order_on_computer");
 						$order->product_id[] = Order::select_by_order_id($order->id);
+						Order::set_table_name("order_on_wireless_product");
+						$order->product_id[] = Order::select_by_order_id($order->id);
+						Order::set_table_name("order_on_clothing");
+						$order->product_id[] = Order::select_by_order_id($order->id);
 					}
+					print_r($orders);
 					
-					// after foreach $orders[0]->product_id[0] = book category
+					// after foreach $orders[0]->product_id[0] is equal to book category
 					// whereas $orders[0]->product_id[1] indicates computer
-
+					// $orders[0]->product_id[2] = wireless_product
+					// and $orders[0]->product_id[3] = clothing
 					foreach ($orders as $order) {
 						echo "<table class='all-order'>";
 						echo "<tr data-order-id = ".$order->id.">";
@@ -67,16 +70,29 @@ if (isset($table)) {
 						echo "<span class='remove'><a href='#'>HIDE</a></span></th></tr>";
 						
 						echo "<tr><td>";
-						for ($i=0; $i < 2; $i++) { 
+						// iterates through 4 product categories
+						for ($i=0; $i < 4; $i++) { 
 							if ($i==0 && !empty($order->product_id[$i])) {
 								foreach ($order->product_id[$i] as $item ) {
-									echo "BookID ".$item->product_id;
-									echo " X".$item->qty."<br />";
+									echo "BookID = ".$item->product_id;
+									echo " x".$item->qty."<br />";
 								}
 							} elseif ($i==1 && !empty($order->product_id[$i])) {
 								foreach ($order->product_id[$i] as $item ) {
-									echo "ComputerID ".$item->product_id;
-									echo " X".$item->qty."<br />";
+									echo "ComputerID = ".$item->product_id;
+									echo " x".$item->qty."<br />";
+								}
+							} elseif ($i==2 && !empty($order->product_id[$i])) {
+								foreach ($order->product_id[$i] as $item ) {
+									echo "MobileID = ".$item->product_id;
+									echo " x".$item->qty."<br />";
+								}
+							} elseif ($i==3 && !empty($order->product_id[$i])) {
+								foreach ($order->product_id[$i] as $item ) {
+									echo "ClothingID = ".$item->product_id;
+									echo " x".$item->qty;
+									echo " Size: ".$item->size;
+									echo "<br />";
 								}
 							}
 						}
@@ -93,8 +109,10 @@ if (isset($table)) {
 						echo "</tr></table>";
 
 					}
-
-				
+				/*
+					these will be displayed if individual order is selected to
+					be viewed
+				*/
 				} else {
 					echo "on ";
 					if ($table == 'wireless_product') {
