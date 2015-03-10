@@ -26,9 +26,14 @@ if ($_POST['success'] == 1) {
 		elseif ($product['type'] == 'computer') {
 				DatabaseObject::insert($new, 'order_on_computer');
 			}
-		elseif ($product['type'] == 'mobile') {
+		elseif ($product['type'] == 'wireless_product') {
 				DatabaseObject::insert($new, 'order_on_wireless_product');
-			}	
+			}
+		elseif ($product['type'] == 'clothing') {
+				$new['size'] = $product['size'];
+				DatabaseObject::insert($new, 'order_on_clothing');
+				unset($new['size']);
+			}		
 	}
 
 $update['total_order'] = $customer_session->total_order+1;
