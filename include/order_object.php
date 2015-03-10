@@ -52,7 +52,7 @@ class Order extends DatabaseObject {
 		return self::instanciate($sql);
 	}
 
-	public static function get_last_orders($customer_id, $recent_order_id, $offset=0, $limit=5) {
+	public static function get_last_x_orders($customer_id, $recent_order_id, $offset=0, $limit=5) {
 		global $db;
 		$limit = " limit ".$limit;
 		$offset = " offset ".$offset;

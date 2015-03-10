@@ -21,14 +21,17 @@
 			if (isset($no_order)) {
 				echo "<h3>".$no_order."</h3>";
 			} else {
+				// this holds the last 5 transactions
 				foreach($list_of_orders as $list_of_order) { 
 
 					$j = 0;
-					
+					// those 5 transactions' orders are merge in one big orders
 					foreach ($orders as $order) {
-						
+						// iterating through each order to group them according to
+						// transaction and order by date placed
 						if ($order->order_id == $list_of_order->id) {
-							
+							// this creates a card like view of the detail of the transaction
+							// meaning each transaction has its own div
 							if ($j == 0) {
 
 								echo "<div class='date'><span class='less_important'>Order id:</span> #OD".$order->order_id." <span class='less_important'><span>|</span> Placed on ".date("D, d M Y",strtotime($order->order_date))."</span></div><br />";
