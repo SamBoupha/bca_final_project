@@ -2,7 +2,6 @@
 require_once("../../include/initialize.php");
 require_once(INC_PATH.DS.'cloth_object.php');
 if(!$session->is_logged_in()) header("location: login.php");
-
 if (isset($_POST['submit'])) {
 
 	$new_cloth['brand_id'] 	  = htmlspecialchars($_POST['brand']);
@@ -11,8 +10,10 @@ if (isset($_POST['submit'])) {
 	$new_cloth['qty_s'] 	  = htmlspecialchars($_POST['qty_s']);
 	$new_cloth['qty_m'] 	  = htmlspecialchars($_POST['qty_m']);
 	$new_cloth['qty_l'] 	  = htmlspecialchars($_POST['qty_l']);
-	$new_cloth['description'] = htmlspecialchars($_POST['description']);
-	$new_cloth['category_id'] = $_POST['category_id'];
+	$new_cloth['description'] = $_POST['description'];
+	$new_cloth['visibility']  = $_POST['visibility'];
+	$new_cloth['show_at_index_page'] = $_POST['show_at_index_page'];
+ 	$new_cloth['category_id'] = $_POST['category_id'];
 	$new_cloth['section_id']  = $_POST['section_id'];
 
 
@@ -204,7 +205,7 @@ $( function() {
 	// with below elements
 	$('a#new_brand').click( function() {
 		$('div.lightOut').fadeIn();
-		$('<input type="text" id="name" name="brand" class="name">').insertBefore('input#cancel');
+		$('<input type="text" id="name" name="name" class="name">').insertBefore('input#cancel');
 		$('<label>Brand Name:</label><br />').insertBefore('input.name');
 
 			position();

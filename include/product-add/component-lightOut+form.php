@@ -10,7 +10,7 @@ if(isset($_POST['add'])) {
 
 <div class='lightOut'>
 	<!-- A master quick add form that will change according to the link clicked -->
-	<form id='add_new' name='add_new' method='post' action="<?php echo $_SERVER['PHP_SELF'].'?id='.$_GET['id'] ?>">
+	<form id='add_new' name='add_new' method='post' action="<?php echo $_SERVER['REQUEST_URI'] ?>">
 		
 		
 		<input type='button' id='cancel' value='Cancel' class='btn btn-default'>

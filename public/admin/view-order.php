@@ -56,7 +56,7 @@ if (isset($table) && $table !== 'all') {
 						Order::set_table_name("order_on_clothing");
 						$order->product_id[] = Order::select_by_order_id($order->id);
 					}
-					print_r($orders);
+					//print_r($orders);
 					
 					// after foreach $orders[0]->product_id[0] is equal to book category
 					// whereas $orders[0]->product_id[1] indicates computer
