@@ -8,6 +8,7 @@ class Order extends DatabaseObject {
 		   $order_date,
 		   $qty,
 		   $amount,
+		   $size,
 		   $order_id,
 		   $shipping_address,
 		   $shipping_state,
@@ -36,8 +37,16 @@ class Order extends DatabaseObject {
 	}
 
 	public static function select_order_of_user($customer_id, $table_name, $recent_order_id, $min) {
-	
-		$sql = "SELECT id, order_id, product_id, order_date, qty, price 
+		if ($table_name == 'clothing') {
+			$size = ', size';
+		}
+
+		$sql = "SELECT  id, 
+						order_id, 
+						product_id, 
+						order_date, 
+						qty, 
+						price {$size} 
 				FROM order_on_".$table_name." where order_id <= ".$recent_order_id." and order_id >= ".$min." and customer_id = ".$customer_id;
 		
 		return self::instanciate($sql);

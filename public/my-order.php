@@ -58,13 +58,19 @@
 								echo $order->product_id->brand." ".$order->product_id->model."</a></h4>";
 								echo "by ".$order->product_id->brand;
 							}
-
+							elseif ($order->customer_id == 'clothing') {
+								echo "<h4><a href='cloth_detail.php?id=".$order->product_id->id."'>";
+								echo $order->product_id->brand_name." ".$order->product_id->name."</a></h4>";
+								echo "by ".$order->product_id->brand_name;
+								echo "<br />Size: ".$order->size;
+							}
 							echo "<br />Quantity: ".$order->qty;
 							echo "<br />Price per unit: ".number_format($order->price);
 							echo "</div>";	
 							echo "</div>";
 						}
 					}
+
 					echo "</div>";
 					echo "<div class='col-md-4 total'>";
 					echo "<span class='total-order'>Total: ".number_format($list_of_order->amount)."</span>";

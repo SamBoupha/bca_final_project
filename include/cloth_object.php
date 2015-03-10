@@ -11,6 +11,7 @@ class ClothObject extends DatabaseObject {
 			$name,
 			$price,
 			$description,
+			$size,
 			$qty_s,
 			$qty_m,
 			$qty_l,
@@ -94,18 +95,21 @@ class ClothObject extends DatabaseObject {
 	}
 
 	public static function order_select($id) {
-		$sql = "SELECT book.title,
-					   books_author.name as author,
-					   book.price, 
-					   book.img_thumb 
+		$sql = "SELECT clothing.name,
+					   clothing_brand.name as brand_name,
+					   clothing_img.img as img_thumb 
 				FROM 
-					   book 
-				LEFT JOIN 
-					   books_author
-				ON 
-					   book.author_id = books_author.id 
+					   clothing,
+					   clothing_brand,
+					   clothing_img
 				WHERE
-					   book.id = ".$id;
+					   clothing.id = {$id}
+				AND
+					   clothing_brand.id = clothing.brand_id 
+				AND 
+					   clothing_img.cloth_id = clothing.id
+				AND
+					   clothing_img.type_id = 1";
 				
 		return self::select_by_query($sql);
 	}
