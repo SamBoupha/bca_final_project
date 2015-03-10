@@ -39,15 +39,15 @@
 		</div>
 		<div class='product-detail col-sm-5'>
 			<h2><?php echo $cloth->brand_name." ".$cloth->name ?></h2><br />
-			<h4>Please select your size:<br />
+			<h4>Please select your size:</h4><br />
 				<ul class='size_select'>
 					<li class='btn'>S</li>
 					<li class='btn'>M</li>
 					<li class='btn'>L</li>
 				</ul>				
-			</h4><br />
+			<br />
 			<h3>Rs. <?php echo number_format($cloth->price) ?></h3><br /><br />
-			<form method='post'>
+			<form id='buy' method='post'>
 				<button class='btn btn-warning' name='add_to_cart'>ADD TO CART</button>
 				<button class='btn btn-success' name='buy_now'>
 					<img src="img/shopping_bag_tag_price-128.png">BUY NOW
@@ -62,17 +62,24 @@
 			<?php echo nl2br($cloth->description); ?>
 
 		</div>
-		<!-- <div class='about-author'>
-			<h3>About Author</h3>
-			<p><?php echo $cloth->author_about ?></p>
-		</div> -->
 	</div>
 </section> <!-- main body section-->
 <script type="text/javascript">
-	$('ul li').click( function() {
+	$('ul.size_select li').click( function() {
 		$('ul *').removeClass('selected');
 		$(this).addClass('selected');
+		$('div.product-detail h4').removeClass('warning');
 	});
+
+	$('form#buy').submit( function(e) {
+		if($('ul.size_select li').hasClass('selected')) { 
+			return; 
+		}
+
+		$('div.product-detail h4').addClass('warning');
+		e.preventDefault();
+	});
+
 </script>
 
 <?php include(INC_PATH.DS."footer.php"); ?>

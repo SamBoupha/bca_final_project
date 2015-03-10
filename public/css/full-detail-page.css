@@ -18,7 +18,7 @@ section {
 }
 
 ul.size_select {
-	margin-top: 2em;		
+	margin-top: 1em;		
 }
 
 ul.size_select li.btn {
@@ -29,6 +29,11 @@ ul.size_select li.btn {
 
 ul.size_select li.btn:hover, .selected {
 	background-color: #F6CD00;
+}
+
+.warning {
+	color: red;
+	font-size: 1.5em;
 }
 
 section .btn {
