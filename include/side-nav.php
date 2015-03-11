@@ -12,13 +12,13 @@
 				<li><a href='#'>Men<span class='glyphicon glyphicon-chevron-right'></span></a>
 					<ul class='sub_menu'>
 						<!-- js in the footer will add href once it's clicked -->
-						<a><li>Blazer</span></li></a>
+						<a><li><img src='img/tuxedo.png'>&nbsp;&nbsp;&nbsp;Blazer</span></li></a>
 					</ul>
 				</li>
 				<li class='last'><a href='#'>Women<span class='glyphicon glyphicon-chevron-right'></span></a>
 					<ul class='sub_menu'>
 						<!-- js in the footer will add href once it's clicked -->
-						<a><li>Dress</span></li></a>
+						<a><li><img src='img/dress.png'>&nbsp;&nbsp;&nbsp;Dress</span></li></a>
 					</ul>
 				</li>	
 			</ul>
