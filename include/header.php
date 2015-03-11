@@ -48,8 +48,10 @@
 		<header>
 				<div class="col-md-12">
 					<a href="index.php"><img class='logo' style="height:54px;" src="img/abc-opt.png"></a>
-					<input type='text' name='search_box' placeholder='Search for a product, category or brand'>
-					<input type='button' class='btn btn-primary' name='search' value='SEARCH'>
+					<form method='get' action='search.php'>
+						<input type='text' name='search_box' placeholder='Search for a product, category or brand'>
+						<input type='submit' class='btn btn-primary' value='SEARCH'>
+					</form>
 					<a href='checkout.php'><div class='cart btn'>
 						<span></span>
 						<img src="img/cart.png">

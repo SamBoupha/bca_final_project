@@ -41,11 +41,23 @@
 		<script type="text/javascript" src="js/jquery.js"></script>
 		<script type="text/javascript" src="js/bootstrap.min.js"></script>
 		<script type="text/javascript">
+		// <<< to manipulate login drop_down
 		$('div.account').hover( function() { $('.dropdown-menu').show() }, 
 								function() { $('.dropdown-menu').hide(); });
 
 		$('.dropdown-toggle').dropdown();
-			
+		// >>>
+		
+		// <<< needed to manipulate side_nav
+		$('ul.sub_menu a > li:contains(Dress)').click( function() {
+			$('ul.sub_menu a').attr('href','clothes.php?section=2&category=2');
+		});
+
+		$('ul.sub_menu a > li:contains(Blazer)').click( function() {
+			$('ul.sub_menu a').attr('href','clothes.php?section=1&category=1');
+		});
+		// >>>
+
 		</script>
 	</body>
 </html>
