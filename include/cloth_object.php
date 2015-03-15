@@ -168,7 +168,50 @@ class ClothObject extends DatabaseObject {
 		return $img;
 	}
 
+	public static function search($values) {
+		$sql = "SELECT 
+					clothing.id, 
+					clothing_brand.name as brand, 
+					clothing.name, 
+					clothing.price, 
+					clothing_img.img as img_thumb
+				FROM 
+					clothing, 
+					clothing_brand, 
+					clothing_img 
+				WHERE
+					clothing.brand_id = clothing_brand.id 
+				AND
+					clothing_img.cloth_id = clothing.id 
+				AND 
+					clothing_img.type_id = 1
+				AND
+					clothing.visibility = 1
+				AND
+					clothing.id IN (";
+						
+				foreach ($values as $value) {
+					$sql .= $value.",";
+				}
 
+		$sql = substr($sql, 0, strlen($sql)-1);
+
+		$sql .=	")";
+		
+		//return $sql;
+		// because of my bad implementation (lack of consistency) 
+		// of instanciate method which returns object
+		// if there is one result
+		// else returns an array of objects
+
+		$results = self::instanciate($sql);
+		if (is_object($results)) {
+			$temp = array();
+			$temp[] = $results;
+			$results = $temp;
+		}
+		return $results;
+	}
 
 }
 

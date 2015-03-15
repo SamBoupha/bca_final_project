@@ -104,6 +104,46 @@ class BookObject extends DatabaseObject {
 		return self::select_by_query($sql);
 	}
 
+	public static function search($values) {
+		$sql = "SELECT 
+					book.id,
+					book.title,
+					books_author.name as author,
+					book.price,
+					book.img_thumb
+	
+				FROM book 
+				LEFT JOIN books_author
+				ON
+					book.author_id = books_author.id
+				WHERE 
+					book.visibility = 1 
+				AND
+					book.id IN (";
+
+		foreach ($values as $value) {
+					$sql .= $value.",";
+				}
+
+		$sql = substr($sql, 0, strlen($sql)-1);
+
+		$sql .=	")";
+		
+		//return $sql;
+		// because of my bad implementation (lack of consistency) 
+		// of instanciate method which returns object
+		// if there is one result
+		// else returns an array of objects
+
+		$results = self::instanciate($sql);
+		if (is_object($results)) {
+			$temp = array();
+			$temp[] = $results;
+			$results = $temp;
+		}
+		return $results;
+	}
+
 }
 
 ?>

@@ -1,4 +1,26 @@
 <?php
+	function table_to_search($search_keyword) {
+		$keywords = file(INC_PATH.DS.'keywords.txt',FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES) or die('Unable to open file');
+		$table_to_search = array();
+		$mobile_keywords = explode(',', $keywords[0]);
+		$computer_keywords = explode(',', $keywords[1]);
+
+		foreach ($mobile_keywords as $keyword) {
+			if (stripos($keyword,$search_keyword) !== false) {
+				$table_to_search[] = 'wireless_product';
+				break;
+			}
+		}
+
+		foreach ($computer_keywords as $keyword) {
+			if (stripos($keyword,$search_keyword) !== false) {
+				$table_to_search[] = 'computer';
+				break;
+			}
+		}
+
+		return $table_to_search;
+	}
 
 	function imgSearch($dirPath) {
 		$images = array();

@@ -49,7 +49,8 @@
 				<div class="col-md-12">
 					<a href="index.php"><img class='logo' style="height:54px;" src="img/abc-opt.png"></a>
 					<form method='get' action='search.php'>
-						<input type='text' name='search_box' placeholder='Search for a product, category or brand'>
+						<input type='text' name='search_box' 
+								value='<?php echo $_GET["search_box"] ?>' placeholder='Search for a product, category or brand'>
 						<input type='submit' class='btn btn-primary' value='SEARCH'>
 					</form>
 					<a href='checkout.php'><div class='cart btn'>

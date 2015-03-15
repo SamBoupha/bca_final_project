@@ -198,11 +198,12 @@ section {
 
 #carousel-product {
 	width: 950px;
+	height: 300px;
 	margin: auto;
 }
 
 div.item img {
-	min-height: 300px;
+	max-height: 300px;
 	min-width: 730px;
 }
 
